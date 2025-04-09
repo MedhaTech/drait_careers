@@ -174,18 +174,11 @@ form input[type="file"] {
         </div>
         <div class="col-md-9">
           
-                    <div class="row">
-                      <div class="col-md-12">    
-                      <label style="float: right; color: red;  font-size: 16px;">If you have any technical issues reach us on campus@bmsce.ac.in</label>
-                      </div>
-                      
-            </div>
+                    
             <div class="card shadow mb-4 mt-2" id="personal">
                 <div class="card-body">
                     <div class="row">
-                      <!--<div class="col-md-12">    -->
-                      <!--<label style="float: right; color: red;  font-size: 16px;">If you have any technical issues reach us on campus@bmsce.ac.in</label>-->
-                      <!--</div>-->
+                     
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name" class="p my-0 tx-14 text-gray-600">Candiddate Name</label>

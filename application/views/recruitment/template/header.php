@@ -542,7 +542,7 @@
             <div class="col-12">
               <div class="header__main">
                 <a href="<?= base_url(); ?>" class="header__main--logo">
-                  <img src="<?= base_url(); ?>assets/images/full_logo-wide.png" alt="BMSCE logo" class="img-fluid">
+                  <img src="<?= base_url(); ?>assets/images/full_logo-wide.png" alt="Dr.AIT logo" class="img-fluid">
                 </a>
 
                 <span></span>

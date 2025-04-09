@@ -22,7 +22,7 @@ class Recruitment extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|callback_check_database');
 		if ($this->form_validation->run() == FALSE) {
-			$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+			$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 			$data['action'] = 'recruitment';
 
 			$this->rec_template->show('recruitment/login', $data);
@@ -51,7 +51,7 @@ class Recruitment extends CI_Controller
 		$this->form_validation->set_rules('mobile', 'Mobile number', 'required|is_unique[recruitment_users.mobile]');
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+			$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 			$data['action'] = 'recruitment/register';
 
 			$this->rec_template->show('recruitment/register', $data);
@@ -217,7 +217,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('department', 'Department', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/apply_for';
 
 				$this->rec_template->show('recruitment/apply_for', $data);
@@ -268,7 +268,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('class_awarded', 'Class Awarded', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageEducation';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_education_details')->result();
@@ -327,7 +327,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('class_awarded', 'Class Awarded', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateEducation/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('faculty_education_details', $id)->row();
@@ -403,7 +403,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('total', 'Total', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageResearch';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_research_exp_details')->result();
@@ -456,7 +456,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('total', 'Total', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateResearch/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('faculty_research_exp_details', $id)->row();
@@ -528,7 +528,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('publication_date', 'Publication Date', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/managePublications';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_publications_details')->result();
@@ -579,7 +579,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('publication_date', 'Publication Date', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updatePublication/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('faculty_publications_details', $id)->row();
@@ -650,7 +650,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('period_to', 'Period To', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageTeaching';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_teaching_experience_details')->result();
@@ -701,7 +701,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('period_to', 'Period To', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateTeaching/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('faculty_teaching_experience_details', $id)->row();
@@ -772,7 +772,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('period_to', 'Period To', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageIndustrial';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_industrial_experience')->result();
@@ -823,7 +823,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('period_to', 'Period To', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateIndustrial/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('faculty_industrial_experience', $id)->row();
@@ -1053,11 +1053,11 @@ class Recruitment extends CI_Controller
 				$appln_nos = sprintf("%03d", $appln + 1);
 
 				if ($result->post_of == "Non-Teaching") {
-					$appln_no = "BMSCE/2023-24/NT/" . $appln_nos;
+					$appln_no = "Dr.AIT/2023-24/NT/" . $appln_nos;
 				} elseif ($result->post_of == "Librarian") {
-					$appln_no = "BMSCE/2023-24/LP/" . $appln_nos;
+					$appln_no = "Dr.AIT/2023-24/LP/" . $appln_nos;
 				} else {
-					$appln_no = "BMSCE/2023-24/AFP/" . $appln_nos;
+					$appln_no = "Dr.AIT/2023-24/AFP/" . $appln_nos;
 				}
 
 
@@ -1870,7 +1870,7 @@ class Recruitment extends CI_Controller
 			$data["msg"] = "error";
 		}
 
-		$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+		$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 		$data['action'] = 'recruitment';
 
 		$this->rec_template->show('recruitment/login', $data);
@@ -1911,7 +1911,7 @@ class Recruitment extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+			$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 			$data['action'] = 'recruitment/';
 
 			$this->rec_template->show('recruitment/forgot', $data);
@@ -1952,7 +1952,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('reservation_category', 'Reservation Category', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updatePersonal/';
 
 				$data['details'] = $this->admin_model->getDetails('recruitment_users', $data['id'])->row();
@@ -2011,7 +2011,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('year', 'Year', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageAffiliations';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_affiliations')->result();
@@ -2062,7 +2062,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('year', 'Year', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateAffiliations/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('recruitment_affiliations', $id)->row();
@@ -2133,7 +2133,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('position', 'Occupation or Position', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageReferences';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
@@ -2183,7 +2183,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('position', 'Occupation or Position', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateReferences/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('recruitment_references', $id)->row();
@@ -2251,7 +2251,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('name', 'Language Name', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageLanguages';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
@@ -2299,7 +2299,7 @@ class Recruitment extends CI_Controller
 			$this->form_validation->set_rules('name', 'Language Name', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateLanguages/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('recruitment_languages', $id)->row();
@@ -2370,7 +2370,7 @@ class Recruitment extends CI_Controller
 
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/manageDocuments';
 
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
@@ -2422,7 +2422,7 @@ class Recruitment extends CI_Controller
 
 
 			if ($this->form_validation->run() == FALSE) {
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateDocuments/' . $id;
 
 				$data['details'] = $this->admin_model->getDetails('recruitment_documents', $id)->row();
@@ -2660,7 +2660,7 @@ class Recruitment extends CI_Controller
 
 			if ($this->form_validation->run() == FALSE) {
 				// Fetch details for the project that is being updated
-				$data['pageTitle'] = "BMSCE :: Recruitment Portal";
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
 				$data['action'] = 'recruitment/updateProject/' . $id;
 				$data['details'] = $this->admin_model->getDetails('sponsored_projects', $id)->row();
 

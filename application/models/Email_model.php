@@ -14,8 +14,8 @@ class Email_model extends CI_Model
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'erpoffice@bmsce.ac.in',
-            'smtp_pass' => 'Bmsce@1946!',
+            'smtp_user' => '',
+            'smtp_pass' => '',
             'mailtype'  => 'html',
             'wordwrap'  => TRUE ,
             'starttls'  => true,
@@ -27,16 +27,16 @@ class Email_model extends CI_Model
   
         $this->email->set_header('Content-Type', 'text/html');
         $this->email->to($to);
-        $this->email->from('erpoffice@bmsce.ac.in', 'BMSCE');
+        $this->email->from('', 'Dr.AIT');
 
         if ($type == "activation") {
-            $this->email->subject('BMSCE - Account Activation');
+            $this->email->subject('Dr.AIT - Account Activation');
             $htmlContent = $this->load->view('mail/activation', $data, true);
         } elseif ($type == "success") {
-              $this->email->subject('BMSCE - Account Activated');
+              $this->email->subject('Dr.AIT - Account Activated');
             $htmlContent = $this->load->view('mail/success', $data, true);
         } elseif ($type == "forgot") {
-              $this->email->subject('BMSCE - Forgot Password');
+              $this->email->subject('Dr.AIT - Forgot Password');
             $htmlContent = $this->load->view('mail/forgot', $data, true);
         }
         $this->email->message($htmlContent);

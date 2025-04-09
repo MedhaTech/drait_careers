@@ -5,7 +5,7 @@
       <!-- Nested Row within Card Body -->
       <div class="row">
         <div class="col-lg-3 d-none d-lg-block  titlePanel px-5 py-5">
-          <!--<img src="<?php echo base_url(); ?>admin_assets/img/bmsce.png" class="logo"/>-->
+          <!--<img src="<?php echo base_url(); ?>admin_assets/img/Dr.AIT.png" class="logo"/>-->
           <!--<h2 class="text-primary font-weight-bold">BMS College of Engineering </h2>-->
          
          

@@ -27,9 +27,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 // $config['base_url']    = "$root"; 
-$config['base_url'] = 'http://127.0.0.1/drait_careers/';
 
-$config['api_url'] = 'https://webcampus.bmsce.in/api/';
+if($_SERVER['HTTP_HOST']=="127.0.0.1" || $_SERVER['HTTP_HOST']=="localhost")
+{
+    $base_url = "http";
+}
+else
+{
+    $base_url = "https";
+}
+
+$base_url .= "://".$_SERVER['HTTP_HOST'];
+$base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+$config['base_url'] = $base_url;
+
 $config['Content_Type']= 'application/json';
 $config['Client_Service']= 'medha';
 $config['Auth_Key']= 'restapi';

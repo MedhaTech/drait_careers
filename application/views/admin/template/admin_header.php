@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title><?php echo isset($pageTitle) ? $pageTitle : 'BMSCE';?></title>
+  <title><?php echo isset($pageTitle) ? $pageTitle : 'Dr.AIT';?></title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="<?php echo base_url();?>admin_assets/img/favicon.png" type="image/x-icon" />
@@ -48,7 +48,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> BMSCE </div>
+        <div class="sidebar-brand-text mx-3"> Dr.AIT </div>
       </a>
 
       <!-- Divider -->

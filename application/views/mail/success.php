@@ -57,7 +57,7 @@
                                         <tbody>
                                             <tr>
                                                 <td width="100%" align="center">
-                                                    <img width="200" src="https://bmsce.ac.in/assets/img/bmsce_logo.jpg" alt="Logo" border="0" style="text-align: center;"/>
+                                                    <img width="200" src="<?= base_url();?>assets/img/full_logo-wide.png" alt="Logo" border="0" style="text-align: center;"/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -118,7 +118,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td width="100%" align="center">
-                                                                    <p style="font-family:'Ubuntu', sans-serif; font-size:14px; color:#202020; padding-left:20px; padding-right:20px; text-align:justify;">Your account has been created on the recruitment portal by BMSCE.</p>
+                                                                    <p style="font-family:'Ubuntu', sans-serif; font-size:14px; color:#202020; padding-left:20px; padding-right:20px; text-align:justify;">Your account has been created on the recruitment portal by Dr.AIT.</p>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -178,9 +178,9 @@
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
                                         <tbody>
                       <tr>
-                          <td align="center" style="padding-left:15px; padding-right:15px;"><p>If you have any problems, please contact us at info@bmsce.ac.in</p></td>                                          </tr>                        <tr>
+                          <td align="center" style="padding-left:15px; padding-right:15px;"><p>If you have any problems, please contact us at principal@drait.edu.in</p></td>                                          </tr>                        <tr>
                                                 <td width="100%" align="center" style="padding-left:15px; padding-right:15px;">
-                                                    <p style="font-family:'Ubuntu Mono', monospace; color:#ffffff; font-size:12px;">Bmsce &copy; 2023, All Rights Reserved</p>
+                                                    <p style="font-family:'Ubuntu Mono', monospace; color:#ffffff; font-size:12px;">Dr.AIT &copy; 2025, All Rights Reserved</p>
                                                 </td>
                                             </tr>
                                             
