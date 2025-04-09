@@ -6,7 +6,10 @@
             <h2 class="">Current Openings</h2>
             <div class="row">
 
-			<?php foreach ($recruitmentList as $recruitmentList1) { ?>
+			<?php 
+            
+            if($recruitmentList) {
+            foreach ($recruitmentList as $recruitmentList1) { ?>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="carer_wrappper">
                         <div class="career-opening">
@@ -20,7 +23,39 @@
                         </div>
                     </div>
                 </div>
-<?php } ?>
+<?php } } else {?>
+    <h3 class="">No Openings</h3>
+    <?php }?>
+
+            </div>
+            <h2 class="">INTERNAL - CAREER APPRAISAL SCHEME</h2>
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="carer_wrappper">
+                        <div class="career-opening">
+                            <h3><a href="<?= base_url('');?>/assets/internal/SelfAppraisalDrAIT2024final.docx">INTERNAL - CAREER APPRAISAL SCHEME</a></h3>
+                            
+                        </div>
+                        <div class="career-apply">
+                            <div class="apply-now"><a target="_blank" href="<?= base_url('');?>/assets/internal/SelfAppraisalDrAIT2024final.docx">Download</a></div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="carer_wrappper">
+                        <div class="career-opening">
+                            <h3><a href="<?= base_url('');?>/assets/internal/SelfAppraisalDrAIT2024final.docx">CAS <br>Guidelines</a></h3>
+                            
+                        </div>
+                        <div class="career-apply">
+                            <div class="apply-now"><a target="_blank" href="<?= base_url('');?>/assets/internal/WebsiteCASApr2025.docx">Download</a></div>
+                           
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
