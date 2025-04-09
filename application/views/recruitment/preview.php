@@ -339,6 +339,117 @@
                     </table>
               </div>
             </div>
+            <div class="card shadow my-4" id="Projects">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Projects</span>
+                       
+                    </div>
+                    <table class="table table-hover text-dark">
+                        <thead>
+                            <tr>
+                                <th>Sponsoring Agency</th>
+                                <th>Title of Project</th>
+                                <th>Amount of Grant</th>
+                                <th>Period</th>
+                                <th>Co-investigators</th>
+
+                            </tr>
+                        </thead>
+                        <?php foreach ($projects as $details1) { ?>
+                            <tr>
+                                <td><?= $details1->sponsoring_agency ?></td>
+                                <td><?= $details1->title_of_project ?></td>
+                                <td><?= $details1->amount_of_grant ?></td>
+                                <td><?= $details1->period ?></td>
+                                <td><?= $details1->co_investigators ?></td>
+
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+            </div>
+            <div class="card shadow my-4" id="Consultancy">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Consultancy Undertaken</span>
+                        
+                    </div>
+                    <table class="table table-hover text-dark">
+                        <thead>
+                            <tr>
+                                <th>Organization</th>
+                                <th>Title of Project</th>
+                                <th>Amount of Grant</th>
+                                <th>Period</th>
+                                <th>Co-investigators</th>
+
+                            </tr>
+                        </thead>
+                        <?php foreach ($consultancy as $details1) { ?>
+                            <tr>
+                                <td><?= $details1->organization ?></td>
+                                <td><?= $details1->title_of_project ?></td>
+                                <td><?= $details1->amount_of_grant ?></td>
+                                <td><?= $details1->period ?></td>
+                                <td><?= $details1->co_investigators ?></td>
+
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+            </div>
+            <div class="card shadow my-4" id="Seminars">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Seminars / Workshop / Short-term Course</span>
+                        
+                    </div>
+                    <table class="table table-hover text-dark">
+                        <thead>
+                            <tr>
+                                <th>Title of Seminar/Workshop/Course</th>
+                                <th>Organised/Conducted By</th>
+
+                            </tr>
+                        </thead>
+                        <?php foreach ($seminars as $details1) { ?>
+                            <tr>
+                                <td><?= $details1->title_of_project ?></td>
+                                <td><?= $details1->organised_conducted ?></td>
+
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card shadow my-4" id="Membership">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Professional Membership</span>
+                        
+                    </div>
+                    <table class="table table-hover text-dark">
+                        <thead>
+                            <tr>
+                                <th>Professional Organization</th>
+                                <th>Year of Selection</th>
+                                <th>Grade of Membership</th>
+
+                            </tr>
+                        </thead>
+                        <?php foreach ($membership as $details1) { ?>
+                            <tr>
+                                <td><?= $details1->professional_organization ?></td>
+                                <td><?= $details1->year_of_selection ?></td>
+                                <td><?= $details1->grade_of_membership ?></td>
+
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+            </div>
             
             <div class="card shadow my-4" id="references">
                 <div class="card-body">
@@ -438,16 +549,14 @@
               </div>
             </div>
             
-            <div>
-                <?php echo anchor('','Print', 'class="btn btn-danger"');?>  
-            </div>
+            
             
                 
             <?php
                 } else {
                     echo '<h6 class="mb-0 font-weight-bold">Declaration:</h6>';
-                    echo '<p><input type="checkbox" class="" style="width:5%;" /> I, '.$details->candidate_name.' hereby certify that all the information given by me are true to the best of my knowledge. In the event of any information being found incorrect or misleading, candidate shall be liable to cancellation by the university at any time and I shall not be entitled for refund of any fee paid by me to the College. I have carefully studied the notification of faculty recruitment - 2023. </p>';
-                    echo anchor('recruitment/payment','Click here to Pay Fee','class="btn btn-danger btn-sm"');  
+                    echo '<p><input type="checkbox" class="" style="width:5%;" /> I, '.$details->candidate_name.' hereby declare that the above information provided is true to the best of my knowledge and belief. </p>';
+                    echo anchor('recruitment/payment','Click here to enter Payment Details','class="btn btn-danger btn-sm"');  
                 } 
             ?>
         </div>

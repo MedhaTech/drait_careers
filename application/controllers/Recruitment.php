@@ -180,6 +180,10 @@ class Recruitment extends CI_Controller
 			$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
 			$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
 			$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
+			$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
+			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
+			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
+			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
 			if ($data['details']->post_of && $data['details']->department) {
 
 				if ($data['details']->post_of == "Non-Teaching") {
@@ -895,7 +899,11 @@ class Recruitment extends CI_Controller
 			$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
 			$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
 			$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
-
+			$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
+			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
+			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
+			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+			
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->rec_template->show('recruitment/preview-non', $data);
 			} elseif ($data['details']->post_of == "Librarian") {
@@ -2495,7 +2503,11 @@ class Recruitment extends CI_Controller
 			$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
 			$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
 			$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
-
+			$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
+			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
+			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
+			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+			
 
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->rec_template->show('recruitment/print-non', $data);
