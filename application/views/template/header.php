@@ -441,7 +441,7 @@
             /* Center the items vertically */
         }
 
-        .apply-now a button{
+        .apply-now a ,.apply-now button{
             background: #febe10;
             padding: 10px 24px;
             color: #000;
