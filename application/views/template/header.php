@@ -525,6 +525,16 @@
             background-color: #012f66;
             color: #fff;
         }
+        .apply-now-new a {
+            background: #febe10;
+            padding: 10px 10px !important;
+            color: #000;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: .9rem;
+            border-radius: 5px;
+            text-decoration: none;
+        }
     </style>
 </head>
 
