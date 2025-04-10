@@ -622,5 +622,40 @@ public function hasApplied($user_id, $post_id)
     return $query->num_rows() > 0;
 }
 
+
+public function getApplicantsByPost($post_id)
+{
+    $this->db->select('
+        applied_jobs.*,
+        recruitment_users.candidate_name,
+        recruitment_users.email,
+        recruitment_users.mobile,
+        recruitment_users.date_of_birth,
+        recruitment_users.department as user_department,
+        recruitment_users.pan,
+        recruitment_users.marital,
+        recruitment_users.research_grants_awarded,
+        recruitment_users.research_grants_ongoing,
+        recruitment_users.patents_filed,
+        recruitment_users.patents_published,
+        recruitment_users.patents_granted,
+        recruitment_users.consultancy_awarded,
+        recruitment_users.consultancy_ongoing,
+        recruitment_users.special_achievements,
+        recruitment_users.profile_pic,
+        recruitment_users.menu_flag,
+        recruitment_users.address,
+        recruitment_posts.title as post_title,
+        recruitment_posts.slug as post_slug
+    ');
+    $this->db->from('applied_jobs');
+    $this->db->join('recruitment_users', 'recruitment_users.id = applied_jobs.user_id');
+    $this->db->join('recruitment_posts', 'recruitment_posts.id = applied_jobs.post_id');
+    $this->db->where('applied_jobs.post_id', $post_id);
+    $this->db->order_by('applied_jobs.applied_on', 'DESC');
+
+    return $this->db->get()->result();
+}
+
 }
 ?>

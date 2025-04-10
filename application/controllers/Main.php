@@ -141,7 +141,7 @@ class Main extends CI_Controller
 
 
 			//	$this->admin_model->getDetails('recruitment_users',false)->result();
-			$staffList = 		$this->db->where(array('payment_status' => '1', 'post_id' => $id))->order_by("application", "asc")->from("recruitment_users")->get()->result();;
+			$staffList = 	$this->admin_model->getApplicantsByPost($id);
 
 			// print_r($facultyList);
 			if ($staffList != null) {
