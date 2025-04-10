@@ -247,6 +247,48 @@ class Recruitment extends CI_Controller
 		}
 	}
 
+	function career($slug)
+	{
+		if ($this->session->userdata('logged_in')) {
+
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['pageTitle'] = "Dashboard";
+			$data['activeMenu'] = "dashboard";
+			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+
+			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
+
+			if (isset($_REQUEST['flag'])) {
+
+				if ($_REQUEST['flag'] > $data['user_data']->menu_flag) {
+					$this->Email_model->update_menu_flag($data['id'], $_REQUEST['flag']);
+				}
+			}
+			$data['details'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+			$data['education'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_education_details')->result();
+			$data['research'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_research_exp_details')->result();
+			$data['publications'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_publications_details')->result();
+			$data['teaching'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_teaching_experience_details')->result();
+			$data['industrial'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_industrial_experience')->result();
+			$data['affiliations'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_affiliations')->result();
+			$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
+			$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
+			$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
+			$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
+			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
+			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
+			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+			$data['post'] = $this->admin_model->getDetailsbyfield($slug, 'slug', 'recruitment_posts')->row();
+				$this->rec_template->show('recruitment/career', $data);
+			
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
 	function apply_for()
 	{
 		if ($this->session->userdata('logged_in')) {
@@ -3192,6 +3234,8 @@ class Recruitment extends CI_Controller
 		$user_id = $session_data['id'];
 		$post_id = $this->input->post('post_id');
 		$department = $this->input->post('department');
+		$in_service_note = $this->input->post('in_service_note');
+		$additional_info = $this->input->post('additional_info');
 		$agree_terms = $this->input->post('agree_terms') ? 1 : 0;
 
 		// Check if already applied
@@ -3212,6 +3256,8 @@ class Recruitment extends CI_Controller
 			'post_id' => $post_id,
 			'department' => $department,
 			'agree_terms' => $agree_terms,
+			'additional_info' => $additional_info,
+			'in_service_note' => $in_service_note
 		];
 
 		$this->db->insert('applied_jobs', $data);
@@ -3267,11 +3313,130 @@ class Recruitment extends CI_Controller
 			// $acList = $this->admin_model->getDetailsbyfield($this->input->post('type'), 'type', 'recruitment_posts')->result();
 			echo "<option>- Select -</option>";
 			foreach ($acList as $acList1) {
-				echo "<option value=" . str_replace(' ', '_',$acList1->department_name) . ">$acList1->department_name</option>";
+				echo "<option value=" . $acList1->department_name . ">$acList1->department_name</option>";
 			}
 		} else {
 			redirect('main', 'refresh');
 		}
 	}
-
+	public function managePatents()
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', $data['id'])->row();
+			$data['pageTitle'] = "Manage Patents";
+			$data['activeMenu'] = "dashboard";
+	
+			// Validation
+			$this->form_validation->set_rules('application_number', 'Application Number', 'required');
+			$this->form_validation->set_rules('title', 'Title of Patent', 'required');
+			$this->form_validation->set_rules('applicants', 'Applicants', 'required');
+			$this->form_validation->set_rules('status', 'Status', 'required');
+	
+			if ($this->form_validation->run() == FALSE) {
+				$data['action'] = 'recruitment/managePatents';
+				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'user_patents')->result();
+				$this->rec_template->show('recruitment/manage_patents', $data);
+			} else {
+				$insertData = array(
+					'user_id' => $data['id'],
+					'application_number' => $this->input->post('application_number'),
+					'title' => $this->input->post('title'),
+					'applicants' => $this->input->post('applicants'),
+					'status' => $this->input->post('status'),
+					'filed_date' => $this->input->post('filed_date'),
+					'published_date' => $this->input->post('published_date'),
+					'granted_date' => $this->input->post('granted_date'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+	
+				$result = $this->admin_model->insertDetails('user_patents', $insertData);
+	
+				if ($result) {
+					$this->session->set_flashdata('message', 'Patent details saved successfully.');
+					$this->session->set_flashdata('status', 'alert-success');
+				} else {
+					$this->session->set_flashdata('message', 'Failed to save patent details. Try again.');
+					$this->session->set_flashdata('status', 'alert-danger');
+				}
+	
+				redirect('recruitment/managePatents', 'refresh');
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+	public function updatePatent($id)
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['pageTitle'] = "Update Patent";
+			$data['activeMenu'] = "dashboard";
+	
+			// Validation rules
+			$this->form_validation->set_rules('application_number', 'Application Number', 'required');
+			$this->form_validation->set_rules('title', 'Title of Patent', 'required');
+			$this->form_validation->set_rules('applicants', 'Applicants', 'required');
+			$this->form_validation->set_rules('status', 'Status', 'required');
+	
+			if ($this->form_validation->run() == FALSE) {
+				// Load existing patent details
+				$data['action'] = 'recruitment/updatePatent/' . $id;
+				$data['details'] = $this->admin_model->getDetails('user_patents', $id)->row();
+				$this->rec_template->show('recruitment/update_patent', $data);
+			} else {
+				// Prepare update array
+				$updateData = array(
+					'application_number' => $this->input->post('application_number'),
+					'title' => $this->input->post('title'),
+					'applicants' => $this->input->post('applicants'),
+					'status' => $this->input->post('status'),
+					'filed_date' => $this->input->post('filed_date'),
+					'published_date' => $this->input->post('published_date'),
+					'granted_date' => $this->input->post('granted_date')
+				);
+	
+				$result = $this->admin_model->updateDetails($id, $updateData, 'user_patents');
+	
+				if ($result) {
+					$this->session->set_flashdata('message', 'Patent updated successfully.');
+					$this->session->set_flashdata('status', 'alert-success');
+				} else {
+					$this->session->set_flashdata('message', 'Failed to update patent.');
+					$this->session->set_flashdata('status', 'alert-danger');
+				}
+	
+				redirect('recruitment/managePatents', 'refresh');
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+	public function deletePatent($id)
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['pageTitle'] = "Delete Patent";
+			$data['activeMenu'] = "dashboard";
+	
+			$this->admin_model->delDetails('user_patents', $id);
+	
+			$this->session->set_flashdata('message', 'Patent deleted successfully.');
+			$this->session->set_flashdata('status', 'alert-success');
+	
+			redirect('recruitment/managePatents', 'refresh');
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+			
 }

@@ -524,7 +524,7 @@ function	faculty_applications_change_status($staff,$job)
 			// $acList = $this->admin_model->getDetailsbyfield($this->input->post('type'), 'type', 'recruitment_posts')->result();
 			echo "<option>- Select -</option>";
 			foreach ($acList as $acList1) {
-				echo "<option value=" . str_replace(' ', '_',$acList1->department_name) . ">$acList1->department_name</option>";
+				echo "<option value=" . $acList1->department_name . ">$acList1->department_name</option>";
 			}
 		} else {
 			redirect('main', 'refresh');

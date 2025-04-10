@@ -67,134 +67,11 @@
                 </form>
                 <label style="margin-left: 15px; font-size: 12px;">Only JPG and PNG files are allowed.</label>
 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/profile#personal', 'Personal Details'); ?>
-                    </li>
+                <?php $this->load->view('recruitment/template/side_header'); ?>
 
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 1)
-                            echo anchor('recruitment/profile#language', 'Languages Known');
-                        else
-                            echo anchor('recruitment/profile#language', 'Languages Known', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 2)
-                            echo anchor('recruitment/profile#education', 'Educational Qualification');
-                        else
-                            echo anchor('recruitment/profile#education', 'Educational Qualification', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 3)
-                            echo anchor('recruitment/profile#research', 'Research Experience');
-                        else
-                            echo anchor('recruitment/profile#research', 'Research Experience', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-
-                        <?php
-
-                        if ($details->menu_flag >= 4)
-                            echo anchor('recruitment/profile#publications', 'Publications');
-                        else
-                            echo anchor('recruitment/profile#publications', 'Publications', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 5)
-                            echo anchor('recruitment/profile#teaching', 'Teaching Experience');
-                        else
-                            echo anchor('recruitment/profile#teaching', 'Teaching Experience', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 6)
-                            echo anchor('recruitment/profile#industrial', 'Industrial Experience');
-                        else
-                            echo anchor('recruitment/profile#industrial', 'Industrial Experience', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 7)
-                            echo anchor('recruitment/profile#affiliations', 'Affiliations');
-                        else
-                            echo anchor('recruitment/profile#affiliations', 'Affiliations', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 7)
-                            echo anchor('recruitment/profile#Projects', 'Projects');
-                        else
-                            echo anchor('recruitment/profile#Projects', 'Projects', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 7)
-                            echo anchor('recruitment/profile#Consultancy', 'Consultancy');
-                        else
-                            echo anchor('recruitment/profile#Consultancy', 'Consultancy', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 7)
-                            echo anchor('recruitment/profile#Seminars', 'Seminars');
-                        else
-                            echo anchor('recruitment/profile#Seminars', 'Seminars', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 7)
-                            echo anchor('recruitment/profile#Membership', 'Professional Membership');
-                        else
-                            echo anchor('recruitment/profile#Membership', 'Professional Membership', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-
-                        echo anchor('recruitment/profile#references', 'References');
-
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-
-                        echo anchor('recruitment/profile#documents', 'Documents');
-
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/changePassword', 'Change Password'); ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/logout', 'Logout'); ?>
-                    </li>
-                </ul>
-                <!--<div class="card-body">-->
-                <!--  <a href="#" class="card-link">Card link</a>-->
-                <!--  <a href="#" class="card-link">Another link</a>-->
-                <!--</div>-->
             </div>
 
-            <?php
-            if ($details->menu_flag >= 7)
-                echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm payment-submit"', 'id="payment-submit');
-            else
-                echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm disabled" ');
-            ?>
+
 
         </div>
         <div class="col-md-9">
@@ -203,7 +80,7 @@
             <div class="card shadow mb-4 mt-2" id="personal">
                 <div class="card-body">
                     <div class="row">
-                        
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name" class="p my-0 tx-14 text-gray-600">Candiddate Name</label>
@@ -590,6 +467,53 @@
                     </table>
                 </div>
             </div>
+            <div class="card shadow my-4" id="patents">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Patents</span>
+                        <span tabindex="0" class="add no-outline">
+                            <?php
+                            if ($user_data->menu_flag >= 4)
+                                echo anchor('recruitment/managePatents', '<i class="fas fa-pencil-alt"></i> Manage Patents', 'class="font-weight-bold"');
+                            else
+                                echo anchor('recruitment/managePatents', '<i class="fas fa-pencil-alt"></i> Manage Patents', 'class="font-weight-bold btn disabled"');
+                            ?>
+                        </span>
+                    </div>
+
+                    <table class="table table-hover text-dark tx-14">
+                        <thead>
+                            <tr>
+                                <th width="20%">Application No.</th>
+                                <th width="30%">Title of Patent</th>
+                                <th width="20%">Applicants</th>
+                                <th width="10%">Status</th>
+                                <th width="10%">Filed Date</th>
+                                <th width="10%">Published</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($patents)) {
+                                foreach ($patents as $patent) {
+                                    echo '<tr>';
+                                    echo '<td>' . $patent->application_number . '</td>';
+                                    echo '<td>' . $patent->title . '</td>';
+                                    echo '<td>' . $patent->applicants . '</td>';
+                                    echo '<td>' . $patent->status . '</td>';
+                                    echo '<td>' . (!empty($patent->filed_date) ? date('d M Y', strtotime($patent->filed_date)) : '-') . '</td>';
+                                    echo '<td>' . (!empty($patent->published_date) ? date('d M Y', strtotime($patent->published_date)) : '-') . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="6" class="text-center text-muted">No patents added yet.</td></tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <div class="card shadow my-4" id="Projects">
                 <div class="card-body">
                     <div class="widgetHead">
@@ -732,9 +656,9 @@
                         <span class="widgetTitle">References</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-               
-                                echo anchor('recruitment/manageReferences', '<i class="fas fa-pencil-alt"></i> Manage References', 'class="font-weight-bold"');
-                           ?>
+
+                            echo anchor('recruitment/manageReferences', '<i class="fas fa-pencil-alt"></i> Manage References', 'class="font-weight-bold"');
+                            ?>
                         </span>
                     </div>
                     <table class="table table-hover text-dark tx-14">
@@ -768,9 +692,9 @@
                         <span class="widgetTitle">Documents</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                          
-                                echo anchor('recruitment/manageDocuments', '<i class="fas fa-pencil-alt"></i> Manage Documents', 'class="font-weight-bold"');
-                          ?>
+
+                            echo anchor('recruitment/manageDocuments', '<i class="fas fa-pencil-alt"></i> Manage Documents', 'class="font-weight-bold"');
+                            ?>
                         </span>
                     </div>
                     <table class="table table-hover text-dark tx-14">

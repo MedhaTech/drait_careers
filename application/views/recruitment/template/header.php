@@ -189,7 +189,7 @@
       background: #023e86 none repeat scroll 0 0;
       margin-top: .9375rem;
       width: 100%;
-      max-width: 306px;
+      max-width: 400px;
       display: -webkit-box;
       display: -moz-box;
       display: -ms-flexbox;
@@ -566,11 +566,15 @@
                         <div class="title">Dashboard</div>
                       </a>
                       <a href="<?= base_url('recruitment'); ?>/profile" class="user-info">
-                        <span class="icon fa fa-user"></span>
+                        <!-- <span class="icon fa fa-user"></span> -->
                         <div class="title">Profile</div>
                       </a>
+                      <a href="<?= base_url('recruitment'); ?>/applied" class="user-info">
+                        <!-- <span class="icon fa fa-user"></span> -->
+                        <div class="title">Applied Jobs</div>
+                      </a>
                       <a href="<?= base_url('recruitment'); ?>/logout" class="user-info">
-                        <span class="icon fa fa-lock"></span>
+                        <!-- <span class="icon fa fa-lock"></span> -->
                         <div class="title">Logout</div>
                       </a>
                     </div>

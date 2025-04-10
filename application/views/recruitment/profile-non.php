@@ -45,7 +45,7 @@
 
     <div class="row mb-5">
         <div class="col-md-3">
-          
+
             <div class="card shadow my-2">
 
 
@@ -57,7 +57,7 @@
                         <?php } else { ?>
                             <div class="profile-pic" style="background-image: url('<?= base_url(); ?>uploads/profile/<?= $details->profile_pic; ?>')">
                             <?php } ?>
-                             <input type="hidden" name="pro-pic" class="pro-pic" id="pro-pic" value="<?=$details->profile_pic;?>">
+                            <input type="hidden" name="pro-pic" class="pro-pic" id="pro-pic" value="<?= $details->profile_pic; ?>">
                             <span class="glyphicon glyphicon-camera"></span>
                             <span>Change Image</span>
                             </div>
@@ -69,78 +69,19 @@
     font-size: 12px;
 ">Only JPG and PNG files are allowed.</label>
 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/profile#personal', 'Personal Details'); ?>
-                    </li>
-
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 1)
-                            echo anchor('recruitment/profile#language', 'Languages Known');
-                        else
-                            echo anchor('recruitment/profile#language', 'Languages Known', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 2)
-                            echo anchor('recruitment/profile#education', 'Educational Qualification');
-                        else
-                            echo anchor('recruitment/profile#education', 'Educational Qualification', 'class="btn disabled"');
-                        ?>
-                    </li>
-
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 3)
-                            echo anchor('recruitment/profile#teaching', 'Experience');
-                        else
-                            echo anchor('recruitment/profile#teaching', 'Experience', 'class="btn disabled"');
-                        ?>
-                    </li>
-
-                    <li class="list-group-item">
-                        <?php
-                        if ($details->menu_flag >= 3)
-                            echo anchor('recruitment/profile#documents', 'Documents');
-                        else
-                            echo anchor('recruitment/profile#documents', 'Documents', 'class="btn disabled"');
-                        ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/changePassword', 'Change Password'); ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/logout', 'Logout'); ?>
-                    </li>
-                </ul>
-                <!--<div class="card-body">-->
-                <!--  <a href="#" class="card-link">Card link</a>-->
-                <!--  <a href="#" class="card-link">Another link</a>-->
-                <!--</div>-->
+                <?php $this->load->view('recruitment/template/side_header'); ?>
             </div>
 
-            <?php
-            if ($details->menu_flag >= 5)
-            {?>
-              <a href="<?= base_url();?>recruitment/preview" class="btn btn-block btn-danger btn-square btn-sm payment-submit" id="payment-submit">Proceed for Payment and Submit</a>
-              <?php
-            }
-            else
-            {
-                echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm disabled" ');
-            }
-            ?>
+
 
         </div>
         <div class="col-md-9">
 
-     
+
             <div class="card shadow mb-4 mt-2" id="personal">
                 <div class="card-body">
                     <div class="row">
-                        
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name" class="p my-0 tx-14 text-gray-600">Candiddate Name</label>
@@ -317,36 +258,35 @@
                 </div>
             </div>
 
-            
 
 
-            <div class="card shadow my-4" id="teaching">
+            <div class="card shadow my-4" id="industrial">
                 <div class="card-body">
                     <div class="widgetHead">
-                        <span class="widgetTitle">Experience</span>
+                        <span class="widgetTitle">Industrial Experience</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($details->menu_flag >= 3)
-                                echo anchor('recruitment/manageTeaching', '<i class="fas fa-pencil-alt"></i> Manage Teaching', 'class="font-weight-bold"');
+                            if ($details->menu_flag >= 6)
+                                echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Industrial', 'class="font-weight-bold"');
                             else
-                                echo anchor('recruitment/manageTeaching', '<i class="fas fa-pencil-alt"></i> Manage Teaching', 'class="font-weight-bold btn disabled"'); ?>
+                                echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Industrial', 'class="font-weight-bold btn disabled"'); ?>
                         </span>
                     </div>
                     <table class="table table-hover text-dark tx-14">
                         <thead>
                             <tr>
-                                <th width='40%'>Name of the University / Institution</th>
-                                <th width='20%'>Designation</th>
+                                <th width='40%'>Name of the Organization</th>
+                                <th width='20%'>Position Held</th>
                                 <th width='20%'>Exp. From & To</th>
                                 <th width='20%'>Total Exp.</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($teaching as $teaching1) {
+                            foreach ($industrial as $industrial1) {
 
-                                $date1 = strtotime($teaching1->period_from);
-                                $date2 = strtotime($teaching1->period_to);
+                                $date1 = strtotime($industrial1->period_from);
+                                $date2 = strtotime($industrial1->period_to);
 
                                 $diff = abs($date2 - $date1);
 
@@ -358,9 +298,9 @@
 
 
                                 echo '<tr>';
-                                echo '<td>' . $teaching1->institution . '</td>';
-                                echo '<td>' . $teaching1->designation . '</td>';
-                                echo '<td>' . date('M Y', strtotime($teaching1->period_from)) . ' - ' . date('M Y', strtotime($teaching1->period_to)) . '</td>';
+                                echo '<td>' . $industrial1->organization . '</td>';
+                                echo '<td>' . $industrial1->position_held . '</td>';
+                                echo '<td>' . date('M Y', strtotime($industrial1->period_from)) . ' - ' . date('M Y', strtotime($industrial1->period_to)) . '</td>';
                                 echo '<td>' . $years . ' years, ' . $months . ' months' . '</td>';
                                 echo '</tr>';
                             }
@@ -370,7 +310,7 @@
                 </div>
             </div>
 
- 
+
             <div class="card shadow my-4" id="documents">
                 <div class="card-body">
                     <div class="widgetHead">
@@ -415,12 +355,12 @@
 </div>
 <script>
     $('.payment-submit').on('click', function() {
-        var pic =$('#pro-pic').val();
-    if(pic==''){
-        alert("Please upload your passport size photo.");
-      event.preventDefault();  
-    }
-        
+        var pic = $('#pro-pic').val();
+        if (pic == '') {
+            alert("Please upload your passport size photo.");
+            event.preventDefault();
+        }
 
-});
+
+    });
 </script>

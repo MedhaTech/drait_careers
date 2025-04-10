@@ -69,9 +69,10 @@
 ">Only JPG and PNG files are allowed.</label>
 
                 <?php $this->load->view('recruitment/template/side_header'); ?>
+
             </div>
 
-           
+
 
         </div>
         <div class="col-md-9">
@@ -82,30 +83,28 @@
             <div class="card shadow mb-4 mt-2" id="personal">
                 <div class="card-body">
 
-                    <div class="widgetHead">
-                        <span class="widgetTitle">Applied Posts</span>
-
-                    </div>
+                  
 
                     <div class="row">
+                        <article class="card p-4">
+                            <h2 class=""><?= $post->title; ?></h2>
+                            <p class="text-muted">
+                                <small>
+                                    Posted by <strong>Admin</strong> on <?= date('F j, Y', strtotime($post->updated_on)); ?>
+                                </small>
+                            </p>
+                            <hr>
+                            <div class="blog-content">
+                                <!-- Job Description -->
+                                <p><?= $post->description; ?></p>
 
-                        <?php
+                                <!-- Departments -->
+                                <h5>Departments</h5>
+                                <p><?= $this->admin_model->getdeptpost($post->departments); ?></p>
 
-                        if ($appliedList) {
-                            foreach ($appliedList as $recruitmentList1) { ?>
-                                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                                    <div class="carer_wrappper">
-                                        <div class="career-opening">
-                                            <h3><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
-
-                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Applied on <?= date('F j, Y', strtotime($recruitmentList1->applied_on)); ?></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                        <?php }
-                        }  ?>
-
+                                
+                            </div>
+                        </article>
                     </div>
                 </div>
 
@@ -131,17 +130,15 @@
                         <!-- Department Selection -->
                         <div class="mb-3">
                             <label for="department" class="form-label">Select Department</label>
-                            <select class="form-control" name="department" required>
-                                <option value="">Select</option>
-                                <option value="1">HR</option>
-                                <option value="2">Engineering</option>
+                            <select class="form-control" name="department" id="departmentSelect" required>
+                                <option value="">Loading...</option>
                             </select>
                         </div>
                         <!-- Terms Agreement Checkbox -->
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="agree_terms" value="1" id="agreeTerms" required>
                             <label class="form-check-label" for="agreeTerms">
-                                I agree to the terms and conditions.
+                                I, hereby declare that the above information provided is true to the best of my knowledge and belief.
                             </label>
                         </div>
                     </div>
@@ -155,12 +152,31 @@
 
     <script>
         $(document).ready(function() {
-            console.log($().jquery); // Should print the jQuery version
+            console.log($().jquery); // Confirm jQuery loaded
 
             $('#applyModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget); // Button that triggered the modal
-                var postId = button.data('postid'); // Extract post ID from data attribute
-                $('#modalPostId').val(postId); // Insert into hidden input in modal
+                var button = $(event.relatedTarget);
+                var postId = button.data('postid');
+                $('#modalPostId').val(postId);
+
+                // Fetch departments via AJAX
+                $.ajax({
+                    url: "<?= base_url('recruitment/getdepartment'); ?>",
+                    type: "POST",
+                    data: {
+                        id: postId
+                    },
+                    beforeSend: function() {
+                        $('#departmentSelect').html('<option>Loading...</option>');
+                    },
+                    success: function(response) {
+                        $('#departmentSelect').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching departments: ", error);
+                        $('#departmentSelect').html('<option>Error loading departments</option>');
+                    }
+                });
             });
         });
     </script>

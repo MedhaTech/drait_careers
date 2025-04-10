@@ -68,36 +68,11 @@
     font-size: 12px;
 ">Only JPG and PNG files are allowed.</label>
 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/dashboard', 'Dashboard'); ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/profile', 'My Profile'); ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/applied', 'Applied Jobs'); ?>
-                    </li>
+                <?php $this->load->view('recruitment/template/side_header'); ?>
 
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/changePassword', 'Change Password'); ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?php echo anchor('recruitment/logout', 'Logout'); ?>
-                    </li>
-                </ul>
-                <!--<div class="card-body">-->
-                <!--  <a href="#" class="card-link">Card link</a>-->
-                <!--  <a href="#" class="card-link">Another link</a>-->
-                <!--</div>-->
             </div>
 
-            <?php
-            // if ($details->menu_flag >= 10)
-            //     echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm"');
-            // else
-            //     echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm disabled" ');
-            ?>
+
 
         </div>
         <div class="col-md-9">
@@ -122,7 +97,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
                                     <div class="carer_wrappper">
                                         <div class="career-opening">
-                                            <h3><a href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
+                                            <h3><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
                                             <div class="years-current"><i class="fa fa-briefcase" aria-hidden="true"></i> <?= $recruitmentList1->department_names; ?></div>
                                             <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Bengaluru</div>
                                         </div>
@@ -141,7 +116,7 @@
                                                     </button>
                                                 <?php } ?>
                                             </div>
-                                            <div class="read-more"><a href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>" target="_blank" class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                                            <div class="read-more"><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>" class="fa fa-angle-right" aria-hidden="true"></i></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -178,6 +153,17 @@
                             <select class="form-control" name="department" id="departmentSelect" required>
                                 <option value="">Loading...</option>
                             </select>
+                        </div>
+                        <!-- Additional Information -->
+                        <div class="mb-3">
+                            <label for="additional_info" class="form-label">Any additional information you wish to state?</label>
+                            <textarea class="form-control" name="additional_info" id="additional_info" rows="3" placeholder="Write here..."></textarea>
+                        </div>
+
+                        <!-- In-service Personnel Note -->
+                        <div class="mb-3">
+                            <label for="in_service_note" class="form-label">In-service personnel shall forward the application through the organization. However, send the advance copy of the application.</label>
+                            <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3" placeholder="Write here..."></textarea>
                         </div>
                         <!-- Terms Agreement Checkbox -->
                         <div class="form-check">
