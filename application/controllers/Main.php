@@ -41,6 +41,8 @@ class Main extends CI_Controller
 
 		//query the database
 		$result = $this->admin_model->login($username, md5($password));
+
+		
 		if ($result) {
 			$sess_array = array();
 			foreach ($result as $row) {
@@ -50,6 +52,7 @@ class Main extends CI_Controller
 				);
 				$this->session->set_userdata('logged_in', $sess_array);
 			}
+			
 			return TRUE;
 		} else {
 			$this->form_validation->set_message('check_database', 'Invalid username or password');
@@ -82,7 +85,7 @@ class Main extends CI_Controller
 		if (!$this->upload->do_upload('image')) {
 			$error = array('error' => $this->upload->display_errors());
 			//  echo json_encode($error);
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		} else {
 			$data = $this->upload->data();
 			$success = $data['file_name'];
@@ -100,7 +103,7 @@ class Main extends CI_Controller
 				unlink('./uploads/profile/' . $pro);
 			}
 			json_encode($success);
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		}
 	}
 
@@ -370,7 +373,7 @@ function	faculty_applications_change_status($staff,$job)
 			$this->form_validation->set_rules('type', 'Application Type', 'required');
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('ay', 'Academic Year', 'required');
-			$this->form_validation->set_rules('fee', 'Application Fee', 'required');
+			$this->form_validation->set_rules('fee', 'Application Fee', '');
 			$this->form_validation->set_rules('departments[]', 'Departments', 'required');
 			if ($this->form_validation->run() === FALSE) {
 				$data['action'] = 'main/addjobpost/';
@@ -379,6 +382,7 @@ function	faculty_applications_change_status($staff,$job)
 				$data['type'] = $this->input->post('type');
 				$data['title'] = $this->input->post('title');
 				$data['ay'] = $this->input->post('ay');
+				$data['slug'] = create_slug($this->input->post('title'));
 				$data['description'] = $this->input->post('description');
 				$data['status'] = $this->input->post('status');
 				$this->adminrec_template->show('recruitment/addjobpost', $data);
@@ -390,6 +394,7 @@ function	faculty_applications_change_status($staff,$job)
 				$departments_str = implode(',', $departments);
 				$insertDetails = array(
 					'title' => $this->input->post('title'),
+					'slug' => create_slug($this->input->post('title')),
 					'type' => $this->input->post('type'),
 					'ay' => $this->input->post('ay'),
 					'fee' => $this->input->post('fee'),
@@ -444,6 +449,7 @@ function	faculty_applications_change_status($staff,$job)
 				$departments_str = implode(',', $departments);
 				$insertDetails = array(
 					'title' => $this->input->post('title'),
+					'slug' => create_slug($this->input->post('title')),
 					'type' => $this->input->post('type'),
 					'ay' => $this->input->post('ay'),
 					'fee' => $this->input->post('fee'),
@@ -511,7 +517,7 @@ function	faculty_applications_change_status($staff,$job)
 			$departments_str = explode(',', $post->departments);
 			$this->db->select('*');
 			$this->db->from('recruitment_departments');
-			$this->db->where_in('id', $departments_str);
+			// $this->db->where_in('id', $departments_str);
 			$query = $this->db->get();
 			$acList = $query->result();
 			

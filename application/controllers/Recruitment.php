@@ -37,7 +37,7 @@ class Recruitment extends CI_Controller
 			if ($details->payment_status == 1) {
 				redirect('recruitment/print', 'refresh');
 			} else {
-				redirect('recruitment/dashboard', 'refresh');
+				redirect('recruitment/profile', 'refresh');
 			}
 		}
 	}
@@ -150,7 +150,7 @@ class Recruitment extends CI_Controller
 		}
 	}
 
-	function dashboard()
+	function profile()
 	{
 		if ($this->session->userdata('logged_in')) {
 
@@ -187,12 +187,57 @@ class Recruitment extends CI_Controller
 			if ($data['details']->post_of && $data['details']->department) {
 
 				if ($data['details']->post_of == "Non-Teaching") {
-					$this->rec_template->show('recruitment/dashboard-non', $data);
-				} elseif ($data['details']->post_of == "Librarian") {
-					$this->rec_template->show('recruitment/dashboard-lib', $data);
+					$this->rec_template->show('recruitment/profile-non', $data);
 				} else {
-					$this->rec_template->show('recruitment/dashboard', $data);
+					$this->rec_template->show('recruitment/profile', $data);
 				}
+			} else {
+				$data['action'] = 'recruitment/apply_for';
+				$this->rec_template->show('recruitment/apply_for', $data);
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+	function dashboard()
+	{
+		if ($this->session->userdata('logged_in')) {
+
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['pageTitle'] = "Dashboard";
+			$data['activeMenu'] = "dashboard";
+			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+
+			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
+
+			if (isset($_REQUEST['flag'])) {
+
+				if ($_REQUEST['flag'] > $data['user_data']->menu_flag) {
+					$this->Email_model->update_menu_flag($data['id'], $_REQUEST['flag']);
+				}
+			}
+			$data['details'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+			$data['education'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_education_details')->result();
+			$data['research'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_research_exp_details')->result();
+			$data['publications'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_publications_details')->result();
+			$data['teaching'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_teaching_experience_details')->result();
+			$data['industrial'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_industrial_experience')->result();
+			$data['affiliations'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_affiliations')->result();
+			$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
+			$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
+			$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
+			$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
+			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
+			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
+			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+			if ($data['details']->post_of && $data['details']->department) {
+
+
+				$this->rec_template->show('recruitment/dashboard', $data);
 			} else {
 				$data['action'] = 'recruitment/apply_for';
 				$this->rec_template->show('recruitment/apply_for', $data);
@@ -213,7 +258,6 @@ class Recruitment extends CI_Controller
 			$data['activeMenu'] = "dashboard";
 
 			$this->form_validation->set_rules('post_of', 'Application Type', 'trim|required');
-			$this->form_validation->set_rules('post_id', 'Post', 'trim|required');
 			$this->form_validation->set_rules('department', 'Department', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
@@ -225,7 +269,6 @@ class Recruitment extends CI_Controller
 
 				$updateDetails = array(
 					'post_of' => $this->input->post('post_of'),
-					'post_id' => $this->input->post('post_id'),
 					'department' => str_replace('_', ' ', $this->input->post('department')),
 					'updated_at' => date('Y-m-d H:i:s')
 				);
@@ -240,7 +283,7 @@ class Recruitment extends CI_Controller
 					$this->session->set_flashdata('status', 'alert-danger');
 				}
 
-				redirect('recruitment/dashboard', 'refresh');
+				redirect('recruitment/profile', 'refresh');
 			}
 		} else {
 			redirect('recruitment/timeout', 'refresh');
@@ -903,7 +946,7 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
-			
+
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->rec_template->show('recruitment/preview-non', $data);
 			} elseif ($data['details']->post_of == "Librarian") {
@@ -1081,7 +1124,7 @@ class Recruitment extends CI_Controller
 			$this->session->set_flashdata('message', '<h5 class="text-danger">Oops something went wrong please try again.!</h5>');
 			$this->session->set_flashdata('status', 'alert-danger');
 
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		}
 	}
 
@@ -1889,7 +1932,7 @@ class Recruitment extends CI_Controller
 		if (! $this->upload->do_upload('image')) {
 			$error = array('error' => $this->upload->display_errors());
 			//  echo json_encode($error);
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		} else {
 			$data = $this->upload->data();
 			$success = $data['file_name'];
@@ -1903,7 +1946,7 @@ class Recruitment extends CI_Controller
 				$this->db->update('recruitment_users', $data);
 			}
 			json_encode($success);
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		}
 	}
 	function forgot()
@@ -1985,7 +2028,7 @@ class Recruitment extends CI_Controller
 					$this->session->set_flashdata('status', 'alert-danger');
 				}
 
-				redirect('recruitment/dashboard', 'refresh');
+				redirect('recruitment/profile', 'refresh');
 			}
 		} else {
 			redirect('recruitment/timeout', 'refresh');
@@ -2507,7 +2550,7 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
-			
+
 
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->rec_template->show('recruitment/print-non', $data);
@@ -2562,7 +2605,7 @@ class Recruitment extends CI_Controller
 				redirect('recruitment/changePassword', 'refresh');
 			}
 		} else {
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		}
 	}
 
@@ -2576,7 +2619,7 @@ class Recruitment extends CI_Controller
 			$data['email'] = $session_data['email'];
 			return $data;
 		} else {
-			redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/profile', 'refresh');
 		}
 	}
 
@@ -3087,22 +3130,23 @@ class Recruitment extends CI_Controller
 		}
 	}
 
-	public function updateAcademicAndProfessionalInfo() {
+	public function updateAcademicAndProfessionalInfo()
+	{
 		if ($this->session->userdata('logged_in')) {
 			$session_data = $this->session->userdata('logged_in');
 			$data['user_id'] = $session_data['id'];
 			$data['pageTitle'] = "Update Academic and Professional Info";
-	
+
 			// Fetch the existing details
 			$data['details'] = $this->admin_model->getacaDetails('academic_and_professional_info', $id)->row();
-	
+
 			// Validation rules
 			$this->form_validation->set_rules('additional_information', 'Additional Information', 'required');
 			$this->form_validation->set_rules('award_recognition_title', 'Award Recognition Title', 'required');
 			$this->form_validation->set_rules('project_titles_award_recognition', 'Project Title for Award Recognition', 'required');
 			$this->form_validation->set_rules('other_professional_experience_title', 'Professional Experience Title', 'required');
 			$this->form_validation->set_rules('agree_to_minimum_salary', 'Agree to Minimum Salary', 'required');
-	
+
 			if ($this->form_validation->run() == FALSE) {
 				// If validation fails, load the form with current data
 				$this->rec_template->show('recruitment/update_affiliation', $data);
@@ -3118,10 +3162,10 @@ class Recruitment extends CI_Controller
 					'agree_to_minimum_salary' => $this->input->post('agree_to_minimum_salary') ? 1 : 0,
 					'updated_at' => date('Y-m-d H:i:s')
 				);
-	
+
 				// Update the record in the database
 				$result = $this->admin_model->updateDetails($id, $updateDetails, 'academic_and_professional_info');
-	
+
 				// Set flash data based on result
 				if ($result) {
 					$this->session->set_flashdata('message', 'Details updated successfully!');
@@ -3130,7 +3174,7 @@ class Recruitment extends CI_Controller
 					$this->session->set_flashdata('message', 'Oops.. Something went wrong. Please try again!');
 					$this->session->set_flashdata('status', 'alert-danger');
 				}
-	
+
 				// Redirect to a suitable page (e.g., listing or dashboard)
 				redirect('recruitment/manageAcademicAndProfessionalInfo', 'refresh');
 			}
@@ -3138,6 +3182,96 @@ class Recruitment extends CI_Controller
 			redirect('recruitment/timeout', 'refresh');
 		}
 	}
-	
+	public function apply_job()
+	{
+		if (!$this->session->userdata('logged_in')) {
+			redirect('recruitment/timeout', 'refresh');
+		}
+		$session_data = $this->session->userdata('logged_in');
+		$data['user_id'] = $session_data['id'];
+		$user_id = $session_data['id'];
+		$post_id = $this->input->post('post_id');
+		$department = $this->input->post('department');
+		$agree_terms = $this->input->post('agree_terms') ? 1 : 0;
+
+		// Check if already applied
+		$exists = $this->db->get_where('applied_jobs', [
+			'user_id' => $user_id,
+			'post_id' => $post_id
+		])->row();
+
+		if ($exists) {
+			$this->session->set_flashdata('message', 'You have already applied for this job.');
+			$this->session->set_flashdata('status', 'alert-warning');
+			redirect('recruitment/applied');
+		}
+
+		// Insert into DB
+		$data = [
+			'user_id' => $user_id,
+			'post_id' => $post_id,
+			'department' => $department,
+			'agree_terms' => $agree_terms,
+		];
+
+		$this->db->insert('applied_jobs', $data);
+
+		$this->session->set_flashdata('message', 'Application submitted successfully!');
+		$this->session->set_flashdata('status', 'alert-success');
+		redirect('recruitment/applied');
+	}
+	function applied()
+	{
+		if ($this->session->userdata('logged_in')) {
+
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['pageTitle'] = "Dashboard";
+			$data['activeMenu'] = "dashboard";
+			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+
+
+
+			if (isset($_REQUEST['flag'])) {
+
+				if ($_REQUEST['flag'] > $data['user_data']->menu_flag) {
+					$this->Email_model->update_menu_flag($data['id'], $_REQUEST['flag']);
+				}
+			}
+			$data['details'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+			$data['appliedList'] = $this->admin_model->applied_jobs($data['id']);
+			
+			
+				$this->rec_template->show('recruitment/applied', $data);
+			
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+	function getdepartment()
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$post = $this->admin_model->getDetails('recruitment_posts', $this->input->post('id'))->row();
+			$departments_str = explode(',', $post->departments);
+			$this->db->select('*');
+			$this->db->from('recruitment_departments');
+			$this->db->where_in('id', $departments_str);
+			$query = $this->db->get();
+			$acList = $query->result();
+			
+			// $acList = $this->admin_model->getDetailsbyfield($this->input->post('type'), 'type', 'recruitment_posts')->result();
+			echo "<option>- Select -</option>";
+			foreach ($acList as $acList1) {
+				echo "<option value=" . str_replace(' ', '_',$acList1->department_name) . ">$acList1->department_name</option>";
+			}
+		} else {
+			redirect('main', 'refresh');
+		}
+	}
 
 }

@@ -441,7 +441,7 @@
             /* Center the items vertically */
         }
 
-        .apply-now a {
+        .apply-now a button{
             background: #febe10;
             padding: 10px 24px;
             color: #000;
@@ -464,7 +464,7 @@
             width: 40px;
             height: 40px;
             text-align: center;
-            line-height: 30px;
+            line-height: 20px;
             font-size: 1.4rem;
         }
 
@@ -507,6 +507,17 @@
                 height: 30px;
             }
         }
+
+        .btn-apply {
+            background-color: #023e86;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-apply:hover {
+            background-color: #012f66;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -526,50 +537,50 @@
 
                                 <span></span>
                                 <div class="header__main__rs">
-                                     <?php if ($this->session->userdata('logged_in')) { ?>
+                                    <?php if ($this->session->userdata('logged_in')) { ?>
                                         <div class="header__main__rs__info">
-                                        <ul>
-                                            <li>
+                                            <ul>
+                                                <li>
 
-                                                <span class="resHide">Welcome &nbsp; </span> <span><?= $candidate_name; ?>,</span>
-                                            </li>
-                                        </ul>
-                                </div>
-                                <div class="header__main__rs__login ">
+                                                    <span class="resHide">Welcome &nbsp; </span> <span><?= $candidate_name; ?>,</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="header__main__rs__login ">
 
-                                    <a href="<?= base_url('recruitment'); ?>/dashboard" class="user-info">
-                                        <span class="icon fa fa-home"></span>
-                                        <div class="title">Dashboard</div>
-                                    </a>
-                                    <a href="<?= base_url('recruitment'); ?>/logout" class="user-info">
-                                        <span class="icon fa fa-user"></span>
-                                        <div class="title">Logout</div>
-                                    </a>
-                                </div>
-                            <?php } else { ?>
-                                <div class="header__main__rs__info">
-                                    <ul>
-                                        <li>
-                                            <span class="icon"><i class="fa fa-phone"></i></span>
-                                            <span class="resHide">Call : </span> <span>9886096821</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="header__main__rs__login ">
+                                            <a href="<?= base_url('recruitment'); ?>/dashboard" class="user-info">
+                                                <span class="icon fa fa-home"></span>
+                                                <div class="title">Dashboard</div>
+                                            </a>
+                                            <a href="<?= base_url('recruitment'); ?>/logout" class="user-info">
+                                                <span class="icon fa fa-user"></span>
+                                                <div class="title">Logout</div>
+                                            </a>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="header__main__rs__info">
+                                            <ul>
+                                                <li>
+                                                    <span class="icon"><i class="fa fa-phone"></i></span>
+                                                    <span class="resHide">Call : </span> <span>9886096821</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="header__main__rs__login ">
 
-                                    <a href="<?= base_url('recruitment'); ?>/" class="user-info">
-                                        <span class="icon fa fa-user-circle"></span>
-                                        <div class="title">Login</div>
-                                    </a>
-                                    <a href="<?= base_url('recruitment'); ?>/register" class="user-info">
-                                        <span class="icon fa fa-user"></span>
-                                        <div class="title">Register</div>
-                                    </a>
+                                            <a href="<?= base_url('recruitment'); ?>/" class="user-info">
+                                                <span class="icon fa fa-user-circle"></span>
+                                                <div class="title">Login</div>
+                                            </a>
+                                            <a href="<?= base_url('recruitment'); ?>/register" class="user-info">
+                                                <span class="icon fa fa-user"></span>
+                                                <div class="title">Register</div>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
                                 </div>
-                            <?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>

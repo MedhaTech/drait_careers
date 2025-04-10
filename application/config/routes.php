@@ -57,22 +57,11 @@ $route['translate_uri_dashes'] = TRUE;
 $route['confirm']['GET'] = 'recruitment/confirm_email';
 $route['eResources'] = 'home/Library-E-Resources';
 $route['ajax-image-upload/post']['post'] = "main/uploadImage";
+$route['career-detail/(:any)'] = 'Home/career_detail/$1';
 
 $route['recruitment/timeout'] = 'recruitment/index';
 $route['recruitment-admin'] = 'main/index';
 
-$menuData = file_get_contents("assets/data/menu.json");
-$menu = json_decode($menuData);
-$topBar = $menu->topBar;
-  foreach($topBar as $topBar){
-    if($topBar->display && $topBar->link){
-        $topBarLink = $topBar->name;
-        // $topBarLink = preg_replace('/[^A-Za-z0-9\-]/', '', $topBar->name);
-        $topBarLink = preg_replace('/\s+/', '-', $topBarLink);
-        $topBarLinkClass = preg_replace('/\s+/', '_', $topBarLink);
-        $route[$topBarLinkClass] = "home/".$topBarLink;
-    }  
-  }
   
                                                 
 

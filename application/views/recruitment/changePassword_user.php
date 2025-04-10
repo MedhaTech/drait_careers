@@ -42,7 +42,7 @@
 		  	<div class="col-sm-2"> &nbsp;</div>
 		  	<div class="col-sm-10">
           		<button type="submit" class="btn btn-danger" name="Update" id="Update"><i class="fas fa-edit"></i> Update</button>
-          		<a href="<?=base_url();?>recruitment/dashboard" class="btn  btn-primary">Back</a>
+          		<a href="<?=base_url();?>recruitment/profile" class="btn  btn-primary">Back</a>
           	</div>
           </div>  
 

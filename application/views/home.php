@@ -19,7 +19,7 @@
                         </div>
                         <div class="career-apply">
                             <div class="apply-now"><a target="_blank" href="<?= base_url('recruitment');?>">Apply Now</a></div>
-                            <div class="read-more"><a href="<?= base_url('recruitment');?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                            <div class="read-more"><a href="<?= base_url('career-detail');?>/<?= $recruitmentList1->slug ;?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
                         </div>
                     </div>
                 </div>
