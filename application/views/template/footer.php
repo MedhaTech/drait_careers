@@ -17,7 +17,7 @@
                         <div class="footer__bottom__main--ls">© 2025 All Rights Reserved.</div>
                         <div class="footer__bottom__main--rs">
                             <!--                            <a href="javascript:;">Toll Free : 1800-180-9393</a>-->
-                            Powered by <a href="https://medhatech.in/" target="_blank">MedhaTech</a>
+                           <span>Powered by</span>  <a href="https://medhatech.in/" target="_blank">MedhaTech</a>
 
                         </div>
                     </div>

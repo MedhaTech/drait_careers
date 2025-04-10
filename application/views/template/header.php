@@ -11,6 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        body {
+            margin: 0;
+            font-family: "Chivo", sans-serif;
+        }
+
         .header {
             background: #fff none repeat scroll 0 0;
             border-bottom: 2px solid rgba(0, 0, 0, .15)
@@ -328,7 +333,8 @@
             }
         }
 
-        .footer__bottom__main--rs a {
+        .footer__bottom__main--rs a,
+        .footer__bottom__main--rs span {
             color: #fff;
             font-size: .8125rem;
             line-height: .975rem;
@@ -441,7 +447,8 @@
             /* Center the items vertically */
         }
 
-        .apply-now a ,.apply-now button{
+        .apply-now a,
+        .apply-now button {
             background: #febe10;
             padding: 10px 24px;
             color: #000;
@@ -537,7 +544,11 @@
 
                                 <span></span>
                                 <div class="header__main__rs">
-                                    <?php if ($this->session->userdata('logged_in')) { ?>
+                                    <?php if ($this->session->userdata('logged_in')) {
+
+                                        $session_data = $this->session->userdata('logged_in');
+                                        $candidate_name = $session_data['candidate_name'];
+                                    ?>
                                         <div class="header__main__rs__info">
                                             <ul>
                                                 <li>
