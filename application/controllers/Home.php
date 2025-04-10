@@ -27,4 +27,13 @@ class Home extends CI_Controller
 		
 		$this->template->show('home', $data);
 	}
+	public function career_detail($id)
+	{
+		$data['mainMenu'] = 'Home';
+		$data['parentMenu'] = false;
+		$data['post'] = $this->admin_model->getDetailsbyfield($id, 'slug', 'recruitment_posts')->row();
+	
+		
+		$this->template->show('detail', $data);
+	}
 }

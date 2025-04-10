@@ -555,7 +555,7 @@ Class Admin_model extends CI_Model
 
 public function getDetailsWithDepartments($orderBy, $direction, $table) {
   // Fetch recruitment posts
-  $this->db->select('rp.id, rp.title, rp.departments, rp.updated_on');
+  $this->db->select('rp.id, rp.title,rp.slug, rp.departments, rp.updated_on');
   $this->db->from($table . ' rp');
   $this->db->order_by($orderBy, $direction);
   $query = $this->db->get();
@@ -586,6 +586,41 @@ public function getDetailsWithDepartments($orderBy, $direction, $table) {
   return $posts;
 }
 
+public function getdeptpost($dept)
+{
+  $departmentIds = explode(',', $dept);
+
+  // Fetch department names
+  $this->db->select('department_name');
+  $this->db->from('recruitment_departments');
+  $this->db->where_in('id', $departmentIds);
+  $departmentQuery = $this->db->get();
+  $departmentNames = $departmentQuery->result_array();
+
+  
+    $department_names = implode(', ', array_column($departmentNames, 'department_name'));
+
+    return $department_names;
+
+}
+
+public function applied_jobs($user_id)
+{
+  $this->db->select('aj.*, r.title, r.slug');
+  $this->db->from('applied_jobs aj');
+  $this->db->join('recruitment_posts r', 'r.id = aj.post_id');
+  $this->db->where('aj.user_id', $user_id);
+  return $this->db->get()->result();
+}
+
+// admin_model.php
+public function hasApplied($user_id, $post_id)
+{
+    $this->db->where('user_id', $user_id);
+    $this->db->where('post_id', $post_id);
+    $query = $this->db->get('applied_jobs'); // assuming this is your applications table
+    return $query->num_rows() > 0;
+}
 
 }
 ?>

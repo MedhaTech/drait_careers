@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-12 text-right">
                     <button class="btn btn-primary btn-square btn-sm" type="submit">Add</button>
-                    <?php echo anchor('recruitment/dashboard','Cancel','class="btn btn-secondary btn-square btn-sm"'); ?>    
+                    <?php echo anchor('recruitment/profile','Cancel','class="btn btn-secondary btn-square btn-sm"'); ?>    
                 </div>
 
                 <?=form_close();?>
@@ -56,7 +56,7 @@
                             <?php 
                              if(($user_data->menu_flag==8))
                              {
-                                echo anchor('recruitment/dashboard?flag=9','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
+                                echo anchor('recruitment/profile?flag=9','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
                              }
                             ?>
                         </span>

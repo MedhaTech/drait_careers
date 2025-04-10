@@ -71,41 +71,41 @@
 
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <?php echo anchor('recruitment/dashboard#personal', 'Personal Details'); ?>
+                        <?php echo anchor('recruitment/profile#personal', 'Personal Details'); ?>
                     </li>
 
                     <li class="list-group-item">
                         <?php
                         if ($details->menu_flag >= 1)
-                            echo anchor('recruitment/dashboard#language', 'Languages Known');
+                            echo anchor('recruitment/profile#language', 'Languages Known');
                         else
-                            echo anchor('recruitment/dashboard#language', 'Languages Known', 'class="btn disabled"');
+                            echo anchor('recruitment/profile#language', 'Languages Known', 'class="btn disabled"');
                         ?>
                     </li>
                     <li class="list-group-item">
                         <?php
                         if ($details->menu_flag >= 2)
-                            echo anchor('recruitment/dashboard#education', 'Educational Qualification');
+                            echo anchor('recruitment/profile#education', 'Educational Qualification');
                         else
-                            echo anchor('recruitment/dashboard#education', 'Educational Qualification', 'class="btn disabled"');
+                            echo anchor('recruitment/profile#education', 'Educational Qualification', 'class="btn disabled"');
                         ?>
                     </li>
 
                     <li class="list-group-item">
                         <?php
                         if ($details->menu_flag >= 3)
-                            echo anchor('recruitment/dashboard#teaching', 'Experience');
+                            echo anchor('recruitment/profile#teaching', 'Experience');
                         else
-                            echo anchor('recruitment/dashboard#teaching', 'Experience', 'class="btn disabled"');
+                            echo anchor('recruitment/profile#teaching', 'Experience', 'class="btn disabled"');
                         ?>
                     </li>
 
                     <li class="list-group-item">
                         <?php
                         if ($details->menu_flag >= 3)
-                            echo anchor('recruitment/dashboard#documents', 'Documents');
+                            echo anchor('recruitment/profile#documents', 'Documents');
                         else
-                            echo anchor('recruitment/dashboard#documents', 'Documents', 'class="btn disabled"');
+                            echo anchor('recruitment/profile#documents', 'Documents', 'class="btn disabled"');
                         ?>
                     </li>
                     <li class="list-group-item">

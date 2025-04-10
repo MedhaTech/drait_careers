@@ -462,7 +462,7 @@
       /* Center the items vertically */
     }
 
-    .apply-now a {
+    .apply-now a ,.apply-now button{
       background: #febe10;
       padding: 10px 24px;
       color: #000;
@@ -485,7 +485,7 @@
       width: 40px;
       height: 40px;
       text-align: center;
-      line-height: 30px;
+      line-height: 20px;
       font-size: 1.4rem;
     }
 
@@ -565,8 +565,12 @@
                         <span class="icon fa fa-home"></span>
                         <div class="title">Dashboard</div>
                       </a>
-                      <a href="<?= base_url('recruitment'); ?>/logout" class="user-info">
+                      <a href="<?= base_url('recruitment'); ?>/profile" class="user-info">
                         <span class="icon fa fa-user"></span>
+                        <div class="title">Profile</div>
+                      </a>
+                      <a href="<?= base_url('recruitment'); ?>/logout" class="user-info">
+                        <span class="icon fa fa-lock"></span>
                         <div class="title">Logout</div>
                       </a>
                     </div>

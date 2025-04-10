@@ -93,10 +93,10 @@
             </div>
 
             <?php
-            // if ($details->menu_flag >= 10)
-            //     echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm"');
-            // else
-            //     echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm disabled" ');
+            if ($details->menu_flag >= 10)
+                echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm"');
+            else
+                echo anchor('recruitment/preview', 'Proceed for Payment and Submit', 'class="btn btn-block btn-danger btn-square btn-sm disabled" ');
             ?>
 
         </div>
@@ -109,7 +109,7 @@
                 <div class="card-body">
 
                     <div class="widgetHead">
-                        <span class="widgetTitle">Current Openings</span>
+                        <span class="widgetTitle">Applied Posts</span>
 
                     </div>
 
@@ -117,38 +117,20 @@
 
                         <?php
 
-                        if ($recruitmentList) {
-                            foreach ($recruitmentList as $recruitmentList1) { ?>
+                        if ($appliedList) {
+                            foreach ($appliedList as $recruitmentList1) { ?>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
                                     <div class="carer_wrappper">
                                         <div class="career-opening">
-                                            <h3><a href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
-                                            <div class="years-current"><i class="fa fa-briefcase" aria-hidden="true"></i> <?= $recruitmentList1->department_names; ?></div>
-                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Bengaluru</div>
+                                            <h3><a href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>" target="_blank"><?= $recruitmentList1->title; ?></a></h3>
+                                           
+                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Applied on <?= date('F j, Y', strtotime($recruitmentList1->applied_on)); ?></div>
                                         </div>
-                                        <div class="career-apply">
-                                            <?php
-                                            $user_id = $this->session->userdata('logged_in')['id'];
-                                            $alreadyApplied = $this->admin_model->hasApplied($user_id, $recruitmentList1->id);
-                                            ?>
 
-                                            <div class="apply-now">
-                                                <?php if ($alreadyApplied) { ?>
-                                                    <button type="button" class="btn btn-secondary" disabled>Already Applied</button>
-                                                <?php } else { ?>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal" data-postid="<?= $recruitmentList1->id; ?>">
-                                                        Apply Now
-                                                    </button>
-                                                <?php } ?>
-                                            </div>
-                                            <div class="read-more"><a href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>" target="_blank" class="fa fa-angle-right" aria-hidden="true"></i></a></div>
-                                        </div>
                                     </div>
                                 </div>
                             <?php }
-                        } else { ?>
-                            <h3 class="">No Openings</h3>
-                        <?php } ?>
+                        }  ?>
 
                     </div>
                 </div>
@@ -175,15 +157,17 @@
                         <!-- Department Selection -->
                         <div class="mb-3">
                             <label for="department" class="form-label">Select Department</label>
-                            <select class="form-control" name="department" id="departmentSelect" required>
-                                <option value="">Loading...</option>
+                            <select class="form-control" name="department" required>
+                                <option value="">Select</option>
+                                <option value="1">HR</option>
+                                <option value="2">Engineering</option>
                             </select>
                         </div>
                         <!-- Terms Agreement Checkbox -->
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="agree_terms" value="1" id="agreeTerms" required>
                             <label class="form-check-label" for="agreeTerms">
-                                I, hereby declare that the above information provided is true to the best of my knowledge and belief.
+                                I agree to the terms and conditions.
                             </label>
                         </div>
                     </div>
@@ -197,31 +181,12 @@
 
     <script>
         $(document).ready(function() {
-            console.log($().jquery); // Confirm jQuery loaded
+            console.log($().jquery); // Should print the jQuery version
 
             $('#applyModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget);
-                var postId = button.data('postid');
-                $('#modalPostId').val(postId);
-
-                // Fetch departments via AJAX
-                $.ajax({
-                    url: "<?= base_url('recruitment/getdepartment'); ?>",
-                    type: "POST",
-                    data: {
-                        id: postId
-                    },
-                    beforeSend: function() {
-                        $('#departmentSelect').html('<option>Loading...</option>');
-                    },
-                    success: function(response) {
-                        $('#departmentSelect').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error fetching departments: ", error);
-                        $('#departmentSelect').html('<option>Error loading departments</option>');
-                    }
-                });
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var postId = button.data('postid'); // Extract post ID from data attribute
+                $('#modalPostId').val(postId); // Insert into hidden input in modal
             });
         });
     </script>
