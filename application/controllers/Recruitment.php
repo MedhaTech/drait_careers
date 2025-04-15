@@ -2345,14 +2345,14 @@ class Recruitment extends CI_Controller
 			} else {
 
 				$insertDetails = array(
-					'user_id' => $data['id'],
-					'name' => $this->input->post('name'),
-					'writ' => $this->input->post('writ'),
-					'reading' => $this->input->post('reading'),
-					'speak' => $this->input->post('speak'),
+					'user_id'    => $data['id'],
+					'name'       => $this->input->post('name'),
+					'reading'    => $this->input->post('reading') ? 1 : 0,
+					'writ'       => $this->input->post('writ') ? 1 : 0,
+					'speak'      => $this->input->post('speak') ? 1 : 0,
 					'created_at' => date('Y-m-d H:i:s')
 				);
-
+		
 				$result = $this->admin_model->insertDetails('recruitment_languages', $insertDetails);
 
 				if ($result) {

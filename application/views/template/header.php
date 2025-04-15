@@ -583,7 +583,7 @@
                                             <ul>
                                                 <li>
                                                     <span class="icon"><i class="fa fa-phone"></i></span>
-                                                    <span class="resHide">Call : </span> <span>9886096821</span>
+                                                    <span class="resHide">Call : </span> <span></span>
                                                 </li>
                                             </ul>
                                         </div>
