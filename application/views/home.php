@@ -27,7 +27,7 @@
             <?php } ?>
 
         </div>
-        <h2 class="">INTERNAL - CAREER APPRAISAL SCHEME</h2>
+        <h2 class="">INTERNAL - CAREER ADVANCEMENT SCHEME</h2>
         <div class="row">
 
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
