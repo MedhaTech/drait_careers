@@ -79,7 +79,7 @@
                     <?php echo $this->session->flashdata('message')?>
                 </div>
             <?php } 
-                if($details){
+                // if($details){
             ?>
             <div class="card ht-100p shadow">
               <div class="card-body pd-y-20">
@@ -87,7 +87,7 @@
                     <span class="widgetTitle">List of Education Qualifications</span>
                       <span tabindex="0" class="add no-outline">
                             <?php 
-                             if(($user_data->menu_flag==2) && (count($details)>0))
+                             if(($user_data->menu_flag==2) && (count($details)>1))
                              {
                                 echo anchor('recruitment/profile?flag=3','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
                              }
@@ -128,7 +128,7 @@
               </div>
             </div>
             <?php
-                }
+                // }
             ?>
              
            </div>

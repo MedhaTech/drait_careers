@@ -528,6 +528,20 @@
         height: 30px;
       }
     }
+    html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
   </style>
 </head>
 
@@ -583,7 +597,7 @@
                       <ul>
                         <li>
                           <span class="icon"><i class="fa fa-phone"></i></span>
-                          <span class="resHide">Call : </span> <span>9886096821</span>
+                          <span class="resHide">Call : </span> <span>+91 9986003865</span>
                         </li>
                       </ul>
                     </div>

@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <div class="card ht-100p shadow">
                 <div class="card-body pd-y-20">
-                
+
                     <div class="widgetHead mb-3">
                         <span class="widgetTitle">Add New Patent</span>
                     </div>
@@ -63,19 +63,19 @@
 
     <div class="row row-xs mt-4">
         <div class="col-lg-12">
-            <?php if ($this->session->flashdata('message')) { ?> 
+            <?php if ($this->session->flashdata('message')) { ?>
                 <div align="center" class="alert <?= $this->session->flashdata('status'); ?>" id="msg">
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             <?php } ?>
 
-            <?php if ($details) { ?>
+
             <div class="card ht-100p shadow">
                 <div class="card-body pd-y-20">
                     <div class="widgetHead mb-3">
                         <span class="widgetTitle">List of Patents</span>
                         <span tabindex="0" class="add no-outline">
-                            <?php 
+                            <?php
                             if (($user_data->menu_flag == 2) && (count($details) > 0)) {
                                 echo anchor('recruitment/profile?flag=4', '<i class="fas fa-angle-double-right "></i> Save & Proceed', 'class="btn btn-block btn-success btn-square btn-sm"');
                             }
@@ -97,27 +97,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($details as $patent) { ?>
-                            <tr>
-                                <td><?= $patent->application_number; ?></td>
-                                <td><?= $patent->title; ?></td>
-                                <td><?= $patent->applicants; ?></td>
-                                <td><?= $patent->status; ?></td>
-                                <td><?= $patent->filed_date; ?></td>
-                                <td><?= $patent->published_date; ?></td>
-                                <td><?= $patent->granted_date; ?></td>
-                                <td>
-                                    <?= anchor('recruitment/updatePatent/'.$patent->id, 'Edit', 'class="btn btn-info btn-square btn-sm mx-1 my-1"'); ?>
-                                    <?= anchor('recruitment/deletePatent/'.$patent->id, 'Delete', 'class="btn btn-danger btn-square btn-sm mx-1 my-1"'); ?>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php if ($details) { ?>
+                                <?php foreach ($details as $patent) { ?>
+                                    <tr>
+                                        <td><?= $patent->application_number; ?></td>
+                                        <td><?= $patent->title; ?></td>
+                                        <td><?= $patent->applicants; ?></td>
+                                        <td><?= $patent->status; ?></td>
+                                        <td><?= $patent->filed_date; ?></td>
+                                        <td><?= $patent->published_date; ?></td>
+                                        <td><?= $patent->granted_date; ?></td>
+                                        <td>
+                                            <?= anchor('recruitment/updatePatent/' . $patent->id, 'Edit', 'class="btn btn-info btn-square btn-sm mx-1 my-1"'); ?>
+                                            <?= anchor('recruitment/deletePatent/' . $patent->id, 'Delete', 'class="btn btn-danger btn-square btn-sm mx-1 my-1"'); ?>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } else {
+                                echo '<tr><td colspan="8" class="text-center text-muted">No patents added yet.</td></tr>';
+                            }  ?>
                         </tbody>
                     </table>
 
                 </div>
             </div>
-            <?php } ?>
+
         </div>
     </div>
 </div>

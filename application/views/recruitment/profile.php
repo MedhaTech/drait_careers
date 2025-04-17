@@ -96,10 +96,10 @@
                                 <label for="name" class="p my-0 tx-14 text-gray-600">For the Post of: </label>
                                 <h6><?php echo $details->post_of; ?></h6>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="name" class="p my-0 tx-14 text-gray-600">Department Name</label>
                                 <h6><?php echo $details->department; ?></h6>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -182,29 +182,33 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    foreach ($langs as $details1) {
+                                    if (!empty($langs)) {
+                                        foreach ($langs as $details1) {
 
-                                        if ($details1->reading == 1) {
-                                            $read = "Yes";
-                                        } else {
-                                            $read = "No";
+                                            if ($details1->reading == 1) {
+                                                $read = "Yes";
+                                            } else {
+                                                $read = "No";
+                                            }
+                                            if ($details1->writ == 1) {
+                                                $writ = "Yes";
+                                            } else {
+                                                $writ = "No";
+                                            }
+                                            if ($details1->speak == 1) {
+                                                $speak = "Yes";
+                                            } else {
+                                                $speak = "No";
+                                            }
+                                            echo '<tr>';
+                                            echo '<td>' . $details1->name . '</td>';
+                                            echo '<td>' . $read . '</td>';
+                                            echo '<td>' . $writ . '</td>';
+                                            echo '<td>' . $speak . '</td>';
+                                            echo '</tr>';
                                         }
-                                        if ($details1->writ == 1) {
-                                            $writ = "Yes";
-                                        } else {
-                                            $writ = "No";
-                                        }
-                                        if ($details1->speak == 1) {
-                                            $speak = "Yes";
-                                        } else {
-                                            $speak = "No";
-                                        }
-                                        echo '<tr>';
-                                        echo '<td>' . $details1->name . '</td>';
-                                        echo '<td>' . $read . '</td>';
-                                        echo '<td>' . $writ . '</td>';
-                                        echo '<td>' . $speak . '</td>';
-                                        echo '</tr>';
+                                    } else {
+                                        echo '<tr><td colspan="4" class="text-center text-muted">No languages added yet.</td></tr>';
                                     }
                                     ?>
                                 </tbody>
@@ -280,13 +284,17 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($research as $research1) {
-                                echo '<tr>';
-                                echo '<td>' . $research1->institution . '</td>';
-                                echo '<td>' . $research1->area_of_research . '</td>';
-                                echo '<td>' . date('M Y', strtotime($research1->exp_from)) . ' - ' . date('M Y', strtotime($research1->exp_to)) . '</td>';
-                                echo '<td>' . $research1->total . '</td>';
-                                echo '</tr>';
+                            if (!empty($research)) {
+                                foreach ($research as $research1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $research1->institution . '</td>';
+                                    echo '<td>' . $research1->area_of_research . '</td>';
+                                    echo '<td>' . date('M Y', strtotime($research1->exp_from)) . ' - ' . date('M Y', strtotime($research1->exp_to)) . '</td>';
+                                    echo '<td>' . $research1->total . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No research experience added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -317,13 +325,17 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($publications as $publications1) {
-                                echo '<tr>';
-                                echo '<td>' . $publications1->title_of_paper . '</td>';
-                                echo '<td>' . $publications1->publication_type . '</td>';
-                                echo '<td>' . date('M Y', strtotime($publications1->publication_date)) . '</td>';
-                                echo '<td>' . $publications1->category . '</td>';
-                                echo '</tr>';
+                            if (!empty($publications)) {
+                                foreach ($publications as $publications1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $publications1->title_of_paper . '</td>';
+                                    echo '<td>' . $publications1->publication_type . '</td>';
+                                    echo '<td>' . date('M Y', strtotime($publications1->publication_date)) . '</td>';
+                                    echo '<td>' . $publications1->category . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No publications added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -354,26 +366,30 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($teaching as $teaching1) {
+                            if (!empty($teaching)) {
+                                foreach ($teaching as $teaching1) {
 
-                                $date1 = strtotime($teaching1->period_from);
-                                $date2 = strtotime($teaching1->period_to);
+                                    $date1 = strtotime($teaching1->period_from);
+                                    $date2 = strtotime($teaching1->period_to);
 
-                                $diff = abs($date2 - $date1);
+                                    $diff = abs($date2 - $date1);
 
-                                $years = floor($diff / (365 * 60 * 60 * 24));
+                                    $years = floor($diff / (365 * 60 * 60 * 24));
 
-                                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                                    $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
-                                // $exp = ("%d years, %d months", $years, $months);
+                                    // $exp = ("%d years, %d months", $years, $months);
 
 
-                                echo '<tr>';
-                                echo '<td>' . $teaching1->institution . '</td>';
-                                echo '<td>' . $teaching1->designation . '</td>';
-                                echo '<td>' . date('M Y', strtotime($teaching1->period_from)) . ' - ' . date('M Y', strtotime($teaching1->period_to)) . '</td>';
-                                echo '<td>' . $years . ' years, ' . $months . ' months' . '</td>';
-                                echo '</tr>';
+                                    echo '<tr>';
+                                    echo '<td>' . $teaching1->institution . '</td>';
+                                    echo '<td>' . $teaching1->designation . '</td>';
+                                    echo '<td>' . date('M Y', strtotime($teaching1->period_from)) . ' - ' . date('M Y', strtotime($teaching1->period_to)) . '</td>';
+                                    echo '<td>' . $years . ' years, ' . $months . ' months' . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No teaching experience added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -404,26 +420,30 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($industrial as $industrial1) {
+                            if (!empty($industrial)) {
+                                foreach ($industrial as $industrial1) {
 
-                                $date1 = strtotime($industrial1->period_from);
-                                $date2 = strtotime($industrial1->period_to);
+                                    $date1 = strtotime($industrial1->period_from);
+                                    $date2 = strtotime($industrial1->period_to);
 
-                                $diff = abs($date2 - $date1);
+                                    $diff = abs($date2 - $date1);
 
-                                $years = floor($diff / (365 * 60 * 60 * 24));
+                                    $years = floor($diff / (365 * 60 * 60 * 24));
 
-                                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                                    $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
-                                // $exp = ("%d years, %d months", $years, $months);
+                                    // $exp = ("%d years, %d months", $years, $months);
 
 
-                                echo '<tr>';
-                                echo '<td>' . $industrial1->organization . '</td>';
-                                echo '<td>' . $industrial1->position_held . '</td>';
-                                echo '<td>' . date('M Y', strtotime($industrial1->period_from)) . ' - ' . date('M Y', strtotime($industrial1->period_to)) . '</td>';
-                                echo '<td>' . $years . ' years, ' . $months . ' months' . '</td>';
-                                echo '</tr>';
+                                    echo '<tr>';
+                                    echo '<td>' . $industrial1->organization . '</td>';
+                                    echo '<td>' . $industrial1->position_held . '</td>';
+                                    echo '<td>' . date('M Y', strtotime($industrial1->period_from)) . ' - ' . date('M Y', strtotime($industrial1->period_to)) . '</td>';
+                                    echo '<td>' . $years . ' years, ' . $months . ' months' . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No industrial experience added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -454,13 +474,17 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($affiliations as $affiliations1) {
-                                echo '<tr>';
-                                echo '<td>' . $affiliations1->name . '</td>';
-                                echo '<td>' . $affiliations1->grade . '</td>';
-                                echo '<td>' . $affiliations1->number . '</td>';
-                                echo '<td>' . $affiliations1->year . '</td>';
-                                echo '</tr>';
+                            if (!empty($affiliations)) {
+                                foreach ($affiliations as $affiliations1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $affiliations1->name . '</td>';
+                                    echo '<td>' . $affiliations1->grade . '</td>';
+                                    echo '<td>' . $affiliations1->number . '</td>';
+                                    echo '<td>' . $affiliations1->year . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No affiliations added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -473,7 +497,7 @@
                         <span class="widgetTitle">Patents</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($user_data->menu_flag >= 4)
+                            if ($user_data->menu_flag >= 7)
                                 echo anchor('recruitment/managePatents', '<i class="fas fa-pencil-alt"></i> Manage Patents', 'class="font-weight-bold"');
                             else
                                 echo anchor('recruitment/managePatents', '<i class="fas fa-pencil-alt"></i> Manage Patents', 'class="font-weight-bold btn disabled"');
@@ -537,16 +561,22 @@
 
                             </tr>
                         </thead>
-                        <?php foreach ($projects as $details1) { ?>
-                            <tr>
-                                <td><?= $details1->sponsoring_agency ?></td>
-                                <td><?= $details1->title_of_project ?></td>
-                                <td><?= $details1->amount_of_grant ?></td>
-                                <td><?= $details1->period ?></td>
-                                <td><?= $details1->co_investigators ?></td>
+                        <?php
+                        if (!empty($projects)) {
+                            foreach ($projects as $details1) { ?>
+                                <tr>
+                                    <td><?= $details1->sponsoring_agency ?></td>
+                                    <td><?= $details1->title_of_project ?></td>
+                                    <td><?= $details1->amount_of_grant ?></td>
+                                    <td><?= $details1->period ?></td>
+                                    <td><?= $details1->co_investigators ?></td>
 
-                            </tr>
-                        <?php } ?>
+                                </tr>
+                        <?php }
+                        } else {
+                            echo '<tr><td colspan="5" class="text-center text-muted">No projects added yet.</td></tr>';
+                        }
+                        ?>
                     </table>
                 </div>
             </div>
@@ -573,16 +603,23 @@
 
                             </tr>
                         </thead>
-                        <?php foreach ($consultancy as $details1) { ?>
-                            <tr>
-                                <td><?= $details1->organization ?></td>
-                                <td><?= $details1->title_of_project ?></td>
-                                <td><?= $details1->amount_of_grant ?></td>
-                                <td><?= $details1->period ?></td>
-                                <td><?= $details1->co_investigators ?></td>
+                        <?php
+                        if (!empty($consultancy)) {
 
-                            </tr>
-                        <?php } ?>
+                            foreach ($consultancy as $details1) { ?>
+                                <tr>
+                                    <td><?= $details1->organization ?></td>
+                                    <td><?= $details1->title_of_project ?></td>
+                                    <td><?= $details1->amount_of_grant ?></td>
+                                    <td><?= $details1->period ?></td>
+                                    <td><?= $details1->co_investigators ?></td>
+
+                                </tr>
+                        <?php }
+                        } else {
+                            echo '<tr><td colspan="5" class="text-center text-muted">No consultancy projects added yet.</td></tr>';
+                        }
+                        ?>
                     </table>
                 </div>
             </div>
@@ -606,13 +643,17 @@
 
                             </tr>
                         </thead>
-                        <?php foreach ($seminars as $details1) { ?>
-                            <tr>
-                                <td><?= $details1->title_of_project ?></td>
-                                <td><?= $details1->organised_conducted ?></td>
+                        <?php if (!empty($seminars)) {
+                            foreach ($seminars as $details1) { ?>
+                                <tr>
+                                    <td><?= $details1->title_of_project ?></td>
+                                    <td><?= $details1->organised_conducted ?></td>
 
-                            </tr>
-                        <?php } ?>
+                                </tr>
+                        <?php }
+                        } else {
+                            echo '<tr><td colspan="2" class="text-center text-muted">No seminars/workshops/courses added yet.</td></tr>';
+                        } ?>
                     </table>
                 </div>
             </div>
@@ -638,14 +679,18 @@
 
                             </tr>
                         </thead>
-                        <?php foreach ($membership as $details1) { ?>
-                            <tr>
-                                <td><?= $details1->professional_organization ?></td>
-                                <td><?= $details1->year_of_selection ?></td>
-                                <td><?= $details1->grade_of_membership ?></td>
+                        <?php if (!empty($membership)) {
+                            foreach ($membership as $details1) { ?>
+                                <tr>
+                                    <td><?= $details1->professional_organization ?></td>
+                                    <td><?= $details1->year_of_selection ?></td>
+                                    <td><?= $details1->grade_of_membership ?></td>
 
-                            </tr>
-                        <?php } ?>
+                                </tr>
+                        <?php }
+                        } else {
+                            echo '<tr><td colspan="3" class="text-center text-muted">No professional memberships added yet.</td></tr>';
+                        } ?>
                     </table>
                 </div>
             </div>
@@ -671,14 +716,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            foreach ($references as $references1) {
-                                echo '<tr>';
-                                echo '<td>' . $references1->name . '</td>';
-                                echo '<td>' . $references1->position . '</td>';
-                                echo '<td>' . $references1->number . '</td>';
+                            <?php if (!empty($references)) {
 
-                                echo '</tr>';
+                                foreach ($references as $references1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $references1->name . '</td>';
+                                    echo '<td>' . $references1->position . '</td>';
+                                    echo '<td>' . $references1->number . '</td>';
+
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="3" class="text-center text-muted">No references added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -706,16 +755,20 @@
 
                             </tr>
                         </thead>
-                        <?php
-                        foreach ($documents as $details1) {
-                            $file_type = $this->admin_model->get_doc_name($details1->type);
+                        <?php if (!empty($documents)) {
 
-                            echo '<tr>';
-                            echo '<td>' . $file_type->name . '</td>';
-                            echo '<td>' . $details1->file . '</td>';
+                            foreach ($documents as $details1) {
+                                $file_type = $this->admin_model->get_doc_name($details1->type);
+
+                                echo '<tr>';
+                                echo '<td>' . $file_type->name . '</td>';
+                                echo '<td>' . $details1->file . '</td>';
 
 
-                            echo '</tr>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="2" class="text-center text-muted">No documents uploaded yet.</td></tr>';
                         }
                         ?>
                     </table>

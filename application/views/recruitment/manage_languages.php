@@ -51,7 +51,7 @@
                     <?php echo $this->session->flashdata('message')?>
                 </div>
             <?php } 
-                if($details){
+                // if($details){
             ?>
             <div class="card ht-100p shadow">
               <div class="card-body pd-y-20">
@@ -99,7 +99,7 @@
               </div>
             </div>
             <?php
-                }
+                // }
             ?>
              
            </div>

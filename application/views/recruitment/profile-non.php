@@ -97,10 +97,10 @@
                                 <label for="name" class="p my-0 tx-14 text-gray-600">For the Post of: </label>
                                 <h6><?php echo $details->post_of; ?></h6>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="name" class="p my-0 tx-14 text-gray-600">Department Name</label>
                                 <h6><?php echo $details->department; ?></h6>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
