@@ -58,9 +58,13 @@
                     <span class="widgetTitle">List of Industrial Experiences</span>
                      <span tabindex="0" class="add no-outline">
                             <?php 
-                             if(($user_data->menu_flag==6))
+                             if(($user_data->menu_flag==6) && (count($details)>1))
                              {
                                 echo anchor('recruitment/profile?flag=7','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
+                             }
+                             elseif(($user_data->menu_flag==6))
+                             {
+                                echo anchor('recruitment/profile?flag=7','<i class="fas fa-angle-double-right "></i> Skip & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
                              }
                             ?>
                         </span>

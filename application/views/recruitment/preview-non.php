@@ -268,11 +268,31 @@
             
                 
             <?php
-                } else {
-                    echo '<h6 class="mb-0 font-weight-bold">Declaration:</h6>';
-                    echo '<p><input type="checkbox" class="" style="width:5%;" /> I, '.$details->candidate_name.' hereby certify that all the information given by me are true to the best of my knowledge. In the event of any information being found incorrect or misleading, candidate shall be liable to cancellation by the university at any time and I shall not be entitled for refund of any fee paid by me to the College. I have carefully studied the notification of faculty recruitment - 2023. </p>';
-                    echo anchor('recruitment/payment','Click here to Pay Fee','class="btn btn-danger btn-sm"');  
-                } 
+            } else {
+            ?>
+                <form method="post" action="<?= base_url('recruitment/apply_job'); ?>">
+                    <input type="hidden" name="post_id" value="<?= $post_id; ?>">
+                    <input type="hidden" name="department" value="<?= $department; ?>">
+                    <input type="hidden" name="in_service_note" value="<?= htmlspecialchars($in_service_note); ?>">
+                    <input type="hidden" name="additional_info" value="<?= htmlspecialchars($additional_info); ?>">
+
+                    <h3>Application Preview</h3>
+                    <p><strong>Post:</strong> <?= $post_details->title; ?></p>
+                    <p><strong>Department:</strong> <?= $department; ?></p>
+                    <p><strong>Additional Info:</strong> <?= nl2br($additional_info); ?></p>
+                    <p><strong>In-Service Note:</strong> <?= nl2br($in_service_note); ?></p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="agree_terms" id="agree_terms" required>
+                        <label class="form-check-label" for="agree_terms">
+                        I, hereby declare that the above information provided is true to the best of my knowledge and belief.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3">Confirm & Apply</button>
+                </form>
+            <?php
+            }
             ?>
         </div>
     </div>

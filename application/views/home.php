@@ -43,13 +43,14 @@
                                 <li>Should possess M. Tech Degree / preferably Ph.D degree</li>
                                 <li>Should have completed 5 years teaching experience in AGP Rs. 6000/-</li>
                                 <li>Should have completed FDP (AICTE) of 06 weeks</li>
+                                <li>All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed semiannually—in the months of June and December.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="career-apply mt-4">
                         <div class="apply-now apply-now-new">
                             <a target="_blank" href="<?= base_url(''); ?>/assets/internal/SelfAppraisalDrAIT2024final.docx">
-                                Download
+                            Download Application Form
                             </a>
                         </div>
                     </div>
@@ -70,13 +71,15 @@
                                 <li>Should possess M. Tech Degree / preferably Ph.D degree</li>
                                 <li>Should have completed 5 years teaching experience in AGP Rs. 7000/-</li>
                                 <li>Should have completed FDP (AICTE) of 06 weeks</li>
+                                <li>All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed semiannually—in the months of June and December.</li>
+                          
                             </ul>
                         </div>
                     </div>
                     <div class="career-apply mt-4">
                         <div class="apply-now apply-now-new">
                             <a target="_blank" href="<?= base_url(''); ?>/assets/internal/SelfAppraisalDrAIT2024final.docx">
-                                Download
+                            Download Application Form
                             </a>
                         </div>
                     </div>
@@ -95,13 +98,15 @@
                                 <li>Should possess M. Tech Degree / preferably Ph.D degree</li>
                                 <li>Should have completed 5 years teaching experience in AGP Rs. 8000/-</li>
                                 <li>Should have completed FDP (AICTE) of 06 weeks</li>
+                                <li>All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed semiannually—in the months of June and December.</li>
+                          
                             </ul>
                         </div>
                     </div>
                     <div class="career-apply mt-4">
                         <div class="apply-now apply-now-new">
                             <a target="_blank" href="<?= base_url(''); ?>/assets/internal/SelfAppraisalDrAIT2024final.docx">
-                                Download
+                            Download Application Form
                             </a>
                         </div>
                     </div>
@@ -120,13 +125,15 @@
                                 <li>Should possess M. Tech Degree / preferably Ph.D degree</li>
                                 <li>Should have completed 5 years teaching experience in AGP Rs. 9000/-</li>
                                 <li>Should have completed FDP (AICTE) of 06 weeks</li>
+                                <li>All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed semiannually—in the months of June and December.</li>
+                          
                             </ul>
                         </div>
                     </div>
                     <div class="career-apply mt-4">
                         <div class="apply-now apply-now-new">
                             <a target="_blank" href="<?= base_url(''); ?>/assets/internal/SelfAppraisalDrAIT2024final.docx">
-                                Download
+                                Download Application Form
                             </a>
                         </div>
                     </div>

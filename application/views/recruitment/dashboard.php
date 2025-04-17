@@ -126,6 +126,31 @@
                         <?php } ?>
 
                     </div>
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Applied Posts</span>
+
+                    </div>
+
+                    <div class="row">
+
+                        <?php
+
+                        if ($appliedList) {
+                            foreach ($appliedList as $recruitmentList1) { ?>
+                                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                                    <div class="carer_wrappper">
+                                        <div class="career-opening">
+                                            <h3><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
+
+                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Applied on <?= date('F j, Y', strtotime($recruitmentList1->applied_on)); ?></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        <?php }
+                        }  ?>
+
+                    </div>
                 </div>
 
 
@@ -136,7 +161,7 @@
     </div>
     <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form method="post" action="<?= base_url('recruitment/apply_job'); ?>">
+            <form method="post" action="<?= base_url('recruitment/preview'); ?>">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="applyModalLabel">Apply for Job</h5>
@@ -165,16 +190,10 @@
                             <label for="in_service_note" class="form-label">In-service personnel shall forward the application through the organization. However, send the advance copy of the application.</label>
                             <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3" placeholder="Write here..."></textarea>
                         </div>
-                        <!-- Terms Agreement Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="agree_terms" value="1" id="agreeTerms" required>
-                            <label class="form-check-label" for="agreeTerms">
-                                I, hereby declare that the above information provided is true to the best of my knowledge and belief.
-                            </label>
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Apply</button>
+                        <button type="submit" class="btn btn-success">Proceed</button>
                     </div>
                 </div>
             </form>

@@ -34,11 +34,11 @@ class Recruitment extends CI_Controller
 				$data['id'] = $session_data['id'];
 				$details = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 			}
-			if ($details->payment_status == 1) {
-				redirect('recruitment/print', 'refresh');
-			} else {
-				redirect('recruitment/profile', 'refresh');
-			}
+			// if ($details->payment_status == 1) {
+			// 	redirect('recruitment/print', 'refresh');
+			// } else {
+				redirect('recruitment/dashboard', 'refresh');
+			// }
 		}
 	}
 
@@ -49,6 +49,7 @@ class Recruitment extends CI_Controller
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[recruitment_users.email]');
 		$this->form_validation->set_rules('mobile', 'Mobile number', 'required|is_unique[recruitment_users.mobile]');
+		$this->form_validation->set_rules('post_of', 'Application Type', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
@@ -62,6 +63,7 @@ class Recruitment extends CI_Controller
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
 				'email_verified' => '1',
+				'post_of' => $this->input->post('post_of'),
 				'password' => md5($this->input->post('password')),
 				'reg_date' => date('Y-m-d H:i:s'),
 				'token' => $token
@@ -184,17 +186,17 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
-			if ($data['details']->post_of && $data['details']->department) {
+			// if ($data['details']->post_of && $data['details']->department) {
 
 				if ($data['details']->post_of == "Non-Teaching") {
 					$this->rec_template->show('recruitment/profile-non', $data);
 				} else {
 					$this->rec_template->show('recruitment/profile', $data);
 				}
-			} else {
-				$data['action'] = 'recruitment/apply_for';
-				$this->rec_template->show('recruitment/apply_for', $data);
-			}
+			// } else {
+			// 	$data['action'] = 'recruitment/apply_for';
+			// 	$this->rec_template->show('recruitment/apply_for', $data);
+			// }
 		} else {
 			redirect('recruitment/timeout', 'refresh');
 		}
@@ -213,7 +215,7 @@ class Recruitment extends CI_Controller
 			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 
 			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
-
+			$data['appliedList'] = $this->admin_model->applied_jobs($data['id']);
 			if (isset($_REQUEST['flag'])) {
 
 				if ($_REQUEST['flag'] > $data['user_data']->menu_flag) {
@@ -234,14 +236,14 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
-			if ($data['details']->post_of && $data['details']->department) {
+			// if ($data['details']->post_of && $data['details']->department) {
 
 
 				$this->rec_template->show('recruitment/dashboard', $data);
-			} else {
-				$data['action'] = 'recruitment/apply_for';
-				$this->rec_template->show('recruitment/apply_for', $data);
-			}
+			// } else {
+			// 	$data['action'] = 'recruitment/apply_for';
+			// 	$this->rec_template->show('recruitment/apply_for', $data);
+			// }
 		} else {
 			redirect('recruitment/timeout', 'refresh');
 		}
@@ -974,7 +976,7 @@ class Recruitment extends CI_Controller
 			$data['activeMenu'] = "dashboard";
 
 			$data['details'] = $this->admin_model->getDetails('recruitment_users', $data['id'])->row();
-
+			if($this->input->post('post_id')){
 			$data['education'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_education_details')->result();
 			$data['research'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_research_exp_details')->result();
 			$data['publications'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_publications_details')->result();
@@ -988,14 +990,21 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
-
+			$data['post_id'] = $this->input->post('post_id');
+			$data['post_details'] = $this->admin_model->getDetails('recruitment_posts', $data['post_id'])->row();
+			$data['department'] = $this->input->post('department');
+			$data['in_service_note'] = $this->input->post('in_service_note');
+			$data['additional_info'] = $this->input->post('additional_info');
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->rec_template->show('recruitment/preview-non', $data);
-			} elseif ($data['details']->post_of == "Librarian") {
-				$this->rec_template->show('recruitment/preview-lib', $data);
 			} else {
 				$this->rec_template->show('recruitment/preview', $data);
 			}
+		}
+		else
+		{
+			redirect('recruitment/dashboard', 'refresh');
+		}
 			//  		$this->rec_template->show('recruitment/preview',$data);    
 
 		} else {
@@ -3313,7 +3322,7 @@ class Recruitment extends CI_Controller
 			// $acList = $this->admin_model->getDetailsbyfield($this->input->post('type'), 'type', 'recruitment_posts')->result();
 			echo "<option>- Select -</option>";
 			foreach ($acList as $acList1) {
-				echo "<option value=" . $acList1->department_name . ">$acList1->department_name</option>";
+				echo "<option value='$acList1->department_name'>$acList1->department_name</option>";
 			}
 		} else {
 			redirect('main', 'refresh');
