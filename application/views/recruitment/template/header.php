@@ -159,7 +159,8 @@
       -ms-justify-content: center;
       justify-content: center;
       -ms-flex-pack: center;
-      margin-right: 10px
+      margin-right: 10px;
+      color: #fff;
     }
 
     .header__main__rs__info li span.icon i {
@@ -395,7 +396,7 @@
     }
 
     section.career-current-opening {
-      background: #fff;
+      /* background: #fff; */
       padding: 50px 0;
     }
 
@@ -462,7 +463,8 @@
       /* Center the items vertically */
     }
 
-    .apply-now a ,.apply-now button{
+    .apply-now a,
+    .apply-now button {
       background: #febe10;
       padding: 10px 24px;
       color: #000;
@@ -528,20 +530,23 @@
         height: 30px;
       }
     }
-    html, body {
-  height: 100%;
-  margin: 0;
-}
 
-#layout-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
 
-.main-content {
-  flex: 1;
-}
+    #layout-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f7f7f7;
+    }
+
+    .main-content {
+      flex: 1;
+    }
   </style>
 </head>
 
@@ -604,7 +609,7 @@
                     <div class="header__main__rs__login ">
 
                       <a href="<?= base_url('recruitment'); ?>/" class="user-info">
-                        <span class="icon fa fa-user-circle"></span>
+                        <span class="icon fa fa-lock"></span>
                         <div class="title">Login</div>
                       </a>
                       <a href="<?= base_url('recruitment'); ?>/register" class="user-info">

@@ -143,7 +143,8 @@
             -ms-justify-content: center;
             justify-content: center;
             -ms-flex-pack: center;
-            margin-right: 10px
+            margin-right: 10px;
+            color: #fff;
         }
 
         .header__main__rs__info li span.icon i {
@@ -392,9 +393,10 @@
             color: #023e86;
             /* Bright color for the main heading */
         }
+
         section.career-current-opening .current {
             text-align: center;
-           
+
             margin-bottom: 50px;
             font-family: "Chivo", sans-serif;
             text-align: center;
@@ -404,7 +406,7 @@
 
         /* Card styling */
         .carer_wrappper {
-            background: #023e8617;
+            background: #F7F7F7;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -416,9 +418,10 @@
         }
 
         .career-opening h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-bottom: 15px;
             color: #023e86;
+            font-weight: 600;
             font-family: "Chivo", sans-serif;
             text-decoration: none;
         }
@@ -462,9 +465,9 @@
             padding: 10px 24px;
             color: #ffffff;
             text-transform: uppercase;
-            font-weight: 600;
+            /* font-weight: 600; */
             font-size: .9rem;
-            border-radius: 5px;
+            /* border-radius: 5px; */
             text-decoration: none;
         }
 
@@ -540,9 +543,9 @@
             padding: 10px 10px !important;
             color: #fff;
             text-transform: uppercase;
-            font-weight: 600;
+            /* font-weight: 600; */
             font-size: .9rem;
-            border-radius: 5px;
+            /* border-radius: 5px; */
             text-decoration: none;
         }
     </style>
@@ -601,7 +604,7 @@
                                         <div class="header__main__rs__login ">
 
                                             <a href="<?= base_url('recruitment'); ?>/" class="user-info">
-                                                <span class="icon fa fa-user-circle"></span>
+                                                <span class="icon fa fa-lock"></span>
                                                 <div class="title">Login</div>
                                             </a>
                                             <a href="<?= base_url('recruitment'); ?>/register" class="user-info">
