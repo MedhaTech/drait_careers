@@ -15,8 +15,8 @@
             <div class="text-center">
 
               <!-- <img src="<?= base_url();?>assets/images/full_logo-wide.png" class="wd-100" /> -->
-              <h1 class="h4 font-weight-bold text-gray-900">Dr.AIT Recruitment Portal</h1>
-              <p class='mb-4'>Use registered Email-id to Login into the portal</p>
+              <h1 class="h4 font-weight-bold text-danger">APPLICANT LOGIN</h1>
+              <p class='mb-4'>Use registered Email ID to Login into the portal</p>
               <?php if (isset($msg)) {
                 if ($msg == 'success') {
                   echo " <p class='mb-4'> Email-id successufully verified</p>";

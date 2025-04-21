@@ -11,8 +11,9 @@
           <div class="p-5">
             <div class="text-center">
 
-              <h1 class="h4 font-weight-bold text-gray-900">Dr.AIT Recruitment Portal</h1>
-              <p class='mb-4'>Use registered Email-id to Login into the portal</p>
+              <!-- <h1 class="h4 font-weight-bold text-danger">Dr.AIT Recruitment Portal</h1> -->
+              <h3 class="h4 font-weight-bold text-danger">APPLICANT REGISTRATION FORM</h3>
+              <p class='mb-4'>Please fill out this form to register</p>
             </div>
             <?php echo form_open($action, 'class="user"'); ?>
 

@@ -350,7 +350,8 @@
       }
     }
 
-    .footer__bottom__main--rs a {
+    .footer__bottom__main--rs a,
+    .footer__bottom__main--rs span {
       color: #fff;
       font-size: .8125rem;
       line-height: .975rem;
@@ -359,7 +360,8 @@
       -moz-transition: all .3s ease;
       -o-transition: all .3s ease;
       -webkit-transition: all .3s ease;
-      -ms-transition: all .3s ease
+      -ms-transition: all .3s ease;
+      text-decoration: none;
     }
 
     .footer__bottom__main--rs a+a {
