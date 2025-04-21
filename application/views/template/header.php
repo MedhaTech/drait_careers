@@ -536,9 +536,9 @@
         }
 
         .apply-now-new a {
-            background: #febe10;
+            background: #023e86;
             padding: 10px 10px !important;
-            color: #000;
+            color: #fff;
             text-transform: uppercase;
             font-weight: 600;
             font-size: .9rem;
