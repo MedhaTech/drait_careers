@@ -392,7 +392,7 @@
             color: #023e86;
             /* Bright color for the main heading */
         }
-        section.career-current-opening p {
+        section.career-current-opening .current {
             text-align: center;
            
             margin-bottom: 50px;
@@ -495,7 +495,7 @@
         }
 
         .apply-now a:hover {
-            background: #fff;
+            background: #023e869e;
         }
 
         .career-apply .read-more a:hover {
