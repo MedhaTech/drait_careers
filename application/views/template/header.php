@@ -387,9 +387,18 @@
         section.career-current-opening h2 {
             text-align: center;
             font-size: 2rem;
-            margin-bottom: 50px;
+            margin-bottom: 10px;
             font-family: "Chivo", sans-serif;
             color: #023e86;
+            /* Bright color for the main heading */
+        }
+        section.career-current-opening p {
+            text-align: center;
+           
+            margin-bottom: 50px;
+            font-family: "Chivo", sans-serif;
+            text-align: center;
+            color: #000;
             /* Bright color for the main heading */
         }
 
@@ -449,9 +458,9 @@
 
         .apply-now a,
         .apply-now button {
-            background: #febe10;
+            background: #023e86;
             padding: 10px 24px;
-            color: #000;
+            color: #ffffff;
             text-transform: uppercase;
             font-weight: 600;
             font-size: .9rem;
@@ -525,6 +534,7 @@
             background-color: #012f66;
             color: #fff;
         }
+
         .apply-now-new a {
             background: #febe10;
             padding: 10px 10px !important;
@@ -585,7 +595,7 @@
                                                     <span class="icon"><i class="fa fa-phone"></i></span>
                                                     <span class="resHide">Call : </span> <span>+91 9986003865</span>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                         <div class="header__main__rs__login ">

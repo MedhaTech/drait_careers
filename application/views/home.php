@@ -2,7 +2,8 @@
 <section class="career-current-opening">
     <div class="container">
         <h2 class="">Current Openings</h2>
-        <div class="row">
+        <p>Those who are interested in faculty positions are hereby informed to upload the profile in the Proforma provided. Your applications will be scrutinized and considered as and when need arise.</p>
+        <div class="row justify-content-center">
 
             <?php
 
