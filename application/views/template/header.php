@@ -549,6 +549,10 @@
             /* border-radius: 5px; */
             text-decoration: none;
         }
+        .final
+        {
+            font-size: 13px;
+        }
     </style>
 </head>
 

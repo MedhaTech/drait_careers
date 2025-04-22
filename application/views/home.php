@@ -51,8 +51,9 @@
                                 <li>Should possess M. Tech Degree / Ph. D degree is preferable.</li>
                                 <li>Should have completed 5 years of teaching experience in the AGP of Rs. 6000/-.</li>
                                 <li>Should have completed Faculty Development Program (AICTE approved) of 06 weeks.</li>
-                                <li>All CAS applications submitted, along with the proforma and all supporting
-                                    documents, will be reviewed biannually - in the months of June and December.</li>
+                                <br>
+                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+
                             </ul>
                         </div>
                     </div>
@@ -81,8 +82,9 @@
                                 <li>Should have completed 5 years of teaching experience in the AGP of Rs. 7000/-.</li>
                                 <li>Should have registered for Ph.D degree.</li>
                                 <li>Should have completed Faculty Development Program (AICTE approved) of 06 weeks.</li>
-                                <li>All CAS applications submitted, along with the proforma and all supporting
-                                    documents, will be reviewed biannually - in the months of June and December.</li>
+                                <br>
+                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+
                             </ul>
                         </div>
                     </div>
@@ -103,26 +105,31 @@
                         <h3 class="mb-3">Application Form for Academic Grade Pay (AGP) Upgradation </h3>
                         <p><strong>(AGP from Rs.8000 to Rs.9000)</strong></p>
                         <div class="qualification-details mt-3">
-                            <h5>Eligibility for Assistant Professors(CAS)</h5>
+                            <h5>Eligibility for Associate Professors (CAS) </h5>
+
                             <ul>
+                                <li style="list-style-type: none;">
+                                    <b>Essential:</b>
+                                </li>
                                 <li>Should possess B.E, M. Tech Degree with first class and Ph. D degree.
                                 </li>
-                                <li>Minimum 13 years of experience in academic/research/industry, of which 3 years should be as an Assistant Professor with AGP Rs.8000/- 
+                                <li>Minimum 13 years of experience in academic/research/industry, of which 3 years should be as an Assistant Professor with AGP Rs.8000/-
                                 </li>
                                 <li>Should have post Ph. D degree experience of 2 years.
                                 </li>
-                                <li>Should have completed Faculty Development Program (AICTE approved) as per norms.
+                                <li>Should have completed Faculty Development Program (AICTE approved) as per norms.<br><b>Desirable:</b>
                                 </li>
-                                <li> <b>Desirable:</b><br>
-                                 Should have successfully guided 01 Ph. D student.
-                                 <br> OR
+                                <li>
+                                    Should have successfully guided 01 Ph. D student.
+                                    <br> OR
                                 </li>
                                 <li>Should have at least 04 publications in SCI-Indexed Journals and 02 in Web of Science/ Scopus-Indexed Journals.
                                 </li>
                                 <li> Should have involvement in terms of Research and Development (R&D), patent filing, consultancy services, development of e-content, establishment or contribution to Centre of Excellence (CoEs), and/or recognition through prestigious national awards.
                                 </li>
-                                <li>All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</li>
-                               
+                                <br>
+                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+
                             </ul>
                         </div>
                     </div>
@@ -143,26 +150,31 @@
                         <h3 class="mb-3">Application Form for Academic Grade Pay (AGP) Upgradation </h3>
                         <p><strong>(AGP from Rs.9000 to Rs.10000)</strong></p>
                         <div class="qualification-details mt-3">
-                            <h5>Eligibility for Assistant Professors(CAS)</h5>
-                            <ul>
+                            <h5>Eligibility for Professors (CAS) </h5>
+                            <ul >
+                                <li style="list-style-type: none;">
+                                    <b>Essential:</b>
+                                </li>
                                 <li>Should possess B.E, M. Tech Degree with first class and Ph. D degree.
                                 </li>
-                                <li>Minimum 16 years of experience in academic/research/industry, of which 3 years should be as an Assistant Professor with AGP Rs.9000/- 
+                                <li>Minimum 16 years of experience in academic/research/industry, of which 3 years should be as an Assistant Professor with AGP Rs.9000/-
                                 </li>
                                 <li>Should have post Ph. D degree experience of 5 years.
                                 </li>
                                 <li>Should have completed Faculty Development Program (AICTE approved) as per norms.
+                                    <br><b>Desirable:</b>
                                 </li>
-                                <li> <b>Desirable:</b><br>
-                                 Should have successfully guided 02 Ph. D student.
-                                 <br> OR
+                                <li>
+                                    Should have successfully guided 02 Ph. D student.
+                                    <br> OR
                                 </li>
                                 <li>Should have at least 06 publications in SCI-Indexed Journals and 04 in Web of Science/ Scopus-Indexed Journals.
                                 </li>
                                 <li> Should have involvement in terms of Research and Development (R&D), patent filing, consultancy services, development of e-content, establishment or contribution to Centre of Excellence (CoEs), and/or recognition through prestigious national awards.
                                 </li>
-                                <li>All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</li>
-                               
+                                <br>
+                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+
                             </ul>
                         </div>
                     </div>
