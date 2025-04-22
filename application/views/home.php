@@ -2,9 +2,9 @@
 <section class="career-current-opening">
     <div class="container">
         <h2 class="">CURRENT OPENINGS</h2>
-        <p class="current text-secondary">Those who are interested in faculty positions are hereby informed to upload
-            the profile in the Proforma provided. <br /> Your applications will be scrutinized and considered as and
-            when need arise.</h>
+        <p class="current text-secondary">Applicants interested in faculty positions are requested to update their profiles using the prescribed proforma, along with all relevant supporting documents.
+            Submitted applications will be duly scrutinized and considered as and when suitable positions become available throughout the year.
+            </h>
         <div class="row justify-content-center">
 
             <?php
@@ -15,10 +15,10 @@
                         <div class="carer_wrappper card shadow">
                             <div class="career-opening">
                                 <h3><a href="<?= base_url('recruitment'); ?>"><?= $recruitmentList1->title; ?></a></h3>
-                                <div class="years-current"><i class="fa fa-book" aria-hidden="true"></i>
+                                <!-- <div class="years-current"><i class="fa fa-book" aria-hidden="true"></i>
                                     <?= $recruitmentList1->department_names; ?></div>
                                 <div class="place-current"><i class="fa fa-university" aria-hidden="true"></i> Dr.AIT
-                                </div>
+                                </div> -->
                             </div>
                             <div class="career-apply">
                                 <div class="apply-now"><a target="_blank" href="<?= base_url('recruitment'); ?>">Apply Now</a>
