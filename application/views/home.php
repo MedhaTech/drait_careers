@@ -157,7 +157,7 @@
                                  Should have successfully guided 02 Ph. D student.
                                  <br> OR
                                 </li>
-                                <li>Should have at least 04 publications in SCI-Indexed Journals and 04 in Web of Science/ Scopus-Indexed Journals.
+                                <li>Should have at least 06 publications in SCI-Indexed Journals and 04 in Web of Science/ Scopus-Indexed Journals.
                                 </li>
                                 <li> Should have involvement in terms of Research and Development (R&D), patent filing, consultancy services, development of e-content, establishment or contribution to Centre of Excellence (CoEs), and/or recognition through prestigious national awards.
                                 </li>
