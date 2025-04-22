@@ -98,8 +98,8 @@
                                     <div class="carer_wrappper">
                                         <div class="career-opening">
                                             <h3><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
-                                            <div class="years-current"><i class="fa fa-briefcase" aria-hidden="true"></i> <?= $recruitmentList1->department_names; ?></div>
-                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Bengaluru</div>
+                                            <!-- <div class="years-current"><i class="fa fa-briefcase" aria-hidden="true"></i> <?= $recruitmentList1->department_names; ?></div>
+                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Bengaluru</div> -->
                                         </div>
                                         <div class="career-apply">
                                             <?php
