@@ -36,6 +36,7 @@
 
         </div>
         <h2 class="">INTERNAL - CAREER ADVANCEMENT SCHEME</h2>
+        <p class="current text-secondary">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</p>
         <div class="row">
 
             <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
@@ -52,7 +53,7 @@
                                 <li>Should have completed 5 years of teaching experience in the AGP of Rs. 6000/-.</li>
                                 <li>Should have completed Faculty Development Program (AICTE approved) of 06 weeks.</li>
                                 <br>
-                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+                                <span class="final"> </span>
 
                             </ul>
                         </div>
@@ -83,7 +84,7 @@
                                 <li>Should have registered for Ph.D degree.</li>
                                 <li>Should have completed Faculty Development Program (AICTE approved) of 06 weeks.</li>
                                 <br>
-                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+                                <span class="final"> </span>
 
                             </ul>
                         </div>
@@ -128,7 +129,7 @@
                                 <li> Should have involvement in terms of Research and Development (R&D), patent filing, consultancy services, development of e-content, establishment or contribution to Centre of Excellence (CoEs), and/or recognition through prestigious national awards.
                                 </li>
                                 <br>
-                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+                                <span class="final"> </span>
 
                             </ul>
                         </div>
@@ -173,7 +174,7 @@
                                 <li> Should have involvement in terms of Research and Development (R&D), patent filing, consultancy services, development of e-content, establishment or contribution to Centre of Excellence (CoEs), and/or recognition through prestigious national awards.
                                 </li>
                                 <br>
-                                <span class="final">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</span>
+                                <span class="final"> </span>
 
                             </ul>
                         </div>
