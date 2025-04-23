@@ -157,7 +157,7 @@
                                 </li>
                                 <li>Should possess B.E, M. Tech Degree with first class and Ph. D degree.
                                 </li>
-                                <li>Minimum 16 years of experience in academic/research/industry, of which 3 years should be as an Assistant Professor with AGP Rs.9000/-
+                                <li>Minimum 16 years of experience in academic/research/industry, of which 3 years should be as an Associate Professor with AGP Rs.9000/-
                                 </li>
                                 <li>Should have post Ph. D degree experience of 5 years.
                                 </li>
