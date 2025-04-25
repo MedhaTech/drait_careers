@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-12 text-right">
                     <button class="btn btn-primary btn-square btn-sm" type="submit">Add</button>
-                    <?php echo anchor('recruitment/profile','Cancel','class="btn btn-secondary btn-square btn-sm"'); ?>    
+                    <?php echo anchor('recruitment/profile','Back','class="btn btn-secondary btn-square btn-sm"'); ?>    
                 </div>
 
                 <?=form_close();?>
