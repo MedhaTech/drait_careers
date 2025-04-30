@@ -36,4 +36,15 @@ class Home extends CI_Controller
 		
 		$this->template->show('detail', $data);
 	}
+
+
+	public function custom404()
+	{
+		$data['mainMenu'] = 'Home';
+		$data['parentMenu'] = false;
+		
+	
+		
+		$this->template->show('404', $data);
+	}
 }

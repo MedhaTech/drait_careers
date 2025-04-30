@@ -26,7 +26,7 @@ class Main extends CI_Controller
 		} else {
 			$username = $this->input->post('username');
 			if ($username == "recruitment-admin") {
-				redirect('main/admin_dashboard', 'refresh');
+				redirect('main/jobposts', 'refresh');
 			} else {
 				redirect('recruitment-admin', 'refresh');
 			}
@@ -327,7 +327,6 @@ function	faculty_applications_change_status($staff,$job)
 					array('data' => 'Posted Date', 'width' => '10%'),
 					array('data' => 'Application Type', 'width' => '10%'),
 					array('data' => 'Academic Year', 'width' => '10%'),
-					array('data' => 'Fee', 'width' => '10%'),
 					array('data' => 'Status', 'width' => '10%'),
 					array('data' => 'Actions', 'width' => '30%')
 				);
@@ -341,7 +340,6 @@ function	faculty_applications_change_status($staff,$job)
 						date("d/m/Y", strtotime($recruitmentList1->updated_on)),
 						$recruitmentList1->type,
 						$recruitmentList1->ay,
-						$recruitmentList1->fee,
 						($recruitmentList1->status == "1") ? 'Active' : 'Inactive',
 						anchor('main/editjobpost/' . $recruitmentList1->id, '<i class="fas fa-pencil"></i> Edit', 'class="btn btn-danger btn-sm"') . '&nbsp;' .
 							anchor('main/faculty_applications/' . $recruitmentList1->id, '<i class="fas fa-eye"></i> View Applications', 'class="btn btn-primary btn-sm"')
@@ -373,7 +371,7 @@ function	faculty_applications_change_status($staff,$job)
 			$this->form_validation->set_rules('type', 'Application Type', 'required');
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('ay', 'Academic Year', 'required');
-			$this->form_validation->set_rules('fee', 'Application Fee', '');
+			// $this->form_validation->set_rules('fee', 'Application Fee', '');
 			$this->form_validation->set_rules('departments[]', 'Departments', 'required');
 			if ($this->form_validation->run() === FALSE) {
 				$data['action'] = 'main/addjobpost/';
@@ -397,7 +395,7 @@ function	faculty_applications_change_status($staff,$job)
 					'slug' => create_slug($this->input->post('title')),
 					'type' => $this->input->post('type'),
 					'ay' => $this->input->post('ay'),
-					'fee' => $this->input->post('fee'),
+					'fee' => 0,
 					'description' => $this->input->post('description'),
 					'departments' => $departments_str,
 					'status' => $status,
@@ -434,7 +432,7 @@ function	faculty_applications_change_status($staff,$job)
 			$this->form_validation->set_rules('type', 'Application Type', 'required');
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('ay', 'Academic Year', 'required');
-			$this->form_validation->set_rules('fee', 'Application Fee', 'required');
+			// $this->form_validation->set_rules('fee', 'Application Fee', 'required');
 			if ($this->form_validation->run() === FALSE) {
 
 				$data['details'] = $this->admin_model->getDetails('recruitment_posts', $id)->row();
@@ -452,7 +450,7 @@ function	faculty_applications_change_status($staff,$job)
 					'slug' => create_slug($this->input->post('title')),
 					'type' => $this->input->post('type'),
 					'ay' => $this->input->post('ay'),
-					'fee' => $this->input->post('fee'),
+					'fee' => 0,
 					'description' => $this->input->post('description'),
 					'departments' => $departments_str,
 					'status' => $status

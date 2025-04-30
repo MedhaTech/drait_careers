@@ -51,11 +51,11 @@
                                 ?>
                                 <span class="validationError"><?php echo form_error('ay'); ?></span>
                             </div>
-                            <div class="col-sm-4">
+                            <!-- <div class="col-sm-4">
                                 <label>Application Fee</label>
                                 <input type="text" name="fee" id="fee" class="form-control" value="<?php echo (set_value('fee')) ? set_value('fee') : $fee; ?>">
                                 <span class="validationError"><?php echo form_error('fee'); ?></span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="form-group">
 
