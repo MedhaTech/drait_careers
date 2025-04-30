@@ -56,9 +56,9 @@
       if ($username == 'recruitment-admin') {
       ?>
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item <?php echo ($activeMenu == "dashboard") ? 'active' : ''; ?>">
+        <!-- <li class="nav-item <?php echo ($activeMenu == "dashboard") ? 'active' : ''; ?>">
           <?php echo anchor('main/admin_dashboard', '<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>', 'class="nav-link"'); ?>
-        </li>
+        </li> -->
 
         <li class="nav-item <?php echo ($activeMenu == "jobposts") ? 'active' : ''; ?>">
           <?php echo anchor('main/jobposts', '<i class="fas fa-fw fa-users"></i> <span>Job Posts </span>', 'class="nav-link"'); ?>

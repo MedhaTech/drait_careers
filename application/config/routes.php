@@ -50,9 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Home';
-$route['404_override'] = 'home/error404';
-$route['403_override'] = 'home/error404';
-$route['translate_uri_dashes'] = TRUE;
+
 // $route['results/(:any)'] = "home/result/$1";
 $route['confirm']['GET'] = 'recruitment/confirm_email';
 $route['eResources'] = 'home/Library-E-Resources';
@@ -62,7 +60,8 @@ $route['career-detail/(:any)'] = 'Home/career_detail/$1';
 $route['recruitment/timeout'] = 'recruitment/index';
 $route['recruitment-admin'] = 'main/index';
 
-  
+$route['404_override'] = 'home/custom404';
+$route['translate_uri_dashes'] = FALSE;
                                                 
 
 
