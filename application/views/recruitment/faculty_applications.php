@@ -5,6 +5,11 @@
   <div class="card shadow mb-4">
   	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		<h6 class="m-0 font-weight-bold text-primary"><?=$pageTitle;?></h6>
+    <div class="dropdown no-arrow">
+        <?php 
+            echo anchor('main/jobposts','<i class="fas fa-arrow-left fa-sm fa-fw"></i> Back', 'class="btn btn-primary btn-sm " ');
+        ?>
+      </div>
 
 	</div>
     <div class="card-body">

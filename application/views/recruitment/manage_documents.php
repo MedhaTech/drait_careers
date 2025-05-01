@@ -25,7 +25,7 @@
 
               ?>
               <select name="type" class="form-control col-sm-12" placeholder="Select Title of the document" id="type" required>
-
+              <option >Select Document</option>
                 <?php foreach ($postList as $post) { ?>
                   <option value="<?= $post->id; ?>" data-val="<?= $post->details; ?>"><?= $post->name; ?></option>
                 <?php } ?>
@@ -78,14 +78,12 @@
             <span class="widgetTitle">List of Documents</span>
             <span tabindex="0" class="add no-outline">
               <?php
-              if (($user_data->post_of == 'Teaching')) {
-                if (($user_data->menu_flag == 9) && (count($details) > 2)) {
-                  echo anchor('recruitment/profile?flag=10', '<i class="fas fa-angle-double-right "></i> Save & Proceed', 'class="btn btn-block btn-success btn-square btn-sm"');
-                }
+              if ((count($details) > 1)) {
+                echo anchor('recruitment/profile?flag=8', '<i class="fas fa-angle-double-right "></i> Save & Proceed', 'class="btn btn-block btn-success btn-square btn-sm"');
+              } elseif (($user_data->menu_flag == 7)) {
+                echo anchor('recruitment/profile?flag=8', '<i class="fas fa-angle-double-right "></i> Skip & Proceed', 'class="btn btn-block btn-success btn-square btn-sm"');
               } else {
-                if (($user_data->menu_flag == 3) && (count($details) > 2)) {
-                  echo anchor('recruitment/profile?flag=10', '<i class="fas fa-angle-double-right "></i> Save & Proceed', 'class="btn btn-block btn-success btn-square btn-sm"');
-                }
+                echo anchor('recruitment/profile', '<i class="fas fa-angle-double-right "></i> Skip & Proceed', 'class="btn btn-block btn-success btn-square btn-sm"');
               }
               ?>
             </span>

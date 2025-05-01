@@ -37,7 +37,7 @@ class Recruitment extends CI_Controller
 			// if ($details->payment_status == 1) {
 			// 	redirect('recruitment/print', 'refresh');
 			// } else {
-				redirect('recruitment/dashboard', 'refresh');
+			redirect('recruitment/dashboard', 'refresh');
 			// }
 		}
 	}
@@ -188,11 +188,11 @@ class Recruitment extends CI_Controller
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
 			// if ($data['details']->post_of && $data['details']->department) {
 
-				if ($data['details']->post_of == "Non-Teaching") {
-					$this->rec_template->show('recruitment/profile-non', $data);
-				} else {
-					$this->rec_template->show('recruitment/profile', $data);
-				}
+			if ($data['details']->post_of == "Non-Teaching") {
+				$this->rec_template->show('recruitment/profile-non', $data);
+			} else {
+				$this->rec_template->show('recruitment/profile', $data);
+			}
 			// } else {
 			// 	$data['action'] = 'recruitment/apply_for';
 			// 	$this->rec_template->show('recruitment/apply_for', $data);
@@ -239,7 +239,7 @@ class Recruitment extends CI_Controller
 			// if ($data['details']->post_of && $data['details']->department) {
 
 
-				$this->rec_template->show('recruitment/dashboard', $data);
+			$this->rec_template->show('recruitment/dashboard', $data);
 			// } else {
 			// 	$data['action'] = 'recruitment/apply_for';
 			// 	$this->rec_template->show('recruitment/apply_for', $data);
@@ -284,8 +284,7 @@ class Recruitment extends CI_Controller
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
 			$data['post'] = $this->admin_model->getDetailsbyfield($slug, 'slug', 'recruitment_posts')->row();
-				$this->rec_template->show('recruitment/career', $data);
-			
+			$this->rec_template->show('recruitment/career', $data);
 		} else {
 			redirect('recruitment/timeout', 'refresh');
 		}
@@ -976,35 +975,33 @@ class Recruitment extends CI_Controller
 			$data['activeMenu'] = "dashboard";
 
 			$data['details'] = $this->admin_model->getDetails('recruitment_users', $data['id'])->row();
-			if($this->input->post('post_id')){
-			$data['education'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_education_details')->result();
-			$data['research'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_research_exp_details')->result();
-			$data['publications'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_publications_details')->result();
-			$data['teaching'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_teaching_experience_details')->result();
-			$data['industrial'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_industrial_experience')->result();
-			$data['affiliations'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_affiliations')->result();
-			$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
-			$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
-			$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
-			$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
-			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
-			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
-			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
-			$data['post_id'] = $this->input->post('post_id');
-			$data['post_details'] = $this->admin_model->getDetails('recruitment_posts', $data['post_id'])->row();
-			$data['department'] = $this->input->post('department');
-			$data['in_service_note'] = $this->input->post('in_service_note');
-			$data['additional_info'] = $this->input->post('additional_info');
-			if ($data['details']->post_of == "Non-Teaching") {
-				$this->rec_template->show('recruitment/preview-non', $data);
+			if ($this->input->post('post_id')) {
+				$data['education'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_education_details')->result();
+				$data['research'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_research_exp_details')->result();
+				$data['publications'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_publications_details')->result();
+				$data['teaching'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_teaching_experience_details')->result();
+				$data['industrial'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'faculty_industrial_experience')->result();
+				$data['affiliations'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_affiliations')->result();
+				$data['references'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_references')->result();
+				$data['documents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_documents')->result();
+				$data['langs'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_languages')->result();
+				$data['projects'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'sponsored_projects')->result();
+				$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
+				$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
+				$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+				$data['post_id'] = $this->input->post('post_id');
+				$data['post_details'] = $this->admin_model->getDetails('recruitment_posts', $data['post_id'])->row();
+				$data['department'] = $this->input->post('department');
+				$data['in_service_note'] = $this->input->post('in_service_note');
+				$data['additional_info'] = $this->input->post('additional_info');
+				if ($data['details']->post_of == "Non-Teaching") {
+					$this->rec_template->show('recruitment/preview-non', $data);
+				} else {
+					$this->rec_template->show('recruitment/preview', $data);
+				}
 			} else {
-				$this->rec_template->show('recruitment/preview', $data);
+				redirect('recruitment/dashboard', 'refresh');
 			}
-		}
-		else
-		{
-			redirect('recruitment/dashboard', 'refresh');
-		}
 			//  		$this->rec_template->show('recruitment/preview',$data);    
 
 		} else {
@@ -2361,7 +2358,7 @@ class Recruitment extends CI_Controller
 					'speak'      => $this->input->post('speak') ? 1 : 0,
 					'created_at' => date('Y-m-d H:i:s')
 				);
-		
+
 				$result = $this->admin_model->insertDetails('recruitment_languages', $insertDetails);
 
 				if ($result) {
@@ -3084,6 +3081,8 @@ class Recruitment extends CI_Controller
 			// Validation rules for form input
 			$this->form_validation->set_rules('title_of_project', 'Title of Seminar/Workshop/Course', 'required');
 			$this->form_validation->set_rules('organised_conducted', 'Organised/Conducted By', 'required');
+			$this->form_validation->set_rules('from_date', 'From Date', 'required');
+			$this->form_validation->set_rules('to_date', 'To Date', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
 				// If validation fails, load the manage view with any existing records
@@ -3096,6 +3095,9 @@ class Recruitment extends CI_Controller
 					'user_id' => $data['id'],
 					'title_of_project' => $this->input->post('title_of_project'),
 					'organised_conducted' => $this->input->post('organised_conducted'),
+					'from_date' => $this->input->post('from_date'),
+					'to_date' => $this->input->post('to_date'),
+					'total_days' => $this->input->post('total_days'),
 					'created_at' => date('Y-m-d H:i:s')
 				);
 
@@ -3132,6 +3134,8 @@ class Recruitment extends CI_Controller
 			// Validation rules
 			$this->form_validation->set_rules('title_of_project', 'Title of Seminar/Workshop/Course', 'required');
 			$this->form_validation->set_rules('organised_conducted', 'Organised/Conducted By', 'required');
+			$this->form_validation->set_rules('from_date', 'From Date', 'required');
+			$this->form_validation->set_rules('to_date', 'To Date', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
 				// Fetch existing record for editing
@@ -3142,7 +3146,10 @@ class Recruitment extends CI_Controller
 				// Prepare data for updating
 				$updateDetails = array(
 					'title_of_project' => $this->input->post('title_of_project'),
-					'organised_conducted' => $this->input->post('organised_conducted')
+					'organised_conducted' => $this->input->post('organised_conducted'),
+					'from_date' => $this->input->post('from_date'),
+					'to_date' => $this->input->post('to_date'),
+					'total_days' => $this->input->post('total_days')
 				);
 
 				// Update the record in the database
@@ -3297,10 +3304,9 @@ class Recruitment extends CI_Controller
 			}
 			$data['details'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 			$data['appliedList'] = $this->admin_model->applied_jobs($data['id']);
-			
-			
-				$this->rec_template->show('recruitment/applied', $data);
-			
+
+
+			$this->rec_template->show('recruitment/applied', $data);
 		} else {
 			redirect('recruitment/timeout', 'refresh');
 		}
@@ -3318,7 +3324,7 @@ class Recruitment extends CI_Controller
 			$this->db->where_in('id', $departments_str);
 			$query = $this->db->get();
 			$acList = $query->result();
-			
+
 			// $acList = $this->admin_model->getDetailsbyfield($this->input->post('type'), 'type', 'recruitment_posts')->result();
 			echo "<option>- Select -</option>";
 			foreach ($acList as $acList1) {
@@ -3338,13 +3344,13 @@ class Recruitment extends CI_Controller
 			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', $data['id'])->row();
 			$data['pageTitle'] = "Manage Patents";
 			$data['activeMenu'] = "dashboard";
-	
+
 			// Validation
 			$this->form_validation->set_rules('application_number', 'Application Number', 'required');
 			$this->form_validation->set_rules('title', 'Title of Patent', 'required');
 			$this->form_validation->set_rules('applicants', 'Applicants', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
-	
+
 			if ($this->form_validation->run() == FALSE) {
 				$data['action'] = 'recruitment/managePatents';
 				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'user_patents')->result();
@@ -3361,9 +3367,9 @@ class Recruitment extends CI_Controller
 					'granted_date' => $this->input->post('granted_date'),
 					'created_at' => date('Y-m-d H:i:s')
 				);
-	
+
 				$result = $this->admin_model->insertDetails('user_patents', $insertData);
-	
+
 				if ($result) {
 					$this->session->set_flashdata('message', 'Patent details saved successfully.');
 					$this->session->set_flashdata('status', 'alert-success');
@@ -3371,7 +3377,7 @@ class Recruitment extends CI_Controller
 					$this->session->set_flashdata('message', 'Failed to save patent details. Try again.');
 					$this->session->set_flashdata('status', 'alert-danger');
 				}
-	
+
 				redirect('recruitment/managePatents', 'refresh');
 			}
 		} else {
@@ -3387,13 +3393,13 @@ class Recruitment extends CI_Controller
 			$data['email'] = $session_data['email'];
 			$data['pageTitle'] = "Update Patent";
 			$data['activeMenu'] = "dashboard";
-	
+
 			// Validation rules
 			$this->form_validation->set_rules('application_number', 'Application Number', 'required');
 			$this->form_validation->set_rules('title', 'Title of Patent', 'required');
 			$this->form_validation->set_rules('applicants', 'Applicants', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
-	
+
 			if ($this->form_validation->run() == FALSE) {
 				// Load existing patent details
 				$data['action'] = 'recruitment/updatePatent/' . $id;
@@ -3410,9 +3416,9 @@ class Recruitment extends CI_Controller
 					'published_date' => $this->input->post('published_date'),
 					'granted_date' => $this->input->post('granted_date')
 				);
-	
+
 				$result = $this->admin_model->updateDetails($id, $updateData, 'user_patents');
-	
+
 				if ($result) {
 					$this->session->set_flashdata('message', 'Patent updated successfully.');
 					$this->session->set_flashdata('status', 'alert-success');
@@ -3420,7 +3426,7 @@ class Recruitment extends CI_Controller
 					$this->session->set_flashdata('message', 'Failed to update patent.');
 					$this->session->set_flashdata('status', 'alert-danger');
 				}
-	
+
 				redirect('recruitment/managePatents', 'refresh');
 			}
 		} else {
@@ -3436,16 +3442,15 @@ class Recruitment extends CI_Controller
 			$data['email'] = $session_data['email'];
 			$data['pageTitle'] = "Delete Patent";
 			$data['activeMenu'] = "dashboard";
-	
+
 			$this->admin_model->delDetails('user_patents', $id);
-	
+
 			$this->session->set_flashdata('message', 'Patent deleted successfully.');
 			$this->session->set_flashdata('status', 'alert-success');
-	
+
 			redirect('recruitment/managePatents', 'refresh');
 		} else {
 			redirect('recruitment/timeout', 'refresh');
 		}
 	}
-			
 }

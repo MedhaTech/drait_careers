@@ -640,6 +640,9 @@
                             <tr>
                                 <th>Title of Seminar/Workshop/Course</th>
                                 <th>Organised/Conducted By</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Total Days</th>
 
                             </tr>
                         </thead>
@@ -648,6 +651,9 @@
                                 <tr>
                                     <td><?= $details1->title_of_project ?></td>
                                     <td><?= $details1->organised_conducted ?></td>
+                                    <td><?= date('d-m-Y', strtotime($details1->from_date)) ?></td>
+                                    <td><?= date('d-m-Y', strtotime($details1->to_date)) ?></td>
+                                    <td><?= $details1->total_days ?></td>
 
                                 </tr>
                         <?php }
