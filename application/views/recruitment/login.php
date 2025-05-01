@@ -16,7 +16,7 @@
 
               <!-- <img src="<?= base_url();?>assets/images/full_logo-wide.png" class="wd-100" /> -->
               <h1 class="h4 font-weight-bold text-danger">APPLICANT LOGIN</h1>
-              <p class='mb-4'>Use registered Email ID to Login into the portal</p>
+              <p class='mb-4 text-secondary'>Use registered Email ID to Login into the portal</p>
               <?php if (isset($msg)) {
                 if ($msg == 'success') {
                   echo " <p class='mb-4'> Email-id successufully verified</p>";
@@ -38,16 +38,16 @@
             </div>
 
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-user btn-block" name="login" id="login">Login</button>
+              <button type="submit" class="btn btn-primary btn-user btn-block" name="login" id="login">LOGIN</button>
             </div>
 
             <hr>
             <div class="text-center">
               <!--<a class="small" href="forgot-password.html">Forgot Password?</a>-->
-              <?php echo anchor('recruitment/forgot', "Forgot Password?", 'class="small"'); ?>
+              <?php echo anchor('recruitment/forgot', "Forgot Password?", 'class="small text-danger"'); ?>
             </div>
             <div class="text-center">
-              <?php echo anchor('recruitment/register', "If you don't have an Account, Click here to Register", 'class="small"'); ?>
+              <?php echo anchor('recruitment/register', "If you don't have an Account, Click here to Register", 'class="small text-danger"'); ?>
             </div>
 
             </form>

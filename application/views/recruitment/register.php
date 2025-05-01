@@ -13,7 +13,7 @@
 
               <!-- <h1 class="h4 font-weight-bold text-danger">Dr.AIT Recruitment Portal</h1> -->
               <h3 class="h4 font-weight-bold text-danger">APPLICANT REGISTRATION FORM</h3>
-              <p class='mb-4'>Please fill out this form to register</p>
+              <p class='mb-4 text-secondary'>Please fill out this form to register</p>
             </div>
             <?php echo form_open($action, 'class="user"'); ?>
 
@@ -37,7 +37,7 @@
             <div class="form-group">
               <label for="name" class='font-weight-bold'>Jobs Applying for</label>
               <select name="post_of" id="post_of" class="form-control form-control-user" required>
-              <?php $applypost = $this->admin_model->getPostType(); ?>
+                <?php $applypost = $this->admin_model->getPostType(); ?>
                 <option value="">- select -</option>
                 <?php
                 foreach ($applypost as $post) {
@@ -62,13 +62,13 @@
             </div>
 
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-user btn-block" name="register" id="register">Register</button>
+              <button type="submit" class="btn btn-primary btn-user btn-block" name="register" id="register">REGISTER</button>
             </div>
 
             <hr>
 
             <div class="text-center">
-              <?php echo anchor('recruitment', "Already registered, Click here to Login", 'class="small"'); ?>
+              <?php echo anchor('recruitment', "Already registered, Click here to Login", 'class="small text-danger"'); ?>
             </div>
 
             </form>

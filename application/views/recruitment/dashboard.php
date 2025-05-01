@@ -50,7 +50,7 @@
 
 
                 <?php echo form_open_multipart('ajax-image-upload/post'); ?>
-                <label for="image">
+                <label for="image" class="text-center">
 
                     <?php if ($details->profile_pic == '') { ?>
                         <div class="profile-pic" style="background-image: url('https://placehold.co/160x160')">
@@ -63,10 +63,7 @@
                 </label>
                 <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg" onchange="form.submit()">
                 </form>
-                <label style="
-    margin-left: 15px;
-    font-size: 12px;
-">Only JPG and PNG files are allowed.</label>
+                <label class="text-center small text-secondary">Only JPG and PNG files are allowed.</label>
 
                 <?php $this->load->view('recruitment/template/side_header'); ?>
 
@@ -126,15 +123,13 @@
                         <?php } ?>
 
                     </div>
+
                     <div class="widgetHead">
                         <span class="widgetTitle">Applied Posts</span>
-
                     </div>
 
                     <div class="row">
-
                         <?php
-
                         if ($appliedList) {
                             foreach ($appliedList as $recruitmentList1) { ?>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
@@ -148,7 +143,10 @@
                                     </div>
                                 </div>
                         <?php }
-                        }  ?>
+                        } else {
+                            echo '<p class="text-center text-muted">Not yet applied jobs.</p>';
+                        }
+                        ?>
 
                     </div>
                 </div>
@@ -190,7 +188,7 @@
                             <label for="in_service_note" class="form-label">In-service personnel shall forward the application through the organization. However, send the advance copy of the application.</label>
                             <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3" placeholder="Write here..."></textarea>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Proceed</button>
