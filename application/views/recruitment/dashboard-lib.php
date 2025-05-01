@@ -67,10 +67,7 @@ form input[type="file"] {
   </label>
   <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg" onchange="form.submit()">
 </form>
-<label style="
-    margin-left: 15px;
-    font-size: 12px;
-">Only JPG and PNG  files are allowed.</label>
+<label class="text-center">Only JPG and PNG  files are allowed.</label>
                
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">

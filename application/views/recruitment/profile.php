@@ -1,9 +1,10 @@
 <style>
     .profile-pic {
         border-radius: 50%;
+        border: 3px solid #cfcfcf;
         height: 180px;
         width: 180px;
-        margin-left: 30px;
+        /* margin-left: 30px; */
         background-size: cover;
         background-position: center;
         background-blend-mode: multiply;
@@ -49,23 +50,25 @@
             <div class="card shadow my-2">
 
 
-                <?php echo form_open_multipart('ajax-image-upload/post'); ?>
-                <label for="image">
-
+                <?php echo form_open_multipart('ajax-image-upload/post', array('class' => 'text-center mt-3')); ?>
+                <label for="image" class="text-center">
                     <?php if ($details->profile_pic == '') { ?>
-                        <div class="profile-pic" style="background-image: url('https://placehold.co/160x160')">
+                        <div class="profile-pic img" style="background-image: url('https://placehold.co/160x160')">
                         <?php } else { ?>
-                            <div class="profile-pic" style="background-image: url('<?= base_url(); ?>uploads/profile/<?= $details->profile_pic; ?>')">
+                            <div class="profile-pic"
+                                style="background-image: url('<?= base_url(); ?>uploads/profile/<?= $details->profile_pic; ?>')">
 
                             <?php } ?>
-                            <input type="hidden" name="pro-pic" class="pro-pic" id="pro-pic" value="<?= $details->profile_pic; ?>">
+                            <input type="hidden" name="pro-pic" class="pro-pic" id="pro-pic"
+                                value="<?= $details->profile_pic; ?>">
                             <span class="glyphicon glyphicon-camera"></span>
                             <span>Change Image</span>
-                            </div>
+                        </div>
                 </label>
-                <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg" onchange="form.submit()">
+                <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg"
+                    onchange="form.submit()">
                 </form>
-                <label style="margin-left: 15px; font-size: 12px;">Only JPG and PNG files are allowed.</label>
+                <label class="text-center small text-secondary">Only JPG and PNG files are allowed.</label>
 
                 <?php $this->load->view('recruitment/template/side_header'); ?>
 
@@ -237,9 +240,10 @@
                             if ($education) {
                                 foreach ($education as $education1) {
                                     $specialization = ($education1->specialization) ? ' - ' . $education1->specialization : null;
-                            ?>
+                                    ?>
                                     <div class="media d-block d-sm-flex mb-4">
-                                        <div class="wd-60 ht-60 bg-gray-200 rounded font-weight-bold d-flex align-items-center justify-content-center">
+                                        <div
+                                            class="wd-60 ht-60 bg-gray-200 rounded font-weight-bold d-flex align-items-center justify-content-center">
                                             <?= $education1->program; ?>
                                         </div>
                                         <div class="media-body pl-3">
@@ -250,7 +254,7 @@
                                             </span>
                                         </div>
                                     </div>
-                            <?php
+                                    <?php
                                 }
                             } else {
                                 echo "<h6 class='text-center tx-color-03'> Education details not added.</h6>";
@@ -379,7 +383,7 @@
                                     $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
                                     // $exp = ("%d years, %d months", $years, $months);
-
+                            
 
                                     echo '<tr>';
                                     echo '<td>' . $teaching1->institution . '</td>';
@@ -433,7 +437,7 @@
                                     $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
                                     // $exp = ("%d years, %d months", $years, $months);
-
+                            
 
                                     echo '<tr>';
                                     echo '<td>' . $industrial1->organization . '</td>';
@@ -572,7 +576,7 @@
                                     <td><?= $details1->co_investigators ?></td>
 
                                 </tr>
-                        <?php }
+                            <?php }
                         } else {
                             echo '<tr><td colspan="5" class="text-center text-muted">No projects added yet.</td></tr>';
                         }
@@ -615,7 +619,7 @@
                                     <td><?= $details1->co_investigators ?></td>
 
                                 </tr>
-                        <?php }
+                            <?php }
                         } else {
                             echo '<tr><td colspan="5" class="text-center text-muted">No consultancy projects added yet.</td></tr>';
                         }
@@ -650,7 +654,7 @@
                                     <td><?= $details1->organised_conducted ?></td>
 
                                 </tr>
-                        <?php }
+                            <?php }
                         } else {
                             echo '<tr><td colspan="2" class="text-center text-muted">No seminars/workshops/courses added yet.</td></tr>';
                         } ?>
@@ -687,7 +691,7 @@
                                     <td><?= $details1->grade_of_membership ?></td>
 
                                 </tr>
-                        <?php }
+                            <?php }
                         } else {
                             echo '<tr><td colspan="3" class="text-center text-muted">No professional memberships added yet.</td></tr>';
                         } ?>
@@ -781,7 +785,7 @@
 
 </div>
 <script>
-    $('.payment-submit').on('click', function() {
+    $('.payment-submit').on('click', function () {
         var pic = $('#pro-pic').val();
         if (pic == '') {
             alert("Please upload your passport size photo.");

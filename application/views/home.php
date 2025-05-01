@@ -110,7 +110,7 @@
 
                             <ul>
                                 <li style="list-style-type: none;">
-                                    <b>Essential:</b>
+                                    <b class="text-danger">ESSENTIAL:</b>
                                 </li>
                                 <li>Should possess B.E, M. Tech Degree with first class and Ph. D degree.
                                 </li>
@@ -118,7 +118,8 @@
                                 </li>
                                 <li>Should have post Ph. D degree experience of 2 years.
                                 </li>
-                                <li>Should have completed Faculty Development Program (AICTE approved) as per norms.<br><b>Desirable:</b>
+                                <li>Should have completed Faculty Development Program (AICTE approved) as per norms.
+                                    <br><b class="text-danger">DESIRABLE:</b>
                                 </li>
                                 <li>
                                     Should have successfully guided 01 Ph. D student.
@@ -154,7 +155,7 @@
                             <h5>Eligibility for Professors (CAS) </h5>
                             <ul >
                                 <li style="list-style-type: none;">
-                                    <b>Essential:</b>
+                                    <b class="text-danger">ESSENTIAL:</b>
                                 </li>
                                 <li>Should possess B.E, M. Tech Degree with first class and Ph. D degree.
                                 </li>
@@ -163,7 +164,7 @@
                                 <li>Should have post Ph. D degree experience of 5 years.
                                 </li>
                                 <li>Should have completed Faculty Development Program (AICTE approved) as per norms.
-                                    <br><b>Desirable:</b>
+                                    <br><b class="text-danger">DESIRABLE:</b>
                                 </li>
                                 <li>
                                     Should have successfully guided 02 Ph. D student.
