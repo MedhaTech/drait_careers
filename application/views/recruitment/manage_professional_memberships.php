@@ -51,6 +51,22 @@
                 <div class="card-body pd-y-20">
                     <div class="widgetHead mb-3">
                         <span class="widgetTitle">List of Professional Memberships</span>
+                        <span tabindex="0" class="add no-outline">
+                        <?php 
+                             if( (count($details)>1))
+                             {
+                                echo anchor('recruitment/profile?flag=8','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
+                             }
+                             elseif(($user_data->menu_flag==7))
+                             {
+                                echo anchor('recruitment/profile?flag=8','<i class="fas fa-angle-double-right "></i> Skip & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
+                             }
+                             else
+                             {
+                              echo anchor('recruitment/profile','<i class="fas fa-angle-double-right "></i> Skip & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
+                             }
+                            ?>
+                        </span>
                     </div>
 
                     <table class="table table-hover text-dark">

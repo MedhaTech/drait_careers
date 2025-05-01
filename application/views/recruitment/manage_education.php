@@ -91,6 +91,10 @@
                              {
                                 echo anchor('recruitment/profile?flag=3','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
                              }
+                             else
+                             {
+                              echo anchor('recruitment/profile','<i class="fas fa-angle-double-right "></i> Skip & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
+                             }
                             ?>
                         </span>
                 </div> 

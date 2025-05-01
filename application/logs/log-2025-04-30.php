@@ -82,3 +82,4 @@ ERROR - 2025-04-30 10:25:07 --> Could not find the specified $config['composer_a
 ERROR - 2025-04-30 10:25:48 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
 ERROR - 2025-04-30 10:25:49 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
 ERROR - 2025-04-30 10:25:58 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-04-30 18:25:42 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
