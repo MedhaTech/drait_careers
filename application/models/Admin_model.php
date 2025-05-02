@@ -657,5 +657,6 @@ public function getApplicantsByPost($post_id)
     return $this->db->get()->result();
 }
 
+
 }
 ?>
