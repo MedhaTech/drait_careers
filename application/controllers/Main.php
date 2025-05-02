@@ -25,11 +25,11 @@ class Main extends CI_Controller
 			$this->login_template->show('recruitment/adminLogin', $data);
 		} else {
 			$username = $this->input->post('username');
-			if ($username == "recruitment-admin") {
+			// if ($username == "recruitment-admin") {
 				redirect('main/jobposts', 'refresh');
-			} else {
-				redirect('recruitment-admin', 'refresh');
-			}
+			// } else {
+			// 	redirect('recruitment-admin', 'refresh');
+			// }
 			// redirect('recruitment-admin/dashboard', 'refresh');
 		}
 	}
