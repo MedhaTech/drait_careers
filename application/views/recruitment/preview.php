@@ -343,6 +343,45 @@
                     </table>
                 </div>
             </div>
+            <div class="card shadow my-4" id="patents">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Patents</span>
+                       
+                    </div>
+
+                    <table class="table table-hover text-dark tx-14">
+                        <thead>
+                            <tr>
+                                <th width="20%">Application No.</th>
+                                <th width="30%">Title of Patent</th>
+                                <th width="20%">Applicants</th>
+                                <th width="10%">Status</th>
+                                <th width="10%">Filed Date</th>
+                                <th width="10%">Published</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($patents)) {
+                                foreach ($patents as $patent) {
+                                    echo '<tr>';
+                                    echo '<td>' . $patent->application_number . '</td>';
+                                    echo '<td>' . $patent->title . '</td>';
+                                    echo '<td>' . $patent->applicants . '</td>';
+                                    echo '<td>' . $patent->status . '</td>';
+                                    echo '<td>' . (!empty($patent->filed_date) ? date('d M Y', strtotime($patent->filed_date)) : '-') . '</td>';
+                                    echo '<td>' . (!empty($patent->published_date) ? date('d M Y', strtotime($patent->published_date)) : '-') . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="6" class="text-center text-muted">No patents added yet.</td></tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="card shadow my-4" id="Projects">
                 <div class="card-body">
                     <div class="widgetHead">

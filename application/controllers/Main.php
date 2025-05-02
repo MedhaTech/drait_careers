@@ -26,7 +26,7 @@ class Main extends CI_Controller
 		} else {
 			$username = $this->input->post('username');
 			// if ($username == "recruitment-admin") {
-				redirect('main/jobposts', 'refresh');
+			redirect('main/jobposts', 'refresh');
 			// } else {
 			// 	redirect('recruitment-admin', 'refresh');
 			// }
@@ -42,7 +42,7 @@ class Main extends CI_Controller
 		//query the database
 		$result = $this->admin_model->login($username, md5($password));
 
-		
+
 		if ($result) {
 			$sess_array = array();
 			foreach ($result as $row) {
@@ -52,7 +52,7 @@ class Main extends CI_Controller
 				);
 				$this->session->set_userdata('logged_in', $sess_array);
 			}
-			
+
 			return TRUE;
 		} else {
 			$this->form_validation->set_message('check_database', 'Invalid username or password');
@@ -168,16 +168,13 @@ class Main extends CI_Controller
 					} else {
 						$img = 'http://via.placeholder.com/160x160';
 					}
-					
-					if($staffList1->scrutinity=='0')
-					{
-					    $scr="Pending";
-					    $btn='<a href="' . base_url() . 'main/faculty_applications_change_status/' . $staffList1->id . '/'.$id.'" " class="btn btn-primary btn-sm "  title="Change scrutinity status"><i class="fas fa-fw fa-check"></i> </a>';
-					}
-					else
-					{
-					    $scr="Completed";
-					     $btn='';
+
+					if ($staffList1->scrutinity == '0') {
+						$scr = "Pending";
+						$btn = '<a href="' . base_url() . 'main/faculty_applications_change_status/' . $staffList1->id . '/' . $id . '" " class="btn btn-primary btn-sm "  title="Change scrutinity status"><i class="fas fa-fw fa-check"></i> </a>';
+					} else {
+						$scr = "Completed";
+						$btn = '';
 					}
 					$this->table->add_row(
 						$i++,
@@ -186,10 +183,10 @@ class Main extends CI_Controller
 						$staffList1->department,
 						$staffList1->post_of,
 						$staffList1->mobile,
-						wordwrap($staffList1->email,10,"<br>\n",TRUE),
+						wordwrap($staffList1->email, 10, "<br>\n", TRUE),
 						date('d-m-Y', strtotime($staffList1->payment_date)),
 						$scr,
-						$btn.'<a href="' . base_url() . 'main/faculty_applications_view/' . $staffList1->id . '" class="btn btn-success btn-sm " title="View Application"><i class="fas fa-fw fa-eye"></i></a>'
+						$btn . '<a href="' . base_url() . 'main/faculty_applications_view/' . $staffList1->id . '" class="btn btn-success btn-sm " title="View Application"><i class="fas fa-fw fa-eye"></i></a>'
 					);
 				}
 				$data['table'] = $this->table->generate();
@@ -201,17 +198,16 @@ class Main extends CI_Controller
 			redirect('main', 'refresh');
 		}
 	}
-	
-function	faculty_applications_change_status($staff,$job)
-{
-          $data = array(
-                'scrutinity' => '1'
-            );
-            $this->db->where('id', $staff);
-         $this->db->update('recruitment_users', $data);
- redirect('main/faculty_applications/'.$job, 'refresh');
-         
-}
+
+	function	faculty_applications_change_status($staff, $job)
+	{
+		$data = array(
+			'scrutinity' => '1'
+		);
+		$this->db->where('id', $staff);
+		$this->db->update('recruitment_users', $data);
+		redirect('main/faculty_applications/' . $job, 'refresh');
+	}
 	function faculty_applications_view($id)
 	{
 		if ($this->session->userdata('logged_in')) {
@@ -220,35 +216,31 @@ function	faculty_applications_change_status($staff,$job)
 
 			$data['pageTitle'] = "Dashboard";
 			$data['activeMenu'] = "dashboard";
+			$user_id=$this->admin_model->getDetailsbyfield($id, 'id', 'applied_jobs')->row()->user_id;
+			$data['details'] = $this->admin_model->getDetails('recruitment_users', $user_id)->row();
 
-			$data['details'] = $this->admin_model->getDetails('recruitment_users', $id)->row();
+			$data['education'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_education_details')->result();
+			$data['research'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_research_exp_details')->result();
+			$data['publications'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_publications_details')->result();
+			$data['teaching'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_teaching_experience_details')->result();
+			$data['industrial'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_industrial_experience')->result();
+			$data['affiliations'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'recruitment_affiliations')->result();
+			$data['references'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'recruitment_references')->result();
+			$data['documents'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'recruitment_documents')->result();
+			$data['langs'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'recruitment_languages')->result();
+			$data['projects'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'sponsored_projects')->result();
+			$data['consultancy'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'consultancy_undertaken')->result();
+			$data['membership'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'professional_membership')->result();
+			$data['seminars'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'seminars_workshops_courses')->result();
+			$data['patents'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'user_patents')->result();
 
-			$data['education'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'faculty_education_details')->result();
-			$data['research'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'faculty_research_exp_details')->result();
-			$data['publications'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'faculty_publications_details')->result();
-			$data['teaching'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'faculty_teaching_experience_details')->result();
-			$data['industrial'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'faculty_industrial_experience')->result();
-			$data['affiliations'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'recruitment_affiliations')->result();
-			$data['references'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'recruitment_references')->result();
-			$data['documents'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'recruitment_documents')->result();
-			$data['langs'] = $this->admin_model->getDetailsbyfield($id, 'user_id', 'recruitment_languages')->result();
-			
-			if($data['details']->post_of=="Non-Teaching")
-			{
+			if ($data['details']->post_of == "Non-Teaching") {
 				$this->adminrec_template->show('recruitment/view_print_non', $data);
-			}
-			elseif($data['details']->post_of=="Librarian")
-			{
+			} elseif ($data['details']->post_of == "Librarian") {
 				$this->adminrec_template->show('recruitment/view_print_lib', $data);
-			}
-			else
-			{
+			} else {
 				$this->adminrec_template->show('recruitment/view_print', $data);
 			}
-			
-			
-
-
 		} else {
 			redirect('main', 'refresh');
 		}
@@ -308,14 +300,14 @@ function	faculty_applications_change_status($staff,$job)
 
 
 	function jobposts()
-	{ 
+	{
 		if ($this->session->userdata('logged_in')) {
 			$session_data = $this->session->userdata('logged_in');
 			$data['username'] = $session_data['username'];
 			$data['pageTitle'] = "Job Post";
 			$data['activeMenu'] = "departments";
 
-			$recruitmentList = $this->admin_model->getDetailsbySort('updated_on','desc','recruitment_posts')->result();
+			$recruitmentList = $this->admin_model->getDetailsbySort('updated_on', 'desc', 'recruitment_posts')->result();
 			if ($recruitmentList != null) {
 
 				$table_setup = array('table_open' => '<table class="table table-bordered table-hover" id="dataTable1" width="100%" cellspacing="0">');
@@ -496,7 +488,7 @@ function	faculty_applications_change_status($staff,$job)
 		if ($this->session->userdata('logged_in')) {
 			$session_data = $this->session->userdata('logged_in');
 			$data['id'] = $session_data['id'];
-			$acList = $this->admin_model->getDetailsbyfield1($this->input->post('type'), 'type','1','status', 'recruitment_posts')->result();
+			$acList = $this->admin_model->getDetailsbyfield1($this->input->post('type'), 'type', '1', 'status', 'recruitment_posts')->result();
 			echo "<option>- Select -</option>";
 			foreach ($acList as $acList1) {
 				echo "<option value=" . $acList1->id . ">$acList1->title</option>";
@@ -518,7 +510,7 @@ function	faculty_applications_change_status($staff,$job)
 			// $this->db->where_in('id', $departments_str);
 			$query = $this->db->get();
 			$acList = $query->result();
-			
+
 			// $acList = $this->admin_model->getDetailsbyfield($this->input->post('type'), 'type', 'recruitment_posts')->result();
 			echo "<option>- Select -</option>";
 			foreach ($acList as $acList1) {
@@ -528,7 +520,7 @@ function	faculty_applications_change_status($staff,$job)
 			redirect('main', 'refresh');
 		}
 	}
-	
+
 	function faculty_applications1($id = '')
 	{
 		if ($this->session->userdata('logged_in')) {
@@ -543,7 +535,7 @@ function	faculty_applications_change_status($staff,$job)
 
 			// print_r($facultyList);
 			if ($staffList != null) {
-			
+
 				$data['table'] = $staffList;
 			} else {
 				$data['table'] = '';

@@ -752,19 +752,19 @@
                         <span tabindex="0" class="add no-outline">
                             <?php
 
-                            echo anchor('recruitment/manageDocuments', '<i class="fas fa-pencil-alt"></i> Manage Documents', 'class="font-weight-bold"');
+                            // echo anchor('recruitment/manageDocuments', '<i class="fas fa-pencil-alt"></i> Manage Documents', 'class="font-weight-bold"');
                             ?>
                         </span>
                     </div>
-                    <table class="table table-hover text-dark tx-14">
-                        <thead>
+                    <!-- <table class="table table-hover text-dark tx-14"> -->
+                        <!-- <thead>
                             <tr>
                                 <th width='30%'>Title of the document</th>
                                 <th width='15%'>Document</th>
 
 
                             </tr>
-                        </thead>
+                        </thead> -->
                         <?php if (!empty($documents)) {
 
                             foreach ($documents as $details1) {
@@ -778,10 +778,10 @@
                                 echo '</tr>';
                             }
                         } else {
-                            echo '<tr><td colspan="2" class="text-center text-muted">No documents uploaded yet.</td></tr>';
+                            echo "<span style='color:red;'>Applicant's can bring original documents along with two photocopies must be submitted at the time of the interview.</span>";
                         }
                         ?>
-                    </table>
+                    <!-- </table> -->
                 </div>
             </div>
 

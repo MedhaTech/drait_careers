@@ -62,7 +62,7 @@
                         <span class="widgetTitle">List of Sponsored Projects</span>
                         <span tabindex="0" class="add no-outline">
                         <?php 
-                             if( (count($details)>1))
+                             if( (count($details)>=1))
                              {
                                 echo anchor('recruitment/profile?flag=8','<i class="fas fa-angle-double-right "></i> Save & Proceed','class="btn btn-block btn-success btn-square btn-sm"');
                              }

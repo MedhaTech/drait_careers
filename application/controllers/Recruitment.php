@@ -186,6 +186,7 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+			$data['patents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'user_patents')->result();
 			// if ($data['details']->post_of && $data['details']->department) {
 
 			if ($data['details']->post_of == "Non-Teaching") {
@@ -989,6 +990,7 @@ class Recruitment extends CI_Controller
 				$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 				$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 				$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+				$data['patents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'user_patents')->result();
 				$data['post_id'] = $this->input->post('post_id');
 				$data['post_details'] = $this->admin_model->getDetails('recruitment_posts', $data['post_id'])->row();
 				$data['department'] = $this->input->post('department');

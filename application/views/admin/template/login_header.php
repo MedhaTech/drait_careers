@@ -12,8 +12,8 @@
   <title><?php echo isset($pageTitle) ? $pageTitle : 'Dr.AIT';?></title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="<?php echo base_url();?>admin_assets/img/favicon.png" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="<?php echo base_url();?>admin_assets/img/favicon.png">  
+  <link rel="shortcut icon" href="<?php echo base_url();?>admin_assets/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="<?php echo base_url();?>admin_assets/img/favicon.ico">  
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url();?>admin_assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
