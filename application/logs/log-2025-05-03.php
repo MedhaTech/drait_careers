@@ -1,0 +1,33 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2025-05-03 11:31:43 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:31:43 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:31:46 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:32:12 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:32:12 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:32:14 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:32:15 --> Severity: Warning --> Undefined property: stdClass::$scrutinity G:\xampp\htdocs\drait_careers\application\controllers\Main.php 172
+ERROR - 2025-05-03 11:32:15 --> Severity: Warning --> Undefined property: stdClass::$application G:\xampp\htdocs\drait_careers\application\controllers\Main.php 181
+ERROR - 2025-05-03 11:32:15 --> Severity: Warning --> Undefined property: stdClass::$post_of G:\xampp\htdocs\drait_careers\application\controllers\Main.php 184
+ERROR - 2025-05-03 11:32:15 --> Severity: Warning --> Undefined property: stdClass::$payment_date G:\xampp\htdocs\drait_careers\application\controllers\Main.php 187
+ERROR - 2025-05-03 11:32:18 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:32:18 --> Severity: Warning --> Undefined property: stdClass::$designation G:\xampp\htdocs\drait_careers\application\views\recruitment\view_print.php 107
+ERROR - 2025-05-03 11:35:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:37:59 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:38:02 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:38:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:38:15 --> Severity: Warning --> Undefined property: stdClass::$scrutinity G:\xampp\htdocs\drait_careers\application\controllers\Main.php 172
+ERROR - 2025-05-03 11:38:15 --> Severity: Warning --> Undefined property: stdClass::$application G:\xampp\htdocs\drait_careers\application\controllers\Main.php 181
+ERROR - 2025-05-03 11:38:15 --> Severity: Warning --> Undefined property: stdClass::$post_of G:\xampp\htdocs\drait_careers\application\controllers\Main.php 184
+ERROR - 2025-05-03 11:38:15 --> Severity: Warning --> Undefined property: stdClass::$payment_date G:\xampp\htdocs\drait_careers\application\controllers\Main.php 187
+ERROR - 2025-05-03 11:38:34 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:38:34 --> Severity: Warning --> Undefined property: stdClass::$scrutinity G:\xampp\htdocs\drait_careers\application\controllers\Main.php 172
+ERROR - 2025-05-03 11:38:34 --> Severity: Warning --> Undefined property: stdClass::$application G:\xampp\htdocs\drait_careers\application\controllers\Main.php 181
+ERROR - 2025-05-03 11:38:34 --> Severity: Warning --> Undefined property: stdClass::$post_of G:\xampp\htdocs\drait_careers\application\controllers\Main.php 184
+ERROR - 2025-05-03 11:38:34 --> Severity: Warning --> Undefined property: stdClass::$payment_date G:\xampp\htdocs\drait_careers\application\controllers\Main.php 187
+ERROR - 2025-05-03 11:38:35 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:38:37 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2025-05-03 11:38:37 --> Severity: Warning --> Undefined property: stdClass::$scrutinity G:\xampp\htdocs\drait_careers\application\controllers\Main.php 172
+ERROR - 2025-05-03 11:38:37 --> Severity: Warning --> Undefined property: stdClass::$application G:\xampp\htdocs\drait_careers\application\controllers\Main.php 181
+ERROR - 2025-05-03 11:38:37 --> Severity: Warning --> Undefined property: stdClass::$post_of G:\xampp\htdocs\drait_careers\application\controllers\Main.php 184
+ERROR - 2025-05-03 11:38:37 --> Severity: Warning --> Undefined property: stdClass::$payment_date G:\xampp\htdocs\drait_careers\application\controllers\Main.php 187

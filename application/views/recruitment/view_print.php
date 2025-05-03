@@ -37,7 +37,7 @@
         </div>
     <?php } ?>
     <input type="button" class="btn btn-danger btn-sm" onclick="printDiv('section-to-print')" value="Download" />
-    <a href="<?php echo base_url('main/faculty_applications/' . $details->post_id); ?>" class="btn btn-success btn-sm float-right">Back to Applications</a>
+    <a href="<?php echo base_url('main/faculty_applications/' . $applied->post_id); ?>" class="btn btn-success btn-sm float-right">Back to Applications</a>
     <div class="row mb-5" id="section-to-print">
 
         <div class="col-md-12">
@@ -103,6 +103,12 @@
                                         <td><?php echo $details->department; ?></td>
                                     </tr>
                                     <tr>
+                                        <th class="text-gray-600">Designation</th>
+                                        <td><?php echo $applied->designation; ?></td>
+                                        <th class="text-gray-600"></th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
                                         <th class="text-gray-600">Mobile No</th>
                                         <td><?php echo $details->mobile; ?></td>
                                         <th class="text-gray-600">Date of Birth</th>
@@ -141,7 +147,7 @@
                         <div class="widgetHead">
                             <span class="widgetTitle">Languages known</span>
                         </div>
-                      
+
                         <table class="table tx-14 text-dark">
                             <thead>
                                 <tr>
@@ -415,7 +421,8 @@
                                     <th width="20%">Applicants</th>
                                     <th width="10%">Status</th>
                                     <th width="10%">Filed Date</th>
-                                    <th width="10%">Published</th>
+                                    <th width="10%">Published Date</th>
+                                    <th width="10%">Granted Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -427,8 +434,26 @@
                                         echo '<td>' . $patent->title . '</td>';
                                         echo '<td>' . $patent->applicants . '</td>';
                                         echo '<td>' . $patent->status . '</td>';
-                                        echo '<td>' . (!empty($patent->filed_date) ? date('d M Y', strtotime($patent->filed_date)) : '-') . '</td>';
-                                        echo '<td>' . (!empty($patent->published_date) ? date('d M Y', strtotime($patent->published_date)) : '-') . '</td>';
+                                        // Filed Date (for Filed, Published, Granted)
+                                        echo '<td>';
+                                        echo (!empty($patent->filed_date) && in_array($patent->status, ['Filed', 'Published', 'Granted']))
+                                            ? date('d M Y', strtotime($patent->filed_date))
+                                            : '-';
+                                        echo '</td>';
+
+                                        // Published Date (for Published, Granted)
+                                        echo '<td>';
+                                        echo (!empty($patent->published_date) && in_array($patent->status, ['Published', 'Granted']))
+                                            ? date('d M Y', strtotime($patent->published_date))
+                                            : '-';
+                                        echo '</td>';
+
+                                        // Granted Date (only for Granted)
+                                        echo '<td>';
+                                        echo (!empty($patent->granted_date) && $patent->status === 'Granted')
+                                            ? date('d M Y', strtotime($patent->granted_date))
+                                            : '-';
+                                        echo '</td>';
                                         echo '</tr>';
                                     }
                                 } else {
@@ -570,7 +595,9 @@
                                 <tr>
                                     <th width='40%'>Name </th>
                                     <th width='20%'>Occupation or Position</th>
-                                    <th width='20%'>Address for Communication with Contact Number</th>
+                                    <th width='20%'>Address for Communication</th>
+                                    <th width='20%'>Email</th>
+                                    <th width='10%'>Contact Number</th>
 
                                 </tr>
                             </thead>
@@ -581,7 +608,8 @@
                                     echo '<td>' . $references1->name . '</td>';
                                     echo '<td>' . $references1->position . '</td>';
                                     echo '<td>' . $references1->number . '</td>';
-
+                                    echo '<td>' . $references1->email . '</td>';
+                                    echo '<td>' . $references1->contact_number . '</td>';
                                     echo '</tr>';
                                 }
                                 ?>
