@@ -218,7 +218,7 @@ class Main extends CI_Controller
 			$data['activeMenu'] = "dashboard";
 			$user_id=$this->admin_model->getDetailsbyfield($id, 'id', 'applied_jobs')->row()->user_id;
 			$data['details'] = $this->admin_model->getDetails('recruitment_users', $user_id)->row();
-
+			$data['applied'] = $this->admin_model->getDetailsbyfield($id, 'id', 'applied_jobs')->row();
 			$data['education'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_education_details')->result();
 			$data['research'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_research_exp_details')->result();
 			$data['publications'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_publications_details')->result();

@@ -163,7 +163,7 @@ class Recruitment extends CI_Controller
 			$data['pageTitle'] = "Dashboard";
 			$data['activeMenu'] = "dashboard";
 			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
-
+			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
 
 
 			if (isset($_REQUEST['flag'])) {
@@ -994,6 +994,7 @@ class Recruitment extends CI_Controller
 				$data['post_id'] = $this->input->post('post_id');
 				$data['post_details'] = $this->admin_model->getDetails('recruitment_posts', $data['post_id'])->row();
 				$data['department'] = $this->input->post('department');
+				$data['designation'] = $this->input->post('designation');
 				$data['in_service_note'] = $this->input->post('in_service_note');
 				$data['additional_info'] = $this->input->post('additional_info');
 				if ($data['details']->post_of == "Non-Teaching") {
@@ -3252,6 +3253,7 @@ class Recruitment extends CI_Controller
 		$user_id = $session_data['id'];
 		$post_id = $this->input->post('post_id');
 		$department = $this->input->post('department');
+		$designation = $this->input->post('designation');
 		$in_service_note = $this->input->post('in_service_note');
 		$additional_info = $this->input->post('additional_info');
 		$agree_terms = $this->input->post('agree_terms') ? 1 : 0;
@@ -3273,6 +3275,7 @@ class Recruitment extends CI_Controller
 			'user_id' => $user_id,
 			'post_id' => $post_id,
 			'department' => $department,
+			'designation' => $designation,
 			'agree_terms' => $agree_terms,
 			'additional_info' => $additional_info,
 			'in_service_note' => $in_service_note

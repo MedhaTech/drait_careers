@@ -177,6 +177,15 @@
                                 <option value="">Loading...</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="designation" class="form-label">Select Designation</label>
+                            <select class="form-control" name="designation" id="designationSelect" required>
+                                <option value="">Select Designation</option>
+                                <option value="Assistant Professors">Assistant Professors</option>
+                                <option value="Associate Professors">Associate Professors</option>
+                                <option value="Professors">Professors</option>
+                            </select>
+                        </div>
                         <!-- Additional Information -->
                         <div class="mb-3">
                             <label for="additional_info" class="form-label">Any additional information you wish to state?</label>

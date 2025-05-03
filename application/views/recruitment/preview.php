@@ -347,7 +347,7 @@
                 <div class="card-body">
                     <div class="widgetHead">
                         <span class="widgetTitle">Patents</span>
-                       
+
                     </div>
 
                     <table class="table table-hover text-dark tx-14">
@@ -358,7 +358,8 @@
                                 <th width="20%">Applicants</th>
                                 <th width="10%">Status</th>
                                 <th width="10%">Filed Date</th>
-                                <th width="10%">Published</th>
+                                <th width="10%">Published Date</th>
+                                <th width="10%">Granted Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -370,15 +371,36 @@
                                     echo '<td>' . $patent->title . '</td>';
                                     echo '<td>' . $patent->applicants . '</td>';
                                     echo '<td>' . $patent->status . '</td>';
-                                    echo '<td>' . (!empty($patent->filed_date) ? date('d M Y', strtotime($patent->filed_date)) : '-') . '</td>';
-                                    echo '<td>' . (!empty($patent->published_date) ? date('d M Y', strtotime($patent->published_date)) : '-') . '</td>';
+
+                                    // Filed Date (for Filed, Published, Granted)
+                                    echo '<td>';
+                                    echo (!empty($patent->filed_date) && in_array($patent->status, ['Filed', 'Published', 'Granted']))
+                                        ? date('d M Y', strtotime($patent->filed_date))
+                                        : '-';
+                                    echo '</td>';
+
+                                    // Published Date (for Published, Granted)
+                                    echo '<td>';
+                                    echo (!empty($patent->published_date) && in_array($patent->status, ['Published', 'Granted']))
+                                        ? date('d M Y', strtotime($patent->published_date))
+                                        : '-';
+                                    echo '</td>';
+
+                                    // Granted Date (only for Granted)
+                                    echo '<td>';
+                                    echo (!empty($patent->granted_date) && $patent->status === 'Granted')
+                                        ? date('d M Y', strtotime($patent->granted_date))
+                                        : '-';
+                                    echo '</td>';
+
                                     echo '</tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="6" class="text-center text-muted">No patents added yet.</td></tr>';
+                                echo '<tr><td colspan="7" class="text-center text-muted">No patents added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -513,7 +535,9 @@
                             <tr>
                                 <th width='40%'>Name </th>
                                 <th width='20%'>Occupation or Position</th>
-                                <th width='20%'>Address for Communication with Contact Number</th>
+                                <th width='20%'>Address for Communication</th>
+                                <th width='20%'>Email</th>
+                                <th width='10%'>Contact Number</th>
 
                             </tr>
                         </thead>
@@ -524,7 +548,8 @@
                                 echo '<td>' . $references1->name . '</td>';
                                 echo '<td>' . $references1->position . '</td>';
                                 echo '<td>' . $references1->number . '</td>';
-
+                                echo '<td>' . $references1->email . '</td>';
+                                echo '<td>' . $references1->contact_number . '</td>';
                                 echo '</tr>';
                             }
                             ?>
@@ -606,12 +631,14 @@
                 <form method="post" action="<?= base_url('recruitment/apply_job'); ?>">
                     <input type="hidden" name="post_id" value="<?= $post_id; ?>">
                     <input type="hidden" name="department" value="<?= $department; ?>">
+                    <input type="hidden" name="designation" value="<?= $designation; ?>">
                     <input type="hidden" name="in_service_note" value="<?= htmlspecialchars($in_service_note); ?>">
                     <input type="hidden" name="additional_info" value="<?= htmlspecialchars($additional_info); ?>">
 
                     <h3>Application Preview</h3>
                     <p><strong>Post:</strong> <?= $post_details->title; ?></p>
                     <p><strong>Department:</strong> <?= $department; ?></p>
+                    <p><strong>Designation:</strong> <?= $designation; ?></p>
                     <p><strong>Additional Info:</strong> <?= nl2br($additional_info); ?></p>
                     <p><strong>In-Service Note:</strong> <?= nl2br($in_service_note); ?></p>
 

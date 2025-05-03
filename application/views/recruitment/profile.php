@@ -63,7 +63,7 @@
                                 value="<?= $details->profile_pic; ?>">
                             <span class="glyphicon glyphicon-camera"></span>
                             <span>Change Image</span>
-                        </div>
+                            </div>
                 </label>
                 <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg"
                     onchange="form.submit()">
@@ -240,7 +240,7 @@
                             if ($education) {
                                 foreach ($education as $education1) {
                                     $specialization = ($education1->specialization) ? ' - ' . $education1->specialization : null;
-                                    ?>
+                            ?>
                                     <div class="media d-block d-sm-flex mb-4">
                                         <div
                                             class="wd-60 ht-60 bg-gray-200 rounded font-weight-bold d-flex align-items-center justify-content-center">
@@ -254,7 +254,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <?php
+                            <?php
                                 }
                             } else {
                                 echo "<h6 class='text-center tx-color-03'> Education details not added.</h6>";
@@ -383,7 +383,7 @@
                                     $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
                                     // $exp = ("%d years, %d months", $years, $months);
-                            
+
 
                                     echo '<tr>';
                                     echo '<td>' . $teaching1->institution . '</td>';
@@ -437,7 +437,7 @@
                                     $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
                                     // $exp = ("%d years, %d months", $years, $months);
-                            
+
 
                                     echo '<tr>';
                                     echo '<td>' . $industrial1->organization . '</td>';
@@ -517,7 +517,8 @@
                                 <th width="20%">Applicants</th>
                                 <th width="10%">Status</th>
                                 <th width="10%">Filed Date</th>
-                                <th width="10%">Published</th>
+                                <th width="10%">Published Date</th>
+                                <th width="10%">Granted Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -529,15 +530,36 @@
                                     echo '<td>' . $patent->title . '</td>';
                                     echo '<td>' . $patent->applicants . '</td>';
                                     echo '<td>' . $patent->status . '</td>';
-                                    echo '<td>' . (!empty($patent->filed_date) ? date('d M Y', strtotime($patent->filed_date)) : '-') . '</td>';
-                                    echo '<td>' . (!empty($patent->published_date) ? date('d M Y', strtotime($patent->published_date)) : '-') . '</td>';
+
+                                    // Filed Date (for Filed, Published, Granted)
+                                    echo '<td>';
+                                    echo (!empty($patent->filed_date) && in_array($patent->status, ['Filed', 'Published', 'Granted']))
+                                        ? date('d M Y', strtotime($patent->filed_date))
+                                        : '-';
+                                    echo '</td>';
+
+                                    // Published Date (for Published, Granted)
+                                    echo '<td>';
+                                    echo (!empty($patent->published_date) && in_array($patent->status, ['Published', 'Granted']))
+                                        ? date('d M Y', strtotime($patent->published_date))
+                                        : '-';
+                                    echo '</td>';
+
+                                    // Granted Date (only for Granted)
+                                    echo '<td>';
+                                    echo (!empty($patent->granted_date) && $patent->status === 'Granted')
+                                        ? date('d M Y', strtotime($patent->granted_date))
+                                        : '-';
+                                    echo '</td>';
+
                                     echo '</tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="6" class="text-center text-muted">No patents added yet.</td></tr>';
+                                echo '<tr><td colspan="7" class="text-center text-muted">No patents added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -576,7 +598,7 @@
                                     <td><?= $details1->co_investigators ?></td>
 
                                 </tr>
-                            <?php }
+                        <?php }
                         } else {
                             echo '<tr><td colspan="5" class="text-center text-muted">No projects added yet.</td></tr>';
                         }
@@ -619,7 +641,7 @@
                                     <td><?= $details1->co_investigators ?></td>
 
                                 </tr>
-                            <?php }
+                        <?php }
                         } else {
                             echo '<tr><td colspan="5" class="text-center text-muted">No consultancy projects added yet.</td></tr>';
                         }
@@ -660,7 +682,7 @@
                                     <td><?= $details1->total_days ?></td>
 
                                 </tr>
-                            <?php }
+                        <?php }
                         } else {
                             echo '<tr><td colspan="2" class="text-center text-muted">No seminars/workshops/courses added yet.</td></tr>';
                         } ?>
@@ -697,7 +719,7 @@
                                     <td><?= $details1->grade_of_membership ?></td>
 
                                 </tr>
-                            <?php }
+                        <?php }
                         } else {
                             echo '<tr><td colspan="3" class="text-center text-muted">No professional memberships added yet.</td></tr>';
                         } ?>
@@ -721,7 +743,9 @@
                             <tr>
                                 <th width='20%'>Name </th>
                                 <th width='20%'>Occupation or Position</th>
-                                <th width='20%'>Address for Communication with Contact Number</th>
+                                <th width='20%'>Address for Communication</th>
+                                <th width='20%'>Email</th>
+                                <th width='10%'>Contact Number</th>
 
                             </tr>
                         </thead>
@@ -733,11 +757,13 @@
                                     echo '<td>' . $references1->name . '</td>';
                                     echo '<td>' . $references1->position . '</td>';
                                     echo '<td>' . $references1->number . '</td>';
+                                    echo '<td>' . $references1->email . '</td>';
+                                    echo '<td>' . $references1->contact_number . '</td>';
 
                                     echo '</tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="3" class="text-center text-muted">No references added yet.</td></tr>';
+                                echo '<tr><td colspan="5" class="text-center text-muted">No references added yet.</td></tr>';
                             }
                             ?>
                         </tbody>
@@ -757,7 +783,7 @@
                         </span>
                     </div>
                     <!-- <table class="table table-hover text-dark tx-14"> -->
-                        <!-- <thead>
+                    <!-- <thead>
                             <tr>
                                 <th width='30%'>Title of the document</th>
                                 <th width='15%'>Document</th>
@@ -765,33 +791,135 @@
 
                             </tr>
                         </thead> -->
-                        <?php if (!empty($documents)) {
+                    <?php if (!empty($documents)) {
 
-                            foreach ($documents as $details1) {
-                                $file_type = $this->admin_model->get_doc_name($details1->type);
+                        foreach ($documents as $details1) {
+                            $file_type = $this->admin_model->get_doc_name($details1->type);
 
-                                echo '<tr>';
-                                echo '<td>' . $file_type->name . '</td>';
-                                echo '<td>' . $details1->file . '</td>';
+                            echo '<tr>';
+                            echo '<td>' . $file_type->name . '</td>';
+                            echo '<td>' . $details1->file . '</td>';
 
 
-                                echo '</tr>';
-                            }
-                        } else {
-                            echo "<span style='color:red;'>Applicant's can bring original documents along with two photocopies must be submitted at the time of the interview.</span>";
+                            echo '</tr>';
                         }
-                        ?>
+                    } else {
+                        echo "<span style='color:red;'>Applicant's can bring original documents along with two photocopies must be submitted at the time of the interview.</span>";
+                    }
+                    ?>
                     <!-- </table> -->
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">
+                Apply Now
+            </button>
 
         </div>
     </div>
 
 
 </div>
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="<?= base_url('recruitment/preview'); ?>">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applyModalLabel">Apply for Job</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Hidden input for post_id -->
+                   
+
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Select Post</label>
+                        <select class="form-control" name="post_id" id="post_id" required>
+                            <option value="">Select Post</option>
+                            <?php foreach ($recruitmentList as $recruitmentList1) {
+                                $user_id = $this->session->userdata('logged_in')['id'];
+                                $alreadyApplied = $this->admin_model->hasApplied($user_id, $recruitmentList1->id);
+                                if (!$alreadyApplied) {
+                            ?>
+                                    <option value="<?= $recruitmentList1->id; ?>"><?= $recruitmentList1->title; ?></option>
+                            <?php }
+                            } ?>
+                        </select>
+                    </div>
+                    <!-- Department Selection -->
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Select Department</label>
+                        <select class="form-control" name="department" id="departmentSelect" required disabled>
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="designation" class="form-label">Select Designation</label>
+                        <select class="form-control" name="designation" id="designationSelect" required>
+                            <option value="">Select Designation</option>
+                            <option value="Assistant Professors">Assistant Professors</option>
+                            <option value="Associate Professors">Associate Professors</option>
+                            <option value="Professors">Professors</option>
+                        </select>
+                    </div>
+                    <!-- Additional Information -->
+                    <div class="mb-3">
+                        <label for="additional_info" class="form-label">Any additional information you wish to state?</label>
+                        <textarea class="form-control" name="additional_info" id="additional_info" rows="3" placeholder="Write here..."></textarea>
+                    </div>
+
+                    <!-- In-service Personnel Note -->
+                    <div class="mb-3">
+                        <label for="in_service_note" class="form-label">In-service personnel shall forward the application through the organization. However, send the advance copy of the application.</label>
+                        <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3" placeholder="Write here..."></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Proceed</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
-    $('.payment-submit').on('click', function () {
+    $(document).ready(function() {
+        $('#applyModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var postId = button.data('postid');
+            $('#modalPostId').val(postId);
+            $('#post_id').val(postId);
+            $('#departmentSelect').prop('disabled', true).html('<option>Select a post first</option>');
+        });
+
+        $('#post_id').on('change', function() {
+            var postId = $(this).val();
+            $('#modalPostId').val(postId);
+            $('#departmentSelect').prop('disabled', true).html('<option>Loading...</option>');
+
+            $.ajax({
+                url: "<?= base_url('recruitment/getdepartment'); ?>",
+                type: "POST",
+                data: {
+                    id: postId
+                },
+                success: function(response) {
+                    $('#departmentSelect').html(response).prop('disabled', false);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching departments: ", error);
+                    $('#departmentSelect').html('<option>Error loading departments</option>').prop('disabled', true);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $('.payment-submit').on('click', function() {
         var pic = $('#pro-pic').val();
         if (pic == '') {
             alert("Please upload your passport size photo.");
