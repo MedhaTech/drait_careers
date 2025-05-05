@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title><?php echo isset($pageTitle) ? $pageTitle : 'DrAIT'; ?></title>
+  <title><?php echo isset($pageTitle) ? $pageTitle : 'Dr. AIT Careers'; ?></title>
 
 
 
@@ -43,10 +43,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-        <div class="sidebar-brand-icon rotate-n-15">
+        <!-- <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3"> Dr.AIT </div>
+        </div> -->
+        <div class="sidebar-brand-text mx-3"> Dr.AIT Careers</div>
       </a>
 
       <!-- Divider -->
@@ -59,12 +59,12 @@
         <!-- <li class="nav-item <?php echo ($activeMenu == "dashboard") ? 'active' : ''; ?>">
           <?php echo anchor('main/admin_dashboard', '<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>', 'class="nav-link"'); ?>
         </li> -->
-
+        <?php } ?>
         <li class="nav-item <?php echo ($activeMenu == "jobposts") ? 'active' : ''; ?>">
           <?php echo anchor('main/jobposts', '<i class="fas fa-fw fa-users"></i> <span>Job Posts </span>', 'class="nav-link"'); ?>
         </li>
 
-      <?php } ?>
+      
       <li class="nav-item <?php echo ($activeMenu == "changePassword") ? 'active' : ''; ?>">
         <?php echo anchor('main/changePassword', '<i class="fas fa-fw fa-key"></i> <span>Change Password</span>', 'class="nav-link"'); ?>
       </li>
