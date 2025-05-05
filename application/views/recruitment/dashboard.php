@@ -1,9 +1,10 @@
 <style>
     .profile-pic {
         border-radius: 50%;
+        border: 3px solid #cfcfcf;
         height: 180px;
         width: 180px;
-        margin-left: 30px;
+        /* margin-left: 30px; */
         background-size: cover;
         background-position: center;
         background-blend-mode: multiply;
@@ -48,20 +49,21 @@
 
             <div class="card shadow my-2">
 
-
-                <?php echo form_open_multipart('ajax-image-upload/post'); ?>
+                <?php echo form_open_multipart('ajax-image-upload/post', array('class' => 'text-center mt-3')); ?>
                 <label for="image" class="text-center">
 
                     <?php if ($details->profile_pic == '') { ?>
                         <div class="profile-pic" style="background-image: url('https://placehold.co/160x160')">
                         <?php } else { ?>
-                            <div class="profile-pic" style="background-image: url('<?= base_url(); ?>uploads/profile/<?= $details->profile_pic; ?>')">
+                            <div class="profile-pic"
+                                style="background-image: url('<?= base_url(); ?>uploads/profile/<?= $details->profile_pic; ?>')">
                             <?php } ?>
                             <span class="glyphicon glyphicon-camera"></span>
                             <span>Change Image</span>
-                            </div>
+                        </div>
                 </label>
-                <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg" onchange="form.submit()">
+                <input type="File" name="image" id="image" accept="image/png, image/gif, image/jpeg"
+                    onchange="form.submit()">
                 </form>
                 <label class="text-center small text-secondary">Only JPG and PNG files are allowed.</label>
 
@@ -73,28 +75,23 @@
 
         </div>
         <div class="col-md-9">
-
-
-
-
             <div class="card shadow mb-4 mt-2" id="personal">
                 <div class="card-body">
 
                     <div class="widgetHead">
                         <span class="widgetTitle">Current Openings</span>
-
                     </div>
 
                     <div class="row">
-
                         <?php
-
                         if ($recruitmentList) {
                             foreach ($recruitmentList as $recruitmentList1) { ?>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
                                     <div class="carer_wrappper">
                                         <div class="career-opening">
-                                            <h3><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
+                                            <h3><a
+                                                    href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a>
+                                            </h3>
                                             <!-- <div class="years-current"><i class="fa fa-briefcase" aria-hidden="true"></i> <?= $recruitmentList1->department_names; ?></div>
                                             <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Bengaluru</div> -->
                                         </div>
@@ -106,14 +103,18 @@
 
                                             <div class="apply-now">
                                                 <?php if ($alreadyApplied) { ?>
-                                                    <button type="button" class="btn btn-secondary" disabled>Already Applied</button>
+                                                    <button type="button" class="btn btn-secondary" disabled>Already
+                                                        Applied</button>
                                                 <?php } else { ?>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal" data-postid="<?= $recruitmentList1->id; ?>">
-                                                        Apply Now
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#applyModal" data-postid="<?= $recruitmentList1->id; ?>">
+                                                        Apply
                                                     </button>
                                                 <?php } ?>
                                             </div>
-                                            <div class="read-more"><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>" class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                                            <div class="read-more"><a
+                                                    href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"
+                                                    class="fa fa-angle-right" aria-hidden="true"></i></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -124,40 +125,67 @@
 
                     </div>
 
-                    <div class="widgetHead">
-                        <span class="widgetTitle">Applied Posts</span>
-                    </div>
+                    <?php if ($appliedList) { ?>
+                        <div class="widgetHead">
+                            <span class="widgetTitle">Applied Posts</span>
+                        </div>
 
-                    <div class="row">
-                        <?php
-                        if ($appliedList) {
+                        <div class="row">
+                            <?php
+
                             foreach ($appliedList as $recruitmentList1) { ?>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
                                     <div class="carer_wrappper">
                                         <div class="career-opening">
-                                            <h3><a href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a></h3>
+                                            <h3><a
+                                                    href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"><?= $recruitmentList1->title; ?></a>
+                                            </h3>
 
-                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i> Applied on <?= date('F j, Y', strtotime($recruitmentList1->applied_on)); ?></div>
+                                            <div class="place-current"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                                Applied on <?= date('F j, Y', strtotime($recruitmentList1->applied_on)); ?>
+                                            </div>
                                         </div>
 
                                     </div>
                                 </div>
-                        <?php }
-                        } else {
-                            echo '<p class="text-center text-muted">Not yet applied jobs.</p>';
-                        }
-                        ?>
+                            <?php }
+                            ?>
 
+                        </div>
+                    <?php } ?>
+
+                    <div class="widgetHead">
+                        <span class="widgetTitle text-danger">Steps to Submit Application</span>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <li><strong>Login to the Portal:</strong> Use your registered email ID and password to log
+                                in.</li>
+                            <li><strong>Complete Your Profile:</strong> Go to the Profile section. Fill in all the
+                                required personal, educational, and professional details. Upload necessary documents and
+                                save the profile.</li>
+                            <li><strong>Click on ‘Apply’ Button:</strong> Click on Dashboard from the main menu after completing
+                            your profile. or Locate the ‘Apply’ button at the bottom of Profile screen.</li>
+                            <li><strong>Select the Post:</strong> Choose the post you want to apply for from the
+                                available list. </li>
+                            <li><strong>Choose Department and Designation:</strong> Select the appropriate department
+                                and designation related to the post.</li>
+                            <li><strong>Review and Submit:</strong> Double-check all selected options and information.
+                                Click on ‘Submit Application’ to complete the process.</li>
+                            <li><strong>Confirmation:</strong> After submission, you will receive an application
+                                confirmation message. You can track your application status from the Dashboard.</li>
+                        </ul>
+                        If you face any issues, please contact our support team.
                     </div>
                 </div>
-
 
             </div>
         </div>
 
 
     </div>
-    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="post" action="<?= base_url('recruitment/preview'); ?>">
                 <div class="modal-content">
@@ -172,13 +200,13 @@
                         <input type="hidden" name="post_id" id="modalPostId">
                         <!-- Department Selection -->
                         <div class="mb-3">
-                            <label for="department" class="form-label">Select Department</label>
+                            <label for="department" class="form-label">Choose Department</label>
                             <select class="form-control" name="department" id="departmentSelect" required>
                                 <option value="">Loading...</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="designation" class="form-label">Select Designation</label>
+                            <label for="designation" class="form-label">Select Applying Position</label>
                             <select class="form-control" name="designation" id="designationSelect" required>
                                 <option value="">Select Designation</option>
                                 <option value="Assistant Professors">Assistant Professors</option>
@@ -188,14 +216,19 @@
                         </div>
                         <!-- Additional Information -->
                         <div class="mb-3">
-                            <label for="additional_info" class="form-label">Any additional information you wish to state?</label>
-                            <textarea class="form-control" name="additional_info" id="additional_info" rows="3" placeholder="Write here..."></textarea>
+                            <label for="additional_info" class="form-label">Any additional information you wish to
+                                state?</label>
+                            <textarea class="form-control" name="additional_info" id="additional_info" rows="3"
+                                placeholder="Write here..."></textarea>
                         </div>
 
                         <!-- In-service Personnel Note -->
                         <div class="mb-3">
-                            <label for="in_service_note" class="form-label">In-service personnel shall forward the application through the organization. However, send the advance copy of the application.</label>
-                            <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3" placeholder="Write here..."></textarea>
+                            <label for="in_service_note" class="form-label">In-service personnel shall forward the
+                                application through the organization. However, send the advance copy of the
+                                application.</label>
+                            <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3"
+                                placeholder="Write here..."></textarea>
                         </div>
 
                     </div>
@@ -208,10 +241,10 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             console.log($().jquery); // Confirm jQuery loaded
 
-            $('#applyModal').on('show.bs.modal', function(event) {
+            $('#applyModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var postId = button.data('postid');
                 $('#modalPostId').val(postId);
@@ -223,13 +256,13 @@
                     data: {
                         id: postId
                     },
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $('#departmentSelect').html('<option>Loading...</option>');
                     },
-                    success: function(response) {
+                    success: function (response) {
                         $('#departmentSelect').html(response);
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error("Error fetching departments: ", error);
                         $('#departmentSelect').html('<option>Error loading departments</option>');
                     }

@@ -1,6 +1,7 @@
 <style>
     .profile-pic {
     border-radius: 50%;
+    border: 3px solid #cfcfcf;
     height: 180px;
     width: 180px;
     margin-left:30px;
@@ -53,7 +54,7 @@ form input[type="file"] {
             <div class="card shadow my-2">
      
       
-        <?php echo form_open_multipart('ajax-image-upload/post');?> 
+        <?php echo form_open_multipart('ajax-image-upload/post', array('class' => 'text-center mt-3')); ?>
     <label for="image">
 
        <?php if($details->profile_pic==''){ ?>
