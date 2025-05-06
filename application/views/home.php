@@ -22,7 +22,7 @@
                                 </div> -->
                             </div>
                             <div class="career-apply">
-                                <div class="apply-now"><a target="_blank" href="<?= base_url('recruitment'); ?>">Apply Now</a>
+                                <div class="apply-now"><a href="<?= base_url('recruitment'); ?>">Apply Now</a>
                                 </div>
                                 <div class="read-more"><a
                                         href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>"><i
@@ -37,10 +37,11 @@
 
         </div>
         <div class="widgetHead">
-                        <span class="widgetTitle text-danger">Steps to Submit Application</span>
+                        <span class="widgetTitle text-danger">STEPS TO SUBMIT APPLICATION</span>
                     </div>
                     <div class="row">
                         <ul>
+                            <li><strong>Register on the Portal:</strong> Visit the portal and click on the Register button. Provide your name, registered email ID, mobile number, and set a password. Submit the form to complete registration.</li>
                             <li><strong>Login to the Portal:</strong> Use your registered email ID and password to log
                                 in.</li>
                             <li><strong>Complete Your Profile:</strong> Go to the Profile section. Fill in all the
