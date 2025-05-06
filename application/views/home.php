@@ -2,7 +2,7 @@
 <section class="career-current-opening">
     
     <div class="container">
-        <h2 class="">CURRENT OPENINGS</h2>
+        <h2 class="">CAREERS AT Dr.AIT</h2>
         <p class="current text-secondary">Applicants interested in faculty positions are requested to update their profiles using the prescribed proforma, along with all relevant supporting documents.
             Submitted applications will be duly scrutinized and considered as and when suitable positions become available throughout the year.
             </h>
