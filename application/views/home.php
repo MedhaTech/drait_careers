@@ -2,7 +2,7 @@
 <section class="career-current-opening">
     
     <div class="container">
-        <h2 class="">CURRENT OPENINGS</h2>
+        <h2 class="">CAREERS AT Dr.AIT</h2>
         <p class="current text-secondary">Applicants interested in faculty positions are requested to update their profiles using the prescribed proforma, along with all relevant supporting documents.
             Submitted applications will be duly scrutinized and considered as and when suitable positions become available throughout the year.
             </h>
@@ -24,9 +24,9 @@
                             <div class="career-apply">
                                 <div class="apply-now"><a href="<?= base_url('recruitment'); ?>">Apply Now</a>
                                 </div>
-                                <div class="read-more"><a
+                                <!-- <div class="read-more"><a
                                         href="<?= base_url('career-detail'); ?>/<?= $recruitmentList1->slug; ?>"><i
-                                            class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                                            class="fa fa-angle-right" aria-hidden="true"></i></a></div> -->
                             </div>
                         </div>
                     </div>
