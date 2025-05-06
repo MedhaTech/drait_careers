@@ -10,6 +10,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Favicon -->
+  <link rel="shortcut icon" href="<?php echo base_url();?>admin_assets/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="<?php echo base_url();?>admin_assets/img/favicon.ico">  
+  
     <style>
         body {
             margin: 0;
