@@ -1,5 +1,6 @@
 <!-- Career Openings Section -->
 <section class="career-current-opening">
+    
     <div class="container">
         <h2 class="">CURRENT OPENINGS</h2>
         <p class="current text-secondary">Applicants interested in faculty positions are requested to update their profiles using the prescribed proforma, along with all relevant supporting documents.
@@ -35,7 +36,30 @@
             <?php } ?>
 
         </div>
-        <h2 class="">INTERNAL - CAREER ADVANCEMENT SCHEME</h2>
+        <div class="widgetHead">
+                        <span class="widgetTitle text-danger">Steps to Submit Application</span>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <li><strong>Login to the Portal:</strong> Use your registered email ID and password to log
+                                in.</li>
+                            <li><strong>Complete Your Profile:</strong> Go to the Profile section. Fill in all the
+                                required personal, educational, and professional details. Upload necessary documents and
+                                save the profile.</li>
+                            <li><strong>Click on ‘Apply’ Button:</strong> Click on Dashboard from the main menu after completing
+                            your profile. or Locate the ‘Apply’ button at the bottom of Profile screen.</li>
+                            <li><strong>Select the Post:</strong> Choose the post you want to apply for from the
+                                available list. </li>
+                            <li><strong>Choose Department and Designation:</strong> Select the appropriate department
+                                and designation related to the post.</li>
+                            <li><strong>Review and Submit:</strong> Double-check all selected options and information.
+                                Click on ‘Submit Application’ to complete the process.</li>
+                            <li><strong>Confirmation:</strong> After submission, you will receive an application
+                                confirmation message. You can track your application status from the Dashboard.</li>
+                        </ul>
+                        If you face any issues, please contact our support team.
+                    </div>
+        <!-- <h2 class="">INTERNAL - CAREER ADVANCEMENT SCHEME</h2>
         <p class="current text-secondary">All CAS applications submitted, along with the proforma and all supporting documents, will be reviewed biannually—in the months of June and December.</p>
         <div class="row">
 
@@ -194,6 +218,6 @@
 
 
 
-        </div>
+        </div> -->
     </div>
 </section>
