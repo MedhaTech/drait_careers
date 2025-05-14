@@ -145,30 +145,32 @@ class Main extends CI_Controller
 
 			// print_r($facultyList);
 			if ($staffList != null) {
-				$table_setup = array('table_open' => '<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">');
+				$table_setup = array('table_open' => '<table class="table table-bordered table-sm table-hover" id="dataTable" width="100%" cellspacing="0">');
 				$this->table->set_template($table_setup);
 				$this->table->set_heading(
 					array('data' => 'No', 'width' => "2%"),
-					array('data' => 'Appln. No.', 'width' => "10%"),
+					// array('data' => 'Appln. No.', 'width' => "10%"),
 					array('data' => 'Name', 'width' => "15%"),
 					array('data' => 'Department', 'width' => "15%"),
-					array('data' => 'Applied Post', 'width' => "10%"),
+					array('data' => 'Applied Post', 'width' => "15%"),
 					array('data' => 'Mobile', 'width' => "10%"),
-					array('data' => 'Email', 'width' => "10%"),
-					array('data' => 'Date', 'width' => "10%"),
-					array('data' => 'Scrutiny Status', 'width' => "5%"),
-					array('data' => 'Actions', 'width' => "10%")
+					array('data' => 'Email', 'width' => "20%"),
+					array('data' => 'Applied Date', 'width' => "15%"),
+					// array('data' => 'Scrutiny Status', 'width' => "5%"),
+					array('data' => 'View', 'width' => "5%")
 				);
 				$i = 1;
 				foreach ($staffList as $staffList1) {
-
 					if ($staffList1->profile_pic) {
-
 						$img = base_url() . 'uploads/profile/' . $staffList1->profile_pic;
+						if (file_exists($img)) {
+							$img  = $img;
+						}else{
+							$img = base_url() . 'uploads/profile/drait.png';
+						}
 					} else {
-						$img = 'http://via.placeholder.com/160x160';
+						$img = base_url() . 'uploads/profile/drait.png';
 					}
-
 					if ($staffList1->scrutinity == '0') {
 						$scr = "Pending";
 						$btn = '<a href="' . base_url() . 'main/faculty_applications_change_status/' . $staffList1->id . '/' . $id . '" " class="btn btn-primary btn-sm "  title="Change scrutinity status"><i class="fas fa-fw fa-check"></i> </a>';
@@ -178,15 +180,16 @@ class Main extends CI_Controller
 					}
 					$this->table->add_row(
 						$i++,
-						$staffList1->application,
+						// $staffList1->application,
 						'<img src="' . $img . '" class="profile-pic">' . $staffList1->candidate_name,
 						$staffList1->department,
-						$staffList1->post_of,
+						$staffList1->designation,
 						$staffList1->mobile,
 						wordwrap($staffList1->email, 10, "<br>\n", TRUE),
-						date('d-m-Y', strtotime($staffList1->payment_date)),
-						$scr,
-						$btn . '<a href="' . base_url() . 'main/faculty_applications_view/' . $staffList1->id . '" class="btn btn-success btn-sm " title="View Application"><i class="fas fa-fw fa-eye"></i></a>'
+						date('d-m-Y h:i A', strtotime($staffList1->applied_on)),
+						// $scr,
+						// $btn . 
+						'<a href="' . base_url() . 'main/faculty_applications_view/' . $staffList1->id . '" class="btn btn-success btn-sm " title="View Application"><i class="fas fa-fw fa-eye"></i></a>'
 					);
 				}
 				$data['table'] = $this->table->generate();

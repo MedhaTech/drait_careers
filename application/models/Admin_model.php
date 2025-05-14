@@ -645,6 +645,7 @@ public function getApplicantsByPost($post_id)
         recruitment_users.profile_pic,
         recruitment_users.menu_flag,
         recruitment_users.address,
+        recruitment_users.scrutinity,
         recruitment_posts.title as post_title,
         recruitment_posts.slug as post_slug
     ');
