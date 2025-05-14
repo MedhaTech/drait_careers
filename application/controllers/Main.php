@@ -162,9 +162,12 @@ class Main extends CI_Controller
 				$i = 1;
 				foreach ($staffList as $staffList1) {
 					if ($staffList1->profile_pic) {
+						$relative_path = 'uploads/profile/' . $staffList1->profile_pic;
+						$full_path = FCPATH . $relative_path;
+
 						$img = base_url() . 'uploads/profile/' . $staffList1->profile_pic;
-						if (file_exists($img)) {
-							$img  = $img;
+						if (file_exists($full_path)) {
+							$img = base_url() . 'uploads/profile/' . $staffList1->profile_pic;
 						}else{
 							$img = base_url() . 'uploads/profile/drait.png';
 						}
