@@ -208,10 +208,9 @@
                         <div class="mb-3">
                             <label for="designation" class="form-label">Select Applying Position</label>
                             <select class="form-control" name="designation" id="designationSelect" required>
-                                <option value="">Select Designation</option>
-                                <option value="Assistant Professors">Assistant Professors</option>
-                                <option value="Associate Professors">Associate Professors</option>
-                                <option value="Professors">Professors</option>
+                              
+                                 <?php  if ($details->post_of == "Teaching") { echo $this->admin_model->get_designation_options('teaching', set_value('designation')); }?>
+                                   <?php  if ($details->post_of == "Non-Teaching") { echo $this->admin_model->get_designation_options('non-teaching', set_value('designation')); }?>
                             </select>
                         </div>
                         <!-- Additional Information -->
@@ -219,7 +218,7 @@
                             <label for="additional_info" class="form-label">Any additional information you wish to
                                 state?</label>
                             <textarea class="form-control" name="additional_info" id="additional_info" rows="3"
-                                placeholder="Write here..."></textarea>
+                                placeholder="Write here..." required></textarea>
                         </div>
 
                         <!-- In-service Personnel Note -->
@@ -227,7 +226,7 @@
                             <label for="in_service_note" class="form-label">In-service personnel shall forward the
                                 application through the organization. However, send the advance copy of the
                                 application.</label>
-                            <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3"
+                            <textarea class="form-control" required name="in_service_note" id="in_service_note" rows="3"
                                 placeholder="Write here..."></textarea>
                         </div>
 

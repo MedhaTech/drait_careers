@@ -692,7 +692,35 @@ public function getDetailsWithDepartmentscustom($type, $table) {
 
   return $posts;
 }
+public function get_designation_options($type = 'teaching', $selected = '')
+    {
+        $output = '<option value="">Select Designation</option>';
 
+        if ($type === 'teaching') {
+            $designations = [
+                'Assistant Professors',
+                'Associate Professors',
+                'Professors'
+            ];
+        } elseif ($type === 'non-teaching') {
+            $designations = [
+                'Administrative - Administrator',
+                'Administrative - Manager',
+                'Technical - Instructor',
+                'Technical - Assistant Instructor',
+                'Technical - Lab Assistant'
+            ];
+        } else {
+            return $output; // Return default if invalid type
+        }
+
+        foreach ($designations as $designation) {
+            $is_selected = ($designation == $selected) ? 'selected' : '';
+            $output .= "<option value=\"$designation\" $is_selected>$designation</option>\n";
+        }
+
+        return $output;
+    }
 
 }
 ?>
