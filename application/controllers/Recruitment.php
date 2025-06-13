@@ -163,7 +163,7 @@ class Recruitment extends CI_Controller
 			$data['pageTitle'] = "Dashboard";
 			$data['activeMenu'] = "dashboard";
 			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
-			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
+			// $data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
 
 
 			if (isset($_REQUEST['flag'])) {
@@ -187,8 +187,10 @@ class Recruitment extends CI_Controller
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
 			$data['patents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'user_patents')->result();
+			$data['awards'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_awards')->result();
+			$data['skills'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_skills')->result();
 			// if ($data['details']->post_of && $data['details']->department) {
-
+			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartmentscustom($data['details']->post_of, 'recruitment_posts');
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->rec_template->show('recruitment/profile-non', $data);
 			} else {
@@ -215,7 +217,7 @@ class Recruitment extends CI_Controller
 			$data['activeMenu'] = "dashboard";
 			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 
-			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartments('updated_on', 'desc', 'recruitment_posts');
+
 			$data['appliedList'] = $this->admin_model->applied_jobs($data['id']);
 			if (isset($_REQUEST['flag'])) {
 
@@ -237,8 +239,10 @@ class Recruitment extends CI_Controller
 			$data['consultancy'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'consultancy_undertaken')->result();
 			$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
+			$data['awards'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_awards')->result();
+			$data['skills'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_skills')->result();
 			// if ($data['details']->post_of && $data['details']->department) {
-
+			$data['recruitmentList'] = $this->admin_model->getDetailsWithDepartmentscustom($data['details']->post_of, 'recruitment_posts');
 
 			$this->rec_template->show('recruitment/dashboard', $data);
 			// } else {
@@ -991,6 +995,8 @@ class Recruitment extends CI_Controller
 				$data['membership'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'professional_membership')->result();
 				$data['seminars'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'seminars_workshops_courses')->result();
 				$data['patents'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'user_patents')->result();
+				$data['awards'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_awards')->result();
+				$data['skills'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_skills')->result();
 				$data['post_id'] = $this->input->post('post_id');
 				$data['post_details'] = $this->admin_model->getDetails('recruitment_posts', $data['post_id'])->row();
 				$data['department'] = $this->input->post('department');
@@ -3454,6 +3460,244 @@ class Recruitment extends CI_Controller
 			$this->session->set_flashdata('status', 'alert-success');
 
 			redirect('recruitment/managePatents', 'refresh');
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+
+	function manageAwards()
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+			$data['pageTitle'] = "Manage Awards";
+			$data['activeMenu'] = "dashboard";
+
+			$this->form_validation->set_rules('name', 'Name of the Award ', 'required');
+			$this->form_validation->set_rules('award', 'Description', 'required');
+			$this->form_validation->set_rules('year', 'Year', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
+				$data['action'] = 'recruitment/manageAwards';
+
+				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_awards')->result();
+
+				$this->rec_template->show('recruitment/manage_awards', $data);
+			} else {
+
+				$insertDetails = array(
+					'user_id' => $data['id'],
+					'name' => $this->input->post('name'),
+					'award' => $this->input->post('award'),
+					'year' => $this->input->post('year'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+
+				$result = $this->admin_model->insertDetails('recruitment_awards', $insertDetails);
+
+				if ($result) {
+					$this->session->set_flashdata('message', 'Details are inserted successfully..!!');
+					$this->session->set_flashdata('status', 'alert-success');
+				} else {
+					$this->session->set_flashdata('message', 'Oops..!! Something went wrong. Please try again later..!!');
+					$this->session->set_flashdata('status', 'alert-danger');
+				}
+
+				redirect('recruitment/manageAwards', 'refresh');
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+	function updateAwards($id)
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+
+			$data['pageTitle'] = "Manage Awards";
+			$data['activeMenu'] = "dashboard";
+
+			$this->form_validation->set_rules('name', 'Name of the Award ', 'required');
+			$this->form_validation->set_rules('award', 'Description', 'required');
+			$this->form_validation->set_rules('year', 'Year', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
+				$data['action'] = 'recruitment/updateAwards/' . $id;
+
+				$data['details'] = $this->admin_model->getDetails('recruitment_awards', $id)->row();
+
+				$this->rec_template->show('recruitment/update_awards', $data);
+			} else {
+
+				$updateDetails = array(
+					'name' => $this->input->post('name'),
+					'award' => $this->input->post('award'),
+					'year' => $this->input->post('year')
+				);
+
+				$result = $this->admin_model->updateDetails($id, $updateDetails, 'recruitment_awards');
+
+				if ($result) {
+					$this->session->set_flashdata('message', 'Details are updated successfully..!!');
+					$this->session->set_flashdata('status', 'alert-success');
+				} else {
+					$this->session->set_flashdata('message', 'Oops..!! Something went wrong. Please try again later..!!');
+					$this->session->set_flashdata('status', 'alert-danger');
+				}
+
+				redirect('recruitment/manageAwards', 'refresh');
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+	function deleteAwards($id)
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+
+			$data['pageTitle'] = "Manage Awards";
+			$data['activeMenu'] = "dashboard";
+
+			$this->admin_model->delDetails('recruitment_awards', $id);
+
+			$this->session->set_flashdata('message', 'Details are deleted successfully..!!');
+			$this->session->set_flashdata('status', 'alert-success');
+
+			redirect('recruitment/manageAwards', 'refresh');
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+
+	function manageSkills()
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
+			$data['pageTitle'] = "Manage Skills";
+			$data['activeMenu'] = "dashboard";
+
+			$this->form_validation->set_rules('name', 'Name of the Skill ', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('number', 'Rating', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
+				$data['action'] = 'recruitment/manageSkills';
+
+				$data['details'] = $this->admin_model->getDetailsbyfield($data['id'], 'user_id', 'recruitment_skills')->result();
+
+				$this->rec_template->show('recruitment/manage_skills', $data);
+			} else {
+
+				$insertDetails = array(
+					'user_id' => $data['id'],
+					'name' => $this->input->post('name'),
+					'description' => $this->input->post('description'),
+					'number' => $this->input->post('number'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+
+				$result = $this->admin_model->insertDetails('recruitment_skills', $insertDetails);
+
+				if ($result) {
+					$this->session->set_flashdata('message', 'Details are inserted successfully..!!');
+					$this->session->set_flashdata('status', 'alert-success');
+				} else {
+					$this->session->set_flashdata('message', 'Oops..!! Something went wrong. Please try again later..!!');
+					$this->session->set_flashdata('status', 'alert-danger');
+				}
+
+				redirect('recruitment/manageSkills', 'refresh');
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+	function updateSkills($id)
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+
+			$data['pageTitle'] = "Manage Skills";
+			$data['activeMenu'] = "dashboard";
+
+			$this->form_validation->set_rules('name', 'Name of the Skill ', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('number', 'Rating', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
+				$data['pageTitle'] = "Dr.AIT:: Recruitment Portal";
+				$data['action'] = 'recruitment/updateSkills/' . $id;
+
+				$data['details'] = $this->admin_model->getDetails('recruitment_skills', $id)->row();
+
+				$this->rec_template->show('recruitment/update_skills', $data);
+			} else {
+
+				$updateDetails = array(
+					'name' => $this->input->post('name'),
+					'description' => $this->input->post('description'),
+					'number' => $this->input->post('number')
+				);
+
+				$result = $this->admin_model->updateDetails($id, $updateDetails, 'recruitment_skills');
+
+				if ($result) {
+					$this->session->set_flashdata('message', 'Details are updated successfully..!!');
+					$this->session->set_flashdata('status', 'alert-success');
+				} else {
+					$this->session->set_flashdata('message', 'Oops..!! Something went wrong. Please try again later..!!');
+					$this->session->set_flashdata('status', 'alert-danger');
+				}
+
+				redirect('recruitment/manageSkills', 'refresh');
+			}
+		} else {
+			redirect('recruitment/timeout', 'refresh');
+		}
+	}
+
+	function deleteSkills($id)
+	{
+		if ($this->session->userdata('logged_in')) {
+			$session_data = $this->session->userdata('logged_in');
+			$data['id'] = $session_data['id'];
+			$data['candidate_name'] = $session_data['candidate_name'];
+			$data['email'] = $session_data['email'];
+
+			$data['pageTitle'] = "Manage Skills";
+			$data['activeMenu'] = "dashboard";
+
+			$this->admin_model->delDetails('recruitment_skills', $id);
+
+			$this->session->set_flashdata('message', 'Details are deleted successfully..!!');
+			$this->session->set_flashdata('status', 'alert-success');
+
+			redirect('recruitment/manageSkills', 'refresh');
 		} else {
 			redirect('recruitment/timeout', 'refresh');
 		}

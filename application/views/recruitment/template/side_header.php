@@ -154,11 +154,36 @@
         <li class="list-group-item">
             <?php
             if ($details->menu_flag >= 2)
-                echo anchor('recruitment/profile#industrial', 'Industrial Experience');
+                echo anchor('recruitment/profile#industrial', 'Experience');
             else
-                echo anchor('recruitment/profile#industrial', 'Industrial Experience', 'class="btn disabled"');
+                echo anchor('recruitment/profile#industrial', 'Experience', 'class="btn disabled"');
             ?>
         </li>
+         <li class="list-group-item">
+            <?php
+            if ($details->menu_flag >= 2)
+                echo anchor('recruitment/profile#Seminars', 'Training - workshop/Seminar');
+            else
+                echo anchor('recruitment/profile#Seminars', 'Training - workshop/Seminar', 'class="btn disabled"');
+            ?>
+        </li>
+         <li class="list-group-item">
+            <?php
+            if ($details->menu_flag >= 2)
+                echo anchor('recruitment/profile#Skills', 'Other Skills');
+            else
+                echo anchor('recruitment/profile#Skills', 'Other Skills', 'class="btn disabled"');
+            ?>
+        </li>
+        <li class="list-group-item">
+            <?php
+            if ($details->menu_flag >= 2)
+                echo anchor('recruitment/profile#Awards', 'Awards');
+            else
+                echo anchor('recruitment/profile#Awards', 'Awards', 'class="btn disabled"');
+            ?>
+        </li>
+       
 
         <li class="list-group-item">
             <?php
