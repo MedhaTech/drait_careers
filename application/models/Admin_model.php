@@ -659,5 +659,40 @@ public function getApplicantsByPost($post_id)
 }
 
 
+public function getDetailsWithDepartmentscustom($type, $table) {
+  // Fetch recruitment posts
+  $this->db->select('rp.id, rp.title,rp.slug, rp.departments, rp.updated_on');
+  $this->db->from($table . ' rp');
+   $this->db->where('type', $type);
+  $this->db->order_by('updated_on', 'desc');
+  $query = $this->db->get();
+
+  // Get the result
+  $posts = $query->result();
+
+  // Now, fetch department names for each post
+  foreach ($posts as &$post) {
+      // Get the department IDs (comma-separated)
+      $departmentIds = explode(',', $post->departments);
+
+      // Fetch department names
+      $this->db->select('department_name');
+      $this->db->from('recruitment_departments');
+      $this->db->where_in('id', $departmentIds);
+      $departmentQuery = $this->db->get();
+      $departmentNames = $departmentQuery->result_array();
+
+      if (count($departmentNames) > 2) {
+        $post->department_names = "Multiple Departments";
+    } else {
+        // Otherwise, store the department names in a readable format (comma-separated)
+        $post->department_names = implode(', ', array_column($departmentNames, 'department_name'));
+    }
+  }
+
+  return $posts;
+}
+
+
 }
 ?>

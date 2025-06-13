@@ -236,7 +236,8 @@
                                     $specialization = ($education1->specialization) ? ' - ' . $education1->specialization : null;
                             ?>
                                     <div class="media d-block d-sm-flex mb-4">
-                                        <div class="wd-60 ht-60 bg-gray-200 rounded font-weight-bold d-flex align-items-center justify-content-center">
+                                        <div
+                                            class="wd-60 ht-60 bg-gray-200 rounded font-weight-bold d-flex align-items-center justify-content-center">
                                             <?= $education1->program; ?>
                                         </div>
                                         <div class="media-body pl-3">
@@ -263,13 +264,13 @@
             <div class="card shadow my-4" id="industrial">
                 <div class="card-body">
                     <div class="widgetHead">
-                        <span class="widgetTitle">Industrial Experience</span>
+                        <span class="widgetTitle">Experience</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($details->menu_flag >= 6)
-                                echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Industrial', 'class="font-weight-bold"');
+                            if ($details->menu_flag >= 2)
+                                echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Experience', 'class="font-weight-bold"');
                             else
-                                echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Industrial', 'class="font-weight-bold btn disabled"'); ?>
+                                echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Experience', 'class="font-weight-bold btn disabled"'); ?>
                         </span>
                     </div>
                     <table class="table table-hover text-dark tx-14">
@@ -309,50 +310,294 @@
                     </table>
                 </div>
             </div>
+            <div class="card shadow my-4" id="Seminars">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Seminars / Workshop / Short-term Course</span>
+                        <span tabindex="0" class="add no-outline">
+                            <?php
+                            if ($details->menu_flag >= 2)
+                                echo anchor('recruitment/manageSeminarsWorkshopsCourses', '<i class="fas fa-pencil-alt"></i> Manage Training ', 'class="font-weight-bold"');
+                            else
+                                echo anchor('recruitment/manageSeminarsWorkshopsCourses', '<i class="fas fa-pencil-alt"></i> Manage Training ', 'class="font-weight-bold btn disabled"'); ?>
+                        </span>
+                    </div>
+                    <table class="table table-hover text-dark">
+                        <thead>
+                            <tr>
+                                <th>Title of Seminar/Workshop/Certifications</th>
+                                <th>Organised/Conducted By</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Total Days</th>
+
+                            </tr>
+                        </thead>
+                        <?php if (!empty($seminars)) {
+                            foreach ($seminars as $details1) { ?>
+                                <tr>
+                                    <td><?= $details1->title_of_project ?></td>
+                                    <td><?= $details1->organised_conducted ?></td>
+                                    <td><?= date('d-m-Y', strtotime($details1->from_date)) ?></td>
+                                    <td><?= date('d-m-Y', strtotime($details1->to_date)) ?></td>
+                                    <td><?= $details1->total_days ?></td>
+
+                                </tr>
+                        <?php }
+                        } else {
+                            echo '<tr><td colspan="2" class="text-center text-muted">No seminars/workshops/certifications added yet.</td></tr>';
+                        } ?>
+                    </table>
+                </div>
+            </div>
+             <div class="card shadow my-4" id="Skills">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Other Skills</span>
+                        <span tabindex="0" class="add no-outline">
+                            <?php
+                            if ($details->menu_flag >= 2)
+                                echo anchor('recruitment/manageSkills', '<i class="fas fa-pencil-alt"></i> Manage Skills', 'class="font-weight-bold"');
+                            else
+                                echo anchor('recruitment/manageSkills', '<i class="fas fa-pencil-alt"></i> Manage Skills', 'class="font-weight-bold btn disabled"'); ?>
+                        </span>
+                    </div>
+                    <table class="table table-hover text-dark tx-14">
+                        <thead>
+                            <tr>
+                                <th width='40%'>Name of the Skill </th>
+                                <th width='20%'>Description</th>
+                                <th width='20%'>Rating</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($skills)) {
+                                foreach ($skills as $skills1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $skills1->name . '</td>';
+                                    echo '<td>' . $skills1->description . '</td>';
+                                    echo '<td>' . $skills1->number . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No skills added yet.</td></tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card shadow my-4" id="Awards">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">Awards</span>
+                        <span tabindex="0" class="add no-outline">
+                            <?php
+                            if ($details->menu_flag >= 2)
+                                echo anchor('recruitment/manageAwards', '<i class="fas fa-pencil-alt"></i> Manage Awards', 'class="font-weight-bold"');
+                            else
+                                echo anchor('recruitment/manageAwards', '<i class="fas fa-pencil-alt"></i> Manage Awards', 'class="font-weight-bold btn disabled"'); ?>
+                        </span>
+                    </div>
+                    <table class="table table-hover text-dark tx-14">
+                        <thead>
+                            <tr>
+                                <th width='40%'>Name of the Award </th>
+                                <th width='20%'>Description</th>
+                                <th width='20%'>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($awards)) {
+                                foreach ($awards as $awards1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $awards1->name . '</td>';
+                                    echo '<td>' . $awards1->award . '</td>';
+                                    echo '<td>' . $awards1->year . '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted">No affiliations added yet.</td></tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+              <div class="card shadow my-4" id="references">
+                <div class="card-body">
+                    <div class="widgetHead">
+                        <span class="widgetTitle">References</span>
+                        <span tabindex="0" class="add no-outline">
+                            <?php
+
+                            echo anchor('recruitment/manageReferences', '<i class="fas fa-pencil-alt"></i> Manage References', 'class="font-weight-bold"');
+                            ?>
+                        </span>
+                    </div>
+                    <table class="table table-hover text-dark tx-14">
+                        <thead>
+                            <tr>
+                                <th width='20%'>Name </th>
+                                <th width='20%'>Occupation or Position</th>
+                                <th width='20%'>Address for Communication</th>
+                                <th width='20%'>Email</th>
+                                <th width='10%'>Contact Number</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($references)) {
+
+                                foreach ($references as $references1) {
+                                    echo '<tr>';
+                                    echo '<td>' . $references1->name . '</td>';
+                                    echo '<td>' . $references1->position . '</td>';
+                                    echo '<td>' . $references1->number . '</td>';
+                                    echo '<td>' . $references1->email . '</td>';
+                                    echo '<td>' . $references1->contact_number . '</td>';
+
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="5" class="text-center text-muted">No references added yet.</td></tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
             <div class="card shadow my-4" id="documents">
                 <div class="card-body">
                     <div class="widgetHead">
                         <span class="widgetTitle">Documents</span>
-                        <span tabindex="0" class="add no-outline">
-                            <?php
-                            if ($details->menu_flag >= 3)
-                                echo anchor('recruitment/manageDocuments', '<i class="fas fa-pencil-alt"></i> Manage Documents', 'class="font-weight-bold"');
-                            else
-                                echo anchor('recruitment/manageDocuments', '<i class="fas fa-pencil-alt"></i> Manage Documents', 'class="font-weight-bold btn disabled"'); ?>
-                        </span>
+
                     </div>
-                    <table class="table table-hover text-dark tx-14">
-                        <thead>
-                            <tr>
-                                <th width='30%'>Title of the document</th>
-                                <th width='15%'>Document</th>
+
+                    <?php
 
 
-                            </tr>
-                        </thead>
-                        <?php
-                        foreach ($documents as $details1) {
-                            $file_type = $this->admin_model->get_doc_name($details1->type);
 
-                            echo '<tr>';
-                            echo '<td>' . $file_type->name . '</td>';
-                            echo '<td>' . $details1->file . '</td>';
+                    echo "<span style='color:red;'>Applicant's can bring original documents along with two photocopies must be submitted at the time of the interview.</span>";
 
+                    ?>
 
-                            echo '</tr>';
-                        }
-                        ?>
-                    </table>
                 </div>
             </div>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">
+                Apply Now
+            </button>
 
         </div>
     </div>
 
 
 </div>
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="<?= base_url('recruitment/preview'); ?>">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applyModalLabel">Apply for Job</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Hidden input for post_id -->
+
+
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Select Post</label>
+                        <select class="form-control" name="post_id" id="post_id" required>
+                            <option value="">Select Post</option>
+                            <?php foreach ($recruitmentList as $recruitmentList1) {
+                                $user_id = $this->session->userdata('logged_in')['id'];
+                                $alreadyApplied = $this->admin_model->hasApplied($user_id, $recruitmentList1->id);
+                                if (!$alreadyApplied) {
+                            ?>
+                                    <option value="<?= $recruitmentList1->id; ?>"><?= $recruitmentList1->title; ?></option>
+                            <?php }
+                            } ?>
+                        </select>
+                    </div>
+                    <!-- Department Selection -->
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Select Department</label>
+                        <select class="form-control" name="department" id="departmentSelect" required disabled>
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="designation" class="form-label">Select Designation</label>
+                        <select class="form-control" name="designation" id="designationSelect" required>
+                            <option value="">Select Designation</option>
+                            <option value="Assistant Professors">Assistant Professors</option>
+                            <option value="Associate Professors">Associate Professors</option>
+                            <option value="Professors">Professors</option>
+                        </select>
+                    </div>
+                    <!-- Additional Information -->
+                    <div class="mb-3">
+                        <label for="additional_info" class="form-label">Any additional information you wish to state?</label>
+                        <textarea class="form-control" name="additional_info" id="additional_info" rows="3" placeholder="Write here..."></textarea>
+                    </div>
+
+                    <!-- In-service Personnel Note -->
+                    <div class="mb-3">
+                        <label for="in_service_note" class="form-label">In-service personnel shall forward the application through the organization. However, send the advance copy of the application.</label>
+                        <textarea class="form-control" name="in_service_note" id="in_service_note" rows="3" placeholder="Write here..."></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Proceed</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#applyModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var postId = button.data('postid');
+            $('#modalPostId').val(postId);
+            $('#post_id').val(postId);
+            $('#departmentSelect').prop('disabled', true).html('<option>Select a post first</option>');
+        });
+
+        $('#post_id').on('change', function() {
+            var postId = $(this).val();
+            $('#modalPostId').val(postId);
+            $('#departmentSelect').prop('disabled', true).html('<option>Loading...</option>');
+
+            $.ajax({
+                url: "<?= base_url('recruitment/getdepartment'); ?>",
+                type: "POST",
+                data: {
+                    id: postId
+                },
+                success: function(response) {
+                    $('#departmentSelect').html(response).prop('disabled', false);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching departments: ", error);
+                    $('#departmentSelect').html('<option>Error loading departments</option>').prop('disabled', true);
+                }
+            });
+        });
+    });
+</script>
+
 <script>
     $('.payment-submit').on('click', function() {
         var pic = $('#pro-pic').val();
