@@ -168,7 +168,7 @@ class Main extends CI_Controller
 						$img = base_url() . 'uploads/profile/' . $staffList1->profile_pic;
 						if (file_exists($full_path)) {
 							$img = base_url() . 'uploads/profile/' . $staffList1->profile_pic;
-						}else{
+						} else {
 							$img = base_url() . 'uploads/profile/drait.png';
 						}
 					} else {
@@ -222,7 +222,7 @@ class Main extends CI_Controller
 
 			$data['pageTitle'] = "Dashboard";
 			$data['activeMenu'] = "dashboard";
-			$user_id=$this->admin_model->getDetailsbyfield($id, 'id', 'applied_jobs')->row()->user_id;
+			$user_id = $this->admin_model->getDetailsbyfield($id, 'id', 'applied_jobs')->row()->user_id;
 			$data['details'] = $this->admin_model->getDetails('recruitment_users', $user_id)->row();
 			$data['applied'] = $this->admin_model->getDetailsbyfield($id, 'id', 'applied_jobs')->row();
 			$data['education'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'faculty_education_details')->result();
@@ -239,6 +239,8 @@ class Main extends CI_Controller
 			$data['membership'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'professional_membership')->result();
 			$data['seminars'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'seminars_workshops_courses')->result();
 			$data['patents'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'user_patents')->result();
+			$data['awards'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'recruitment_awards')->result();
+			$data['skills'] = $this->admin_model->getDetailsbyfield($user_id, 'user_id', 'recruitment_skills')->result();
 
 			if ($data['details']->post_of == "Non-Teaching") {
 				$this->adminrec_template->show('recruitment/view_print_non', $data);

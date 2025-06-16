@@ -376,7 +376,7 @@
                 <table class="table table-hover text-dark tx-14">
                     <thead>
                         <tr>
-                            <th width='40%'>Name of the University / Institution</th>
+                            <th width='40%'>Name of the Organisation</th>
                             <th width='20%'>Designation</th>
                             <th width='20%'>Exp. From & To</th>
                             <th width='20%'>Total Exp.</th>
@@ -384,7 +384,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($teaching as $teaching1) {
+                        foreach ($industrial as $teaching1) {
 
                             $date1 = strtotime($teaching1->period_from);
                             $date2 = strtotime($teaching1->period_to);
@@ -399,8 +399,8 @@
 
 
                             echo '<tr>';
-                            echo '<td>' . $teaching1->institution . '</td>';
-                            echo '<td>' . $teaching1->designation . '</td>';
+                            echo '<td>' . $teaching1->organization . '</td>';
+                            echo '<td>' . $teaching1->position_held . '</td>';
                             echo '<td>' . date('M Y', strtotime($teaching1->period_from)) . ' - ' . date('M Y', strtotime($teaching1->period_to)) . '</td>';
                             echo '<td>' . $years . ' years, ' . $months . ' months' . '</td>';
                             echo '</tr>';
