@@ -1,5 +1,13 @@
 <style>
     @media print {
+        body {
+            background: #fff !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+        }
+
         body * {
             visibility: hidden;
         }
@@ -13,19 +21,174 @@
             position: absolute;
             left: 0;
             top: 0;
+            width: 100%;
+            padding: 20px;
+            background: white;
+        }
+
+        table {
+            border-collapse: collapse !important;
+            width: 100% !important;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #000 !important;
+            padding: 10px !important;
+            text-align: left !important;
+        }
+
+        .widgetTitle {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: black !important;
+            border-bottom: 2px solid black !important;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .media {
+            padding: 10px !important;
+            margin-bottom: 10px !important;
+            background-color: #f1f1f1 !important;
+            border-radius: 4px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: black;
+            border-radius: 50%;
+            margin: 0 4px;
+        }
+
+        div.divFooter {
+            visibility: visible;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 12px;
+            color: #444;
+            border-top: 1px dashed #aaa;
+            padding-top: 10px;
         }
     }
+</style>
 
-    @media screen {
-        div.divFooter {
-            display: none;
-        }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        color: #333;
+        background-color: #fdfdfd;
+    }
+
+    .container {
+        padding: 30px;
+    }
+
+    .widgetHead {
+        margin-top: 40px;
+        margin-bottom: 15px;
+    }
+
+    .widgetTitle {
+        font-size: 1.3rem;
+        font-weight: 600;
+        border-bottom: 2px solid #0d6efd;
+        display: inline-block;
+        padding-bottom: 5px;
+        color: #0d6efd;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        padding: 12px 10px;
+    }
+
+    .table thead th {
+        background-color: #e9ecef;
+        color: #212529;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .media {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+    }
+
+    .media h6 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 3px;
+    }
+
+    .dot {
+        height: 4px;
+        width: 4px;
+        background-color: #6c757d;
+        display: inline-block;
+        border-radius: 50%;
+        margin: 0 6px;
+    }
+
+    .section-title {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border-left: 4px solid #0d6efd;
+        padding-left: 10px;
+        color: #0d6efd;
+    }
+
+    .signature-section {
+        margin-top: 50px;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        font-size: 0.95rem;
+    }
+
+    .divFooter {
+        text-align: center;
+        font-style: italic;
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-top: 50px;
     }
 
     @media print {
-        div.divFooter {
-            position: fixed;
-            bottom: 0;
+        body {
+            background-color: #fff;
+        }
+
+        .widgetTitle, .section-title {
+            color: black !important;
+            border-color: black !important;
+        }
+
+        .table th, .table td {
+            border: 1px solid black !important;
+        }
+
+        .divFooter {
+            font-size: 10pt;
+        }
+
+        .container {
+            padding: 0;
         }
     }
 </style>
@@ -86,7 +249,7 @@
                                         <th class="text-gray-600">For the Post of</th>
                                         <td><?php echo $details->post_of; ?></td>
                                         <th class="text-gray-600">Department Name</th>
-                                        <td><?php echo $details->department; ?></td>
+                                        <td><?php echo $applied->department; ?></td>
                                     </tr>
                                     <tr>
                                         <th class="text-gray-600">Designation</th>
