@@ -105,12 +105,16 @@
                                                 <?php if ($alreadyApplied) { ?>
                                                     <button type="button" class="btn btn-secondary" disabled>Already
                                                         Applied</button>
-                                                <?php } else { ?>
+                                                <?php } elseif ($details->menu_flag >= 3) { ?>
                                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                                         data-target="#applyModal" data-postid="<?= $recruitmentList1->id; ?>">
                                                         Apply
                                                     </button>
-                                                <?php } ?>
+                                                <?php }else { ?>
+                                                      <button type="button" class="btn btn-primary" disabled data-toggle="tooltip" data-placement="top" title="Fill basic details before applying">
+                                                        Apply
+                                                    </button>
+                                                <?php }?>
                                             </div>
                                             <div class="read-more"><a
                                                     href="<?= base_url('recruitment/career'); ?>/<?= $recruitmentList1->slug; ?>"
