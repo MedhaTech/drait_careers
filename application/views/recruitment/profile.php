@@ -815,7 +815,7 @@
                     Apply Now
                 </button>
             <?php } else { ?>
-                <button type="button" class="btn btn-primary" disabled data-toggle="tooltip" data-placement="top" title="Fill basic details before applying">
+                <button type="button" class="btn btn-primary" disabled data-toggle="tooltip" data-placement="top" title="Please complete your profile details before applying.">
                     Apply
                 </button>
             <?php } ?>
