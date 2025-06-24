@@ -74,6 +74,7 @@
           </div>
 
           <?= form_close(); ?>
+           <label>Note : Please add at least two educational qualifications. </label>
         </div>
       </div>
     </div>

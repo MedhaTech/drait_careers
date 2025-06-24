@@ -267,7 +267,7 @@
                         <span class="widgetTitle">Experience</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($details->menu_flag >= 2)
+                            if ($details->menu_flag >= 3)
                                 echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Experience', 'class="font-weight-bold"');
                             else
                                 echo anchor('recruitment/manageIndustrial', '<i class="fas fa-pencil-alt"></i> Manage Experience', 'class="font-weight-bold btn disabled"'); ?>
@@ -316,7 +316,7 @@
                         <span class="widgetTitle">Seminars / Workshop / Short-term Course</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($details->menu_flag >= 2)
+                            if ($details->menu_flag >= 3)
                                 echo anchor('recruitment/manageSeminarsWorkshopsCourses', '<i class="fas fa-pencil-alt"></i> Manage Training ', 'class="font-weight-bold"');
                             else
                                 echo anchor('recruitment/manageSeminarsWorkshopsCourses', '<i class="fas fa-pencil-alt"></i> Manage Training ', 'class="font-weight-bold btn disabled"'); ?>
@@ -350,13 +350,13 @@
                     </table>
                 </div>
             </div>
-             <div class="card shadow my-4" id="Skills">
+            <div class="card shadow my-4" id="Skills">
                 <div class="card-body">
                     <div class="widgetHead">
                         <span class="widgetTitle">Other Skills</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($details->menu_flag >= 2)
+                            if ($details->menu_flag >= 3)
                                 echo anchor('recruitment/manageSkills', '<i class="fas fa-pencil-alt"></i> Manage Skills', 'class="font-weight-bold"');
                             else
                                 echo anchor('recruitment/manageSkills', '<i class="fas fa-pencil-alt"></i> Manage Skills', 'class="font-weight-bold btn disabled"'); ?>
@@ -368,7 +368,7 @@
                                 <th width='40%'>Name of the Skill </th>
                                 <th width='20%'>Description</th>
                                 <th width='20%'>Rating</th>
-                              
+
                             </tr>
                         </thead>
                         <tbody>
@@ -395,7 +395,7 @@
                         <span class="widgetTitle">Awards</span>
                         <span tabindex="0" class="add no-outline">
                             <?php
-                            if ($details->menu_flag >= 2)
+                            if ($details->menu_flag >= 3)
                                 echo anchor('recruitment/manageAwards', '<i class="fas fa-pencil-alt"></i> Manage Awards', 'class="font-weight-bold"');
                             else
                                 echo anchor('recruitment/manageAwards', '<i class="fas fa-pencil-alt"></i> Manage Awards', 'class="font-weight-bold btn disabled"'); ?>
@@ -427,7 +427,7 @@
                     </table>
                 </div>
             </div>
-              <div class="card shadow my-4" id="references">
+            <div class="card shadow my-4" id="references">
                 <div class="card-body">
                     <div class="widgetHead">
                         <span class="widgetTitle">References</span>
@@ -489,11 +489,15 @@
 
                 </div>
             </div>
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">
-                Apply Now
-            </button>
-
+            <?php if ($details->menu_flag >= 3) { ?>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">
+                    Apply Now
+                </button>
+            <?php } else { ?>
+                <button type="button" class="btn btn-primary" disabled data-toggle="tooltip" data-placement="top" title="Fill basic details before applying">
+                    Apply
+                </button>
+            <?php } ?>
         </div>
     </div>
 
@@ -538,7 +542,7 @@
                     <div class="mb-3">
                         <label for="designation" class="form-label">Select Designation</label>
                         <select class="form-control" name="designation" id="designationSelect" required>
-                        <?= $this->admin_model->get_designation_options('non-teaching', set_value('designation')) ?>
+                            <?= $this->admin_model->get_designation_options('non-teaching', set_value('designation')) ?>
                         </select>
                     </div>
                     <!-- Additional Information -->

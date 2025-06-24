@@ -810,9 +810,15 @@
                     <!-- </table> -->
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">
-                Apply Now
-            </button>
+          <?php if ($details->menu_flag >= 3) { ?>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">
+                    Apply Now
+                </button>
+            <?php } else { ?>
+                <button type="button" class="btn btn-primary" disabled data-toggle="tooltip" data-placement="top" title="Fill basic details before applying">
+                    Apply
+                </button>
+            <?php } ?>
 
         </div>
     </div>
