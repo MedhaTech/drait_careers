@@ -700,7 +700,10 @@ public function get_designation_options($type = 'teaching', $selected = '')
             $designations = [
                 'Assistant Professors',
                 'Associate Professors',
-                'Professors'
+                'Professors',
+                'Professor of Practice (Professor)',
+                'Professor of practice (Associate professor)',
+                'Professor of practice (Assistant Professor)'
             ];
         } elseif ($type === 'non-teaching') {
             $designations = [
