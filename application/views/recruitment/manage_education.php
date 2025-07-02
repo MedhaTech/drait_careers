@@ -14,7 +14,7 @@
             <div class="form-group col-md-2">
               <label class="tx-14 font-weight-bold">Program</label>
               <?php
-              if ($details->post_of == "Teaching") {
+              if ($user_info->post_of == "Teaching") {
 
                 $programList = array(" " => 'Select', 'UG' => 'UG', 'PG' => 'PG', 'Ph.D' => 'Ph.D', 'Other' => 'Other');
               } else {
