@@ -348,7 +348,7 @@ class Recruitment extends CI_Controller
 			$data['user_data'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 			$data['pageTitle'] = "Manage Education";
 			$data['activeMenu'] = "dashboard";
-
+			$data['user_info'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 			$this->form_validation->set_rules('program', 'Program', 'required');
 			$this->form_validation->set_rules('program_type', 'Program Type', 'required');
 			$this->form_validation->set_rules('year_of_passing', 'Year of Passing', 'required');
