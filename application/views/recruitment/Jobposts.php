@@ -7,7 +7,7 @@
       <h6 class="m-0 font-weight-bold text-primary"><?=$pageTitle;?></h6>
       <div class="dropdown no-arrow">
         <?php 
-            echo anchor('main/addJobpost','<i class="fas fa-plus fa-sm fa-fw"></i> New Post', 'class="btn btn-success btn-sm " ');
+            // echo anchor('main/addJobpost','<i class="fas fa-plus fa-sm fa-fw"></i> New Post', 'class="btn btn-success btn-sm " ');
         ?>
       </div>
     </div>
