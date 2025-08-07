@@ -23,8 +23,16 @@
               echo form_dropdown('program', $programList, (set_value('program')) ? set_value('program') : '', 'class="form-control input-xs" id="program"'); ?>
               <?= form_error('program', '<div class="text-danger">', '</div>'); ?>
             </div>
-            <div class="form-group col-md-2">
-              <label class="tx-14 font-weight-bold">Year of Passing</label>
+            <div class="form-group col-md-4" id="status-container" style="display: none;">
+              <label class="tx-14 font-weight-bold">Status</label>
+              <?php
+              $statusList = array("" => 'Select Status', 'Pursuing' => 'Pursuing', 'Completed' => 'Completed');
+              echo form_dropdown('status', $statusList, (set_value('status')) ? set_value('status') : '', 'class="form-control input-xs" id="status"');
+              ?>
+              <?= form_error('status', '<div class="text-danger">', '</div>'); ?>
+            </div>
+            <div class="form-group col-md-3">
+              <label class="tx-14 font-weight-bold">Year of Registration / Passing</label>
               <?php
               // $programTypeList = array(" " => 'Select');
               //         for($i = 1970; $i <= date('Y'); $i++){
@@ -40,7 +48,7 @@
               <input type="text" class="form-control" placeholder="Enter Degree" id="degree" name="degree" value="<?php echo (set_value('degree')) ? set_value('degree') : ''; ?>">
               <?= form_error('degree', '<div class="text-danger">', '</div>'); ?>
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
               <label class="tx-14 font-weight-bold">Specialization</label>
               <input type="text" class="form-control" placeholder="Enter Specialization" id="specialization" name="specialization" value="<?php echo (set_value('specialization')) ? set_value('specialization') : ''; ?>">
               <?= form_error('specialization', '<div class="text-danger">', '</div>'); ?>
@@ -74,7 +82,7 @@
           </div>
 
           <?= form_close(); ?>
-           <label>Note : Please add at least two educational qualifications. </label>
+          <label>Note : Please add at least two educational qualifications. </label>
         </div>
       </div>
     </div>
@@ -145,3 +153,24 @@
 
 
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Initially check if the program is Ph.D
+    toggleStatusDropdown();
+
+    // Add event listener for change on Program dropdown
+    $('#program').change(function() {
+      toggleStatusDropdown();
+    });
+
+    function toggleStatusDropdown() {
+      var programSelected = $('#program').val();
+      if (programSelected == 'Ph.D') {
+        $('#status-container').show();  // Show the status dropdown if Ph.D is selected
+      } else {
+        $('#status-container').hide();  // Hide the status dropdown for other programs
+        $('#status').val('');  // Reset the value of the status dropdown
+      }
+    }
+  });
+</script>

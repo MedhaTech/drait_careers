@@ -14,8 +14,8 @@
             <div class="form-group col-md-2">
               <label class="tx-14 font-weight-bold">Program</label>
               <?php
-              if ($details->post_of == "Teaching") {
 
+              if ($user_info->post_of == "Teaching") {
                 $programList = array(" " => 'Select', 'UG' => 'UG', 'PG' => 'PG', 'Ph.D' => 'Ph.D', 'Other' => 'Other');
               } else {
                 $programList = array(" " => 'Select', 'SSLC' => 'SSLC', 'PUC' => 'PUC', 'Diploma' => 'Diploma', 'UG' => 'UG', 'PG' => 'PG');
@@ -23,8 +23,18 @@
               echo form_dropdown('program', $programList, (set_value('program')) ? set_value('program') : $details->program, 'class="form-control input-xs" id="program"'); ?>
               <?= form_error('program', '<div class="text-danger">', '</div>'); ?>
             </div>
-            <div class="form-group col-md-2">
-              <label class="tx-14 font-weight-bold">Year of Passing</label>
+            <div class="form-group col-md-4" id="status-container" style="display: none;">
+              <label class="tx-14 font-weight-bold">Status</label>
+              <?php
+              $statusList = array('' => 'Select Status', 'Pursuing' => 'Pursuing', 'Completed' => 'Completed');
+              $statusValue = set_value('status') ? set_value('status') : $details->status;
+              echo form_dropdown('status', $statusList, $statusValue, 'class="form-control input-xs" id="status"');
+              ?>
+              <?= form_error('status', '<div class="text-danger">', '</div>'); ?>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label class="tx-14 font-weight-bold">Year of Registration / Passing</label>
               <?php // $programTypeList = array(" " => 'Select');
               // for($i = 1970; $i <= date('Y'); $i++){
               // $programTypeList[$i] = $i;
@@ -39,7 +49,7 @@
               <input type="text" class="form-control" placeholder="Enter Degree" id="degree" name="degree" value="<?php echo (set_value('degree')) ? set_value('degree') : $details->degree; ?>">
               <?= form_error('degree', '<div class="text-danger">', '</div>'); ?>
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
               <label class="tx-14 font-weight-bold">Specialization</label>
               <input type="text" class="form-control" placeholder="Enter Specialization" id="specialization" name="specialization" value="<?php echo (set_value('specialization')) ? set_value('specialization') : $details->specialization; ?>">
               <?= form_error('specialization', '<div class="text-danger">', '</div>'); ?>
@@ -79,3 +89,34 @@
   </div><!-- row -->
 
 </div>
+<script type="text/javascript">
+ $(window).on('load', function() {
+    // Check if "Ph.D" is already selected when the page loads
+    toggleStatusDropdown();
+
+    // Add event listener for change on Program dropdown
+    $('#program').change(function() {
+      toggleStatusDropdown();
+    });
+
+    // Function to toggle the visibility of the Status dropdown
+    function toggleStatusDropdown() {
+        var programSelected = $('#program').val();
+        if (programSelected == 'Ph.D') {
+            $('#status-container').show();  // Show the status dropdown if "Ph.D" is selected
+            $('#status').val('');  // Ensure the placeholder "Select Status" is shown
+        } else {
+            $('#status-container').hide();  // Hide the status dropdown for other programs
+            $('#status').val('');  // Reset the value of the status dropdown
+        }
+    }
+
+    // Check if the "status" value is set on page load (in case it's preselected)
+    var statusValue = "<?php echo addslashes($details->status); ?>"; // Use PHP to pass the value to JS
+    console.log('Status Value on page load:', statusValue); // Debugging line to check the value
+    if (statusValue) {
+        $('#status').val(statusValue);  // Set the selected value programmatically
+    }
+});
+
+</script>

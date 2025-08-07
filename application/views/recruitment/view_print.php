@@ -351,10 +351,10 @@
                                 ?>
                                         <div class="media d-block d-sm-flex mb-4">
                                             <div class="wd-60 ht-60 bg-gray-200 rounded font-weight-bold d-flex align-items-center justify-content-center">
-                                                <?= $education1->program; ?>
+                                                <?= $education1->program; ?> 
                                             </div>
                                             <div class="media-body pl-3">
-                                                <h6 class="mb-0 font-weight-bold"><?= $education1->degree . $specialization; ?></h6>
+                                                <h6 class="mb-0 font-weight-bold"><?= $education1->degree . $specialization; ?>  <?php if ($education1->program== 'Ph.D.') { echo '('.$education1->status.')'; } ?></h6>
                                                 <p class="my-0"><?= $education1->university_name; ?></p>
                                                 <span class="my-0 tx-13">
                                                     <?php echo $education1->program_type . ' <span class="dot"></span> ' . date('M Y', strtotime($education1->year_of_passing)) . ' <span class="dot"></span> Marks : ' . $education1->marks_percentage . '% <span class="dot"></span> Class Awarded : ' . $education1->class_awarded; ?>

@@ -377,6 +377,7 @@ class Recruitment extends CI_Controller
 					'program_type' => $this->input->post('program_type'),
 					'marks_percentage' => $this->input->post('marks_percentage'),
 					'class_awarded' => $this->input->post('class_awarded'),
+					'status' => $this->input->post('status'),
 					'created_at' => date('Y-m-d H:i:s')
 				);
 
@@ -407,7 +408,7 @@ class Recruitment extends CI_Controller
 
 			$data['pageTitle'] = "Manage Education";
 			$data['activeMenu'] = "dashboard";
-
+			$data['user_info'] = $this->admin_model->getDetails('recruitment_users', 	$data['id'])->row();
 			$this->form_validation->set_rules('program', 'Program', 'required');
 			$this->form_validation->set_rules('program_type', 'Program Type', 'required');
 			$this->form_validation->set_rules('year_of_passing', 'Year of Passing', 'required');
@@ -434,7 +435,8 @@ class Recruitment extends CI_Controller
 					'year_of_passing' => $this->input->post('year_of_passing'),
 					'program_type' => $this->input->post('program_type'),
 					'marks_percentage' => $this->input->post('marks_percentage'),
-					'class_awarded' => $this->input->post('class_awarded')
+					'class_awarded' => $this->input->post('class_awarded'),
+					'status' => $this->input->post('status')
 				);
 
 				$result = $this->admin_model->updateDetails($id, $updateDetails, 'faculty_education_details');
